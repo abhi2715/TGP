@@ -4,7 +4,6 @@ import { FileText, BookOpen, MessageSquareQuote, Users, ArrowRight, Clock } from
 import { fetchBlogs, fetchStudyMaterials, fetchTestimonials, fetchShikharUsers } from '../../lib/api';
 
 interface BlogItem { _id: string; title: string; category: string; createdAt: string; published: boolean }
-interface TestimonialItem { _id: string; name: string; role: string; createdAt: string }
 interface ShikharUserItem { _id: string; name: string; email: string; status: string; createdAt: string }
 
 const AdminDashboard = () => {

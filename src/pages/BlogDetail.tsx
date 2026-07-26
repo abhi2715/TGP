@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Clock, Share2 } from 'lucide-react';
 import { fetchBlog } from '../lib/api';
@@ -45,7 +45,7 @@ const BlogDetail = () => {
   // Simple markdown-like rendering: paragraphs, headers, bold, lists
   const renderContent = (content: string) => {
     const lines = content.split('\n');
-    const elements: JSX.Element[] = [];
+    const elements: React.ReactNode[] = [];
     let listItems: string[] = [];
 
     const flushList = () => {
