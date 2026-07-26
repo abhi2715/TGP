@@ -1,0 +1,282 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Compass, Brain, Rocket, Users, MessageCircle, Award,
+  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen, LogOut
+} from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { useShikharStore } from '../../hooks/useShikharStore';
+import './ShikharDashboard.css';
+
+const SESSIONS = [
+  {
+    id: 1,
+    title: 'Leadership Vision',
+    subtitle: 'Define your leadership purpose and values',
+    icon: <Compass size={28} />,
+    color: 'var(--shikhar-olive)',
+    exerciseName: 'Vision Builder',
+    description: 'Set intentions, articulate your 5/10 year vision, and define the values that will guide your journey.',
+  },
+  {
+    id: 2,
+    title: 'Leading Self',
+    subtitle: 'Identify strengths and transform limiting beliefs',
+    icon: <Brain size={28} />,
+    color: 'var(--shikhar-olive-light)',
+    exerciseName: 'Belief Transformer',
+    description: 'Discover your inner strengths, confront self-limiting beliefs, and reframe your narratives.',
+  },
+  {
+    id: 3,
+    title: 'Career Strategy',
+    subtitle: 'Map your career trajectory and success markers',
+    icon: <Rocket size={28} />,
+    color: 'var(--shikhar-gold)',
+    exerciseName: 'Career Compass',
+    description: 'Build your personal brand, set SMART goals, and create decision-making frameworks.',
+  },
+  {
+    id: 4,
+    title: 'Influence & Visibility',
+    subtitle: 'Develop influence strategies in your organization',
+    icon: <Users size={28} />,
+    color: 'var(--shikhar-olive-dark)',
+    exerciseName: 'Stakeholder Map',
+    description: 'Map your stakeholders, build strategic relationships, and identify your village.',
+  },
+  {
+    id: 5,
+    title: 'Communication for Impact',
+    subtitle: 'Build executive presence through communication',
+    icon: <MessageCircle size={28} />,
+    color: 'var(--shikhar-olive-lighter)',
+    exerciseName: 'Presence Builder',
+    description: 'Assess your executive presence, create a 6-12 month plan, and refine communication.',
+  },
+  {
+    id: 6,
+    title: 'Networking & Future Path',
+    subtitle: 'Action plan, reflection, and celebrating growth',
+    icon: <Award size={28} />,
+    color: 'var(--shikhar-gold-dark)',
+    exerciseName: 'Growth Reflector',
+    description: 'Reflect on your journey, build your action plan, and make commitments for the future.',
+  },
+];
+
+export default function ShikharDashboard() {
+  const { logout } = useAuth();
+  const { state, isSessionUnlocked, getProgress, setUserName } = useShikharStore();
+  const [nameInput, setNameInput] = useState('');
+  const progress = getProgress();
+
+  if (!state.programStarted) {
+    return (
+      <div className="shikhar-welcome-page">
+        <div className="welcome-bg" />
+        <motion.div
+          className="welcome-card"
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="welcome-icon">🏔️</div>
+          <h1>Welcome to <span>Shikhar</span></h1>
+          <p>Your journey to the summit of leadership begins here. Six sessions. Six transformations. One powerful you.</p>
+          <div className="welcome-input-wrap">
+            <input
+              type="text"
+              placeholder="Enter your name to begin..."
+              value={nameInput}
+              onChange={e => setNameInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && nameInput.trim() && setUserName(nameInput.trim())}
+              className="welcome-input"
+              autoFocus
+            />
+            <button
+              className="shikhar-btn primary"
+              onClick={() => nameInput.trim() && setUserName(nameInput.trim())}
+              disabled={!nameInput.trim()}
+            >
+              Begin Your Journey <ChevronRight size={18} />
+            </button>
+          </div>
+          <div className="welcome-features">
+            <div className="welcome-feature">
+              <BookOpen size={20} />
+              <span>6 Interactive Sessions</span>
+            </div>
+            <div className="welcome-feature">
+              <Star size={20} />
+              <span>Hands-on Exercises</span>
+            </div>
+            <div className="welcome-feature">
+              <Mountain size={20} />
+              <span>Leadership Growth</span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="shikhar-dashboard paripakv-bg-wrap">
+      <div className="paripakv-bg" style={{ backgroundImage: "url('/shikhar-mountain-bg.png')", position: 'fixed' }} />
+      <div className="paripakv-overlay" style={{ position: 'fixed', zIndex: 0 }} />
+      
+      {/* Hero */}
+      <div className="dashboard-hero" style={{ zIndex: 1 }}>
+        <div className="dashboard-hero-bg" />
+        <div className="container dashboard-hero-content">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="dashboard-greeting" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Mountain size={24} />
+                <span>SHIKHAR PROGRAM</span>
+              </div>
+              <button 
+                onClick={logout} 
+                className="shikhar-btn" 
+                style={{ background: 'rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.1)', padding: '0.5rem 1rem', fontSize: '0.85rem', color: 'var(--shikhar-olive-dark)' }}
+              >
+                <LogOut size={16} /> Log Out
+              </button>
+            </div>
+            <h1>Welcome back, {state.userName} 👋</h1>
+            <p className="dashboard-tagline">Continue your leadership journey. Each session builds on the last.</p>
+          </motion.div>
+
+          {/* Progress Bar */}
+          <motion.div
+            className="dashboard-progress-section"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <div className="progress-header">
+              <span className="progress-label">Overall Progress</span>
+              <span className="progress-value">{progress}%</span>
+            </div>
+            <div className="progress-track">
+              <motion.div
+                className="progress-fill"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+            <div className="progress-milestones">
+              {[1, 2, 3, 4, 5, 6].map(n => (
+                <div
+                  key={n}
+                  className={`milestone ${state.sessions[n]?.completed ? 'done' : ''}`}
+                >
+                  {state.sessions[n]?.completed ? <CheckCircle2 size={14} /> : n}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Sessions Grid */}
+      <div className="container dashboard-body">
+        <div className="dashboard-section-header">
+          <h2>Your Sessions</h2>
+          <p>Complete each session to unlock the next one</p>
+        </div>
+
+        <div className="sessions-grid">
+          <AnimatePresence>
+            {SESSIONS.map((session, index) => {
+              const unlocked = isSessionUnlocked(session.id);
+              const completed = state.sessions[session.id]?.completed;
+
+              return (
+                <motion.div
+                  key={session.id}
+                  className={`session-card ${unlocked ? 'unlocked' : 'locked'} ${completed ? 'completed' : ''}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={unlocked ? { y: -8, transition: { duration: 0.2 } } : {}}
+                >
+                  {unlocked ? (
+                    <Link to={`/shikhar/session/${session.id}`} className="session-card-link">
+                      <div className="session-card-top" style={{ '--accent': session.color } as React.CSSProperties}>
+                        <div className="session-card-number">
+                          {completed ? <CheckCircle2 size={20} /> : session.id}
+                        </div>
+                        <div className="session-card-icon">{session.icon}</div>
+                      </div>
+                      <div className="session-card-content">
+                        <h3>{session.title}</h3>
+                        <p className="session-card-subtitle">{session.subtitle}</p>
+                        <p className="session-card-desc">{session.description}</p>
+                        <div className="session-card-footer">
+                          <span className="exercise-tag">
+                            <Star size={12} /> {session.exerciseName}
+                          </span>
+                          <span className={`session-status ${completed ? 'done' : 'pending'}`}>
+                            {completed ? '✓ Completed' : 'Start →'}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="session-card-link locked-card">
+                      <div className="session-card-top locked-top">
+                        <div className="session-card-number locked-num">{session.id}</div>
+                        <Lock size={24} className="lock-icon" />
+                      </div>
+                      <div className="session-card-content">
+                        <h3>{session.title}</h3>
+                        <p className="session-card-subtitle">{session.subtitle}</p>
+                        <p className="session-locked-msg">Complete Session {session.id - 1} to unlock</p>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        {/* Program Info */}
+        <motion.div
+          className="program-info-strip"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
+          <div className="info-item">
+            <span className="info-number">6</span>
+            <span className="info-text">Sessions</span>
+          </div>
+          <div className="info-divider" />
+          <div className="info-item">
+            <span className="info-number">~55</span>
+            <span className="info-text">Mins Each</span>
+          </div>
+          <div className="info-divider" />
+          <div className="info-item">
+            <span className="info-number">6</span>
+            <span className="info-text">Interactive Exercises</span>
+          </div>
+          <div className="info-divider" />
+          <div className="info-item">
+            <span className="info-number">∞</span>
+            <span className="info-text">Growth Potential</span>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}

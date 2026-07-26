@@ -1,0 +1,268 @@
+/* ═══════════════════════════════════════
+   RESOURCES PAGE
+   ═══════════════════════════════════════ */
+.resources-page {}
+
+.resources-hero {
+  padding: clamp(8rem, 14vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  background-image: url('/resources-bg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.resources-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.resources-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-sub {
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.85;
+  font-size: 1.1rem;
+}
+
+/* ── Tab Switcher ── */
+.resources-tabs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  background: var(--color-surface);
+  border-radius: 100px;
+  padding: 0.375rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid var(--color-border);
+}
+
+.resources-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.resources-tab:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.resources-tab.active {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tab-count {
+  background: rgba(199, 154, 58, 0.2);
+  color: var(--color-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.resources-tab.active .tab-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-bg);
+}
+
+/* ── Resource Grid ── */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  color: inherit;
+}
+
+.resource-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+}
+
+.resource-card-blog {
+  padding: 0;
+  overflow: hidden;
+}
+
+.resource-card-blog .res-type,
+.resource-card-blog h3,
+.resource-card-blog p,
+.resource-card-blog .resource-card-meta {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.resource-card-blog h3 {
+  margin-top: 0.25rem;
+}
+
+.resource-card-blog p {
+  margin-bottom: 0;
+}
+
+.resource-card-blog .resource-card-meta {
+  padding-bottom: 1.5rem;
+}
+
+.resource-card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.resource-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.resource-card:hover .resource-card-image img {
+  transform: scale(1.05);
+}
+
+.res-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.res-type {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.resource-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.resource-card p {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  opacity: 0.75;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.resource-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  color: var(--color-text);
+  opacity: 0.5;
+}
+
+.resource-card-meta span:last-child {
+  color: var(--color-secondary);
+  font-weight: 600;
+  opacity: 1;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* ── Empty State ── */
+.resources-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--color-text);
+}
+
+.resources-empty svg {
+  color: var(--color-secondary);
+  opacity: 0.4;
+  margin-bottom: 1.5rem;
+}
+
+.resources-empty h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+}
+
+.resources-empty p {
+  max-width: 500px;
+  margin: 0 auto;
+  opacity: 0.6;
+  font-size: 1rem;
+}
+
+/* ── CTA Section ── */
+.resource-cta {
+  margin-top: 2rem;
+}
+
+.resource-cta h2 {
+  margin-bottom: 1rem;
+}
+
+.resource-cta p {
+  max-width: 560px;
+  margin: 0 auto 2rem;
+}
+
+/* ── Spinner ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resources-tabs {
+    flex-direction: column;
+    border-radius: 16px;
+    width: 100%;
+  }
+
+  .resources-tab {
+    justify-content: center;
+  }
+}

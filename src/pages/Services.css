@@ -1,0 +1,174 @@
+/* ═══════════════════════════════════════
+   SERVICES PAGES (Shared template)
+   ═══════════════════════════════════════ */
+.service-hero {
+  padding: clamp(9rem, 15vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
+  text-align: center;
+  background-color: var(--color-surface);
+}
+
+.service-tag {
+  display: inline-block;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  background: rgba(218,165,32,0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+}
+
+.service-hero h1 {
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.service-hero .hero-sub {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: var(--color-text);
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.service-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.benefit-card {
+  padding: clamp(2rem, 4vw, 3rem);
+  background: var(--color-bg);
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-normal);
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary));
+}
+
+.benefit-card:hover { transform: translateY(-4px); }
+
+.benefit-card h3 { margin-bottom: 1rem; font-size: 1.35rem; }
+
+
+/* ── Framework section ── */
+.framework-section {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.framework-section h2 { color: var(--color-bg); margin-bottom: 1rem; }
+
+.framework-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2.5rem, 5vw, 4rem);
+  margin-top: clamp(3rem, 6vw, 4rem);
+}
+
+.framework-step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background: rgba(255,255,255,0.03);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.step-num {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-secondary);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.step-content h3 {
+  color: var(--color-bg);
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.step-content p {
+  color: rgba(255,255,255,0.7) !important;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+
+/* ── Case Studies ── */
+.case-studies {
+  background-color: var(--color-bg);
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.cs-card {
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: clamp(2rem, 4vw, 3rem);
+  background: var(--color-surface);
+  transition: transform var(--transition-normal);
+}
+
+.cs-card:hover { transform: translateY(-4px); }
+
+.cs-metric {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+.cs-metric-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.cs-quote {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.cs-author {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 992px) {
+  .framework-grid {
+    grid-template-columns: 1fr;
+  }
+}

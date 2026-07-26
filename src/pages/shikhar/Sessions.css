@@ -1,0 +1,1056 @@
+/* ═══════════════════════════════════════
+   SHIKHAR SESSIONS SHARED STYLES
+   ═══════════════════════════════════════ */
+
+/* ── Step Navigation ── */
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Values Grid ── */
+.values-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.selected-values-summary {
+  background: var(--shikhar-olive-bg);
+  border: 1px solid var(--shikhar-glass-border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.selected-values-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.selected-value-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.8rem;
+  background: linear-gradient(135deg, var(--shikhar-olive), var(--shikhar-olive-light));
+  color: white;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ── Milestones ── */
+.milestones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.milestone-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--shikhar-gold), var(--shikhar-gold-light));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.milestone-item .shikhar-input {
+  flex: 1;
+}
+
+/* ── Summary ── */
+.summary-section {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summary-section:last-of-type {
+  border-bottom: none;
+}
+
+.summary-section h4 {
+  font-size: 1rem;
+  color: var(--shikhar-olive-dark);
+  margin-bottom: 0.5rem;
+}
+
+.summary-text {
+  font-size: 0.95rem;
+  color: var(--color-text) !important;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.summary-milestones {
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.summary-milestones li {
+  padding: 0.25rem 0;
+}
+
+.summary-quote {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, var(--shikhar-gold-bg), var(--shikhar-olive-bg));
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: var(--shikhar-olive-dark);
+  font-family: var(--font-heading);
+}
+
+/* ── Belief Flip Cards ── */
+.belief-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.belief-flip-card {
+  perspective: 1000px;
+  height: 180px;
+  cursor: pointer;
+}
+
+.belief-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.belief-flip-card.flipped .belief-card-inner {
+  transform: rotateY(180deg);
+}
+
+.belief-card-front,
+.belief-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.belief-card-front {
+  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.belief-card-back {
+  background: linear-gradient(135deg, #f0fff0, #e8ffe8);
+  border: 1px solid var(--shikhar-glass-border);
+  transform: rotateY(180deg);
+}
+
+.belief-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.belief-card-front .belief-label { color: #e74c3c; }
+.belief-card-back .belief-label { color: var(--shikhar-olive); }
+
+.belief-card-front p,
+.belief-card-back p {
+  font-size: 0.95rem !important;
+  color: var(--color-text) !important;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 !important;
+}
+
+.flip-hint {
+  font-size: 0.7rem;
+  color: #999;
+  margin-top: auto;
+  text-align: right;
+}
+
+/* ── 5 Whys ── */
+.five-whys-block {
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: var(--shikhar-cream);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.whys-chain {
+  padding-left: 1rem;
+  border-left: 3px solid var(--shikhar-gold);
+}
+
+.why-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.why-number {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--shikhar-gold-dark);
+  white-space: nowrap;
+  min-width: 50px;
+}
+
+.why-item .shikhar-input {
+  flex: 1;
+}
+
+/* ── ABC Framework ── */
+.abc-framework {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--shikhar-olive-bg);
+  border-radius: 14px;
+  border: 1px solid var(--shikhar-glass-border);
+}
+
+.abc-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.abc-item {
+  flex: 1;
+  min-width: 200px;
+}
+
+.abc-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--shikhar-gold);
+  font-weight: 700;
+  padding-top: 1.5rem;
+}
+
+/* ── Reframe Board ── */
+.reframe-board {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reframe-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--shikhar-cream);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.reframe-from,
+.reframe-to {
+  flex: 1;
+}
+
+.reframe-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.reframe-from .reframe-label { color: #e74c3c; }
+.reframe-to .reframe-label { color: var(--shikhar-olive); }
+
+.reframe-from p {
+  font-size: 0.9rem !important;
+  color: var(--color-text) !important;
+  margin: 0 !important;
+  font-weight: 500;
+}
+
+.reframe-arrow {
+  font-size: 1.5rem;
+  color: var(--shikhar-gold);
+  font-weight: 700;
+}
+
+/* ── Reflection Prompts ── */
+.reflection-prompt-block {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.reflection-prompt-block:last-child {
+  border-bottom: none;
+}
+
+.prompt-text {
+  font-size: 0.95rem !important;
+  color: var(--shikhar-olive-dark) !important;
+  font-weight: 600;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.5;
+}
+
+/* ── Compass Grid ── */
+.compass-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.compass-quadrant {
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  transition: border-color 0.2s;
+}
+
+.compass-quadrant:hover {
+  border-color: var(--shikhar-olive-light);
+}
+
+.compass-quadrant.spec { background: var(--shikhar-olive-bg); }
+.compass-quadrant.diff { background: var(--shikhar-gold-bg); }
+.compass-quadrant.seg { background: rgba(46, 52, 56, 0.03); }
+.compass-quadrant.align { background: rgba(46, 52, 56, 0.06); }
+
+.compass-q-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.compass-q-icon {
+  font-size: 1.5rem;
+}
+
+.compass-q-header h4 {
+  font-size: 1rem;
+  color: var(--shikhar-olive-dark);
+}
+
+.compass-q-desc {
+  font-size: 0.8rem !important;
+  color: var(--color-text) !important;
+  font-style: italic;
+  margin-bottom: 0.75rem !important;
+}
+
+/* ── Framework Cards ── */
+.frameworks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.framework-card {
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1.5px solid var(--color-border);
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.framework-card:hover {
+  border-color: var(--shikhar-olive-light);
+  background: var(--shikhar-olive-bg);
+}
+
+.framework-card.selected {
+  border-color: var(--shikhar-olive);
+  background: var(--shikhar-olive-bg);
+}
+
+.framework-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.framework-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.framework-header h4 {
+  font-size: 0.95rem;
+  color: var(--shikhar-olive-dark);
+  margin-bottom: 0.15rem;
+}
+
+.framework-header p {
+  font-size: 0.8rem !important;
+  color: var(--color-text) !important;
+  margin: 0 !important;
+}
+
+.framework-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: all 0.2s;
+}
+
+.framework-check.checked {
+  background: var(--shikhar-olive);
+  border-color: var(--shikhar-olive);
+  color: white;
+  font-weight: 700;
+}
+
+/* ── SMART Goals ── */
+.smart-goal-card {
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background: var(--shikhar-cream);
+  margin-bottom: 1rem;
+}
+
+.smart-goal-num {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--shikhar-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.smart-fields {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.smart-field .shikhar-label {
+  font-size: 0.75rem;
+}
+
+/* ── Stakeholder Sections ── */
+.stakeholder-section {
+  margin-bottom: 1.5rem;
+}
+
+.stakeholder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.stakeholder-header.difficult { background: rgba(231, 76, 60, 0.1); color: #c0392b; }
+.stakeholder-header.supporting { background: var(--shikhar-olive-bg); color: var(--shikhar-olive); }
+.stakeholder-header.key-stakeholder { background: var(--shikhar-gold-bg); color: var(--shikhar-gold-dark); }
+
+.stakeholder-card {
+  position: relative;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: white;
+  margin-bottom: 0.5rem;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.05);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  transition: all 0.2s;
+}
+
+.remove-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+/* ── Village Grid ── */
+.village-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.village-person-card {
+  position: relative;
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background: white;
+  text-align: center;
+}
+
+.village-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--shikhar-olive), var(--shikhar-olive-light));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 auto 0.75rem;
+}
+
+/* ── Relationship Scorecard ── */
+.relationship-scorecard {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--shikhar-cream);
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+}
+
+.score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.score-row:last-child {
+  border-bottom: none;
+}
+
+.score-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.score-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.score-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background: white;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+
+.score-dot.active {
+  background: var(--shikhar-gold);
+  border-color: var(--shikhar-gold);
+  color: white;
+}
+
+.score-dot:hover {
+  border-color: var(--shikhar-gold);
+}
+
+/* ── Review Stats ── */
+.review-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.25rem;
+  border-radius: 14px;
+  background: var(--shikhar-olive-bg);
+  border: 1px solid var(--shikhar-glass-border);
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--shikhar-olive-dark);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Quadrant Select Button ── */
+.quadrant-select-btn {
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-border);
+  background: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+.quadrant-select-btn.active {
+  background: var(--shikhar-olive);
+  border-color: var(--shikhar-olive);
+  color: white;
+}
+
+.quadrant-select-btn:hover:not(.active) {
+  border-color: var(--shikhar-olive-light);
+}
+
+/* ── Presence Result ── */
+.presence-result {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--shikhar-olive-bg);
+  border-radius: 12px;
+  border: 1px solid var(--shikhar-glass-border);
+  font-size: 0.95rem;
+  color: var(--shikhar-olive-dark);
+  margin-bottom: 1rem;
+}
+
+.presence-emoji {
+  font-size: 1.5rem;
+}
+
+/* ── Quiz ── */
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.quiz-question {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: white;
+}
+
+.quiz-q-text {
+  font-size: 0.95rem !important;
+  font-weight: 600;
+  color: var(--color-text) !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.quiz-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quiz-option {
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  border: 1.5px solid var(--color-border);
+  background: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+.quiz-option:hover {
+  border-color: var(--shikhar-olive-light);
+}
+
+.quiz-option.selected {
+  background: var(--shikhar-olive);
+  border-color: var(--shikhar-olive);
+  color: white;
+}
+
+.quiz-results {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, var(--shikhar-olive-bg), var(--shikhar-gold-bg));
+  border-radius: 16px;
+  border: 1px solid var(--shikhar-glass-border);
+}
+
+.quiz-score-circle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.quiz-verdict {
+  font-size: 1rem !important;
+  color: var(--shikhar-olive-dark) !important;
+  font-weight: 500;
+}
+
+/* ── Journey Timeline ── */
+.journey-timeline {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.journey-timeline::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--shikhar-olive), var(--shikhar-gold));
+  border-radius: 100px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.timeline-item.completed .timeline-dot {
+  border-color: var(--shikhar-gold);
+  background: var(--shikhar-gold-bg);
+}
+
+.timeline-icon {
+  font-size: 1rem;
+}
+
+.timeline-content {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: white;
+}
+
+.timeline-content h4 {
+  font-size: 0.95rem;
+  color: var(--shikhar-olive-dark);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.timeline-status.done { color: var(--shikhar-olive); }
+.timeline-status.pending { color: var(--shikhar-gold); }
+
+/* ── Principles Checklist ── */
+.principles-checklist {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--shikhar-cream);
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+}
+
+.principle-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.principle-item:last-child {
+  border-bottom: none;
+}
+
+.principle-item:hover {
+  background: var(--shikhar-olive-bg);
+}
+
+.principle-item input[type="checkbox"] {
+  display: none;
+}
+
+.principle-item .checkmark {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.principle-item.checked .checkmark {
+  background: var(--shikhar-olive);
+  border-color: var(--shikhar-olive);
+}
+
+.principle-item.checked .checkmark::after {
+  content: '✓';
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.principle-text {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.principle-item.checked .principle-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ── Commitment Board ── */
+.commitment-board {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.commitment-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.commitment-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--shikhar-gold), var(--shikhar-gold-light));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.commitment-card .shikhar-input {
+  flex: 1;
+}
+
+/* ── Signature ── */
+.signature-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--shikhar-cream);
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.signature-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.75rem;
+  border: none;
+  border-bottom: 2px solid var(--shikhar-olive);
+  background: transparent;
+  text-align: center;
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+.signature-input:focus {
+  outline: none;
+  border-bottom-color: var(--shikhar-gold);
+}
+
+.signature-display {
+  margin-top: 1rem !important;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--shikhar-olive-dark) !important;
+  opacity: 0.7;
+}
+
+/* ── Celebration Wall ── */
+.celebration-wall {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--shikhar-gold-bg), var(--shikhar-olive-bg));
+  border-radius: 16px;
+  border: 1px solid var(--shikhar-glass-border);
+  text-align: center;
+}
+
+.celebration-wall h4 {
+  font-size: 1.15rem;
+  color: var(--shikhar-olive-dark);
+  margin-bottom: 1rem;
+}
+
+.celebration-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.celebration-mini-card {
+  padding: 1rem 0.75rem;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--shikhar-olive-dark);
+  text-align: center;
+}
+
+.cell-emoji {
+  font-size: 1.5rem;
+}
+
+/* ── Skill Gap Section ── */
+.skill-gap-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .belief-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compass-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .abc-grid {
+    flex-direction: column;
+  }
+
+  .abc-arrow {
+    text-align: center;
+    padding-top: 0;
+    justify-content: center;
+  }
+
+  .reframe-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .reframe-arrow {
+    transform: rotate(90deg);
+  }
+
+  .review-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .village-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .score-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .step-nav {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .celebration-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

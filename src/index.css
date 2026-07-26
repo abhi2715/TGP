@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════
+   DESIGN SYSTEM — THE GROWTH PROJECT
+   Olive Green + Gold | EB Garamond + Inter
+   ═══════════════════════════════════════ */
+:root {
+  /* ── Brand Colors ── */
+  --color-primary: #2E3438;
+  --color-secondary: #C79A3A;
+  --color-accent: #3F474C;
+
+  /* ── Neutrals ── */
+  --color-bg: #F8F8F5;
+  --color-surface: #ECECEC;
+  --color-text: #232323;
+  --color-border: #DCDCD8;
+
+  /* ── Typography ── */
+  --font-heading: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ── Motion ── */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 0.2s var(--ease);
+  --transition-normal: 0.4s var(--ease);
+  --transition-slow: 0.7s var(--ease-out);
+
+  /* ── Elevation ── */
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 48px rgba(0,0,0,0.12);
+  --shadow-gold: 0 8px 32px rgba(218,165,32,0.20);
+  --shadow-glow: 0 0 40px rgba(218,165,32,0.15);
+
+  /* ── 3D ── */
+  --perspective: 1200px;
+
+  /* ── Shikhar Brand (Updated to match main prototype scheme) ── */
+  --shikhar-olive: #2E3438;
+  --shikhar-olive-light: #444C52;
+  --shikhar-olive-lighter: #5E6970;
+  --shikhar-olive-dark: #1F2427;
+  --shikhar-olive-bg: rgba(46, 52, 56, 0.08);
+  --shikhar-gold: #C79A3A;
+  --shikhar-gold-light: #E0BA62;
+  --shikhar-gold-dark: #A47C28;
+  --shikhar-gold-bg: rgba(199, 154, 58, 0.1);
+  --shikhar-white: #F8F8F5;
+  --shikhar-cream: #F5F5DC;
+  --shikhar-charcoal: #2E3438;
+  --shikhar-glass: rgba(255,255,255,0.85);
+  --shikhar-glass-border: rgba(46, 52, 56, 0.15);
+  --shikhar-radius: 16px;
+  --shikhar-radius-lg: 24px;
+
+  /* ── Spacing ── */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  --spacing-2xl: 10rem;
+}
+
+
+/* ═══════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Lenis overrides */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+section {
+  position: relative;
+}
+
+.section-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199, 154, 58, 0.4), transparent);
+  border: none;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+}
+
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); letter-spacing: -0.005em; }
+h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h4 { font-size: clamp(1.25rem, 2vw, 1.625rem); }
+h5 { font-size: 1.125rem; }
+
+p {
+  font-size: 1.0625rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+
+/* ═══════════════════════════════════════
+   DARK SECTION TEXT OVERRIDES
+   ═══════════════════════════════════════ */
+.bg-primary,
+.bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4, .bg-primary h5,
+.bg-primary p,
+.text-white,
+.text-white h1, .text-white h2, .text-white h3, .text-white h4, .text-white h5,
+.text-white p {
+  color: var(--color-bg);
+}
+.bg-primary p,
+.text-white p {
+  color: rgba(255,255,255,0.78);
+}
+
+
+/* ═══════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section {
+  padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.text-center { text-align: center; }
+.text-white { color: var(--color-bg); }
+
+/* ── Decorative section backgrounds ── */
+.section-decorated {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-decorated::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -25%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(218,165,32,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.section-decorated::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(85,107,47,0.04) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+
+/* ═══════════════════════════════════════
+   GLASSMORPHISM CARDS
+   ═══════════════════════════════════════ */
+.glass-card {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.glass-card-dark {
+  background: rgba(42,58,21,0.60);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(218,165,32,0.15);
+  border-radius: 20px;
+}
+
+
+/* ═══════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.25rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 10px; /* Paripakv style radius */
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary));
+  color: var(--color-bg);
+  border-color: transparent;
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(199,154,58,0.4);
+}
+
+.btn-dark {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  border-color: transparent;
+}
+
+.btn-dark:hover {
+  transform: translateY(-3px);
+  background: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(46,52,56,0.3);
+}
+
+.btn-accent {
+  background: rgba(255,255,255,0.12);
+  color: var(--color-bg);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+}
+
+.btn-accent:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-2px);
+}
+
+
+/* ═══════════════════════════════════════
+   PAGE HEADERS (shared across pages)
+   ═══════════════════════════════════════ */
+.page-header {
+  padding: clamp(8rem, 14vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  background: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/section-light.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  transform: scale(1.06);
+  opacity: 0.65;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(253,252,248,0.85) 0%, rgba(247,245,239,0.95) 100%);
+  pointer-events: none;
+}
+
+.page-header > * {
+  position: relative;
+  z-index: 10;
+}
+
+.page-header h1 {
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+}
+
+.page-header .subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* ── Immersive Background Vibe (Paripakv) ── */
+.paripakv-bg-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.paripakv-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  transform: scale(1.06);
+  opacity: 0.8;
+}
+.paripakv-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+
+
+/* ═══════════════════════════════════════
+   SECTION HEADER UTILITY
+   ═══════════════════════════════════════ */
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-header h2 {
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  max-width: 620px;
+}
+
+.section-header.text-center p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title-underline {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary));
+  margin: 1rem auto 2rem;
+  border-radius: 4px;
+}
+
+
+/* ═══════════════════════════════════════
+   3D SCROLL REVEAL UTILITY STYLES
+   ═══════════════════════════════════════ */
+.reveal-3d {
+  perspective: var(--perspective);
+}
+
+
+/* ═══════════════════════════════════════
+   ANIMATED COUNTER (Trust Band)
+   ═══════════════════════════════════════ */
+.counter-value {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1;
+}
+
+
+/* ═══════════════════════════════════════
+   RESPONSIVE FUNDAMENTALS
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .page-header {
+    padding: 7rem 0 3rem;
+  }
+}

@@ -1,0 +1,51 @@
+/* ─── Reset & base ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sage:        #0F3B2C; /* Forest green */
+  --sage-light:  #EAF2EF;
+  --sage-mid:    #4C7667;
+  --sand:        #FBF9F4; /* Logo's cream background */
+  --warm:        #C7973F; /* Logo's amber/gold */
+  --mist:        #8da396;
+  --ink:         #0A251B; /* Very dark green for main text */
+  --sub:         #4B6B5D; /* Medium dark green for subtext */
+  --hint:        #94A89F;
+  --card:        #ffffff; /* Clean white cards */
+  --bg:          #FBF9F4; /* Matches logo background */
+  --border:      rgba(15, 59, 44, 0.12); /* Greenish border */
+  --border-med:  rgba(15, 59, 44, 0.20);
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --font:        'Inter', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sage:        #C7973F; /* Gold for actions in dark mode */
+    --sage-light:  #182A22; /* Deep forest green backgrounds */
+    --sage-mid:    #2A5A46;
+    --sand:        #111A15; 
+    --warm:        #D9A953;
+    --mist:        #5B7566;
+    --ink:         #EAECEB; /* Off-white text */
+    --sub:         #A8BCB2; 
+    --hint:        #6D8579;
+    --card:        #121F18; /* Dark greenish card */
+    --bg:          #0A120E; /* Almost black */
+    --border:      rgba(255, 255, 255, 0.10); 
+    --border-med:  rgba(255, 255, 255, 0.18);
+  }
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: var(--font); cursor: pointer; }
+input, textarea, select { font-family: var(--font); }
