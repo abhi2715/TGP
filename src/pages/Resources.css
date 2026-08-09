@@ -8,8 +8,8 @@
 
 .resources-hero {
   padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
-  background: url('/shikhar-mountain-bg.png') center/cover no-repeat;
-  background-attachment: fixed; /* Optional parallax */
+  background: url('/about-hero-bg.png') center/cover no-repeat;
+  background-attachment: fixed; /* Parallax looks amazing on uniform textures */
   position: relative;
   overflow: hidden;
 }
