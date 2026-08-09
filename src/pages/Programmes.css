@@ -14,7 +14,8 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.15); /* Extremely light overlay so texture is vivid */
+  background: rgba(250, 248, 245, 0.85); /* High opacity warm cream for perfect contrast */
+  backdrop-filter: blur(12px); /* Beautiful frosted glass blur */
   pointer-events: none;
   z-index: 0;
 }
