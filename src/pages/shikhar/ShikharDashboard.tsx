@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Compass, Brain, Rocket, Users, MessageCircle, Award,
-  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen, LogOut
+  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen, LogOut, LayoutGrid, FolderClosed
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useShikharStore } from '../../hooks/useShikharStore';
@@ -70,6 +70,8 @@ export default function ShikharDashboard() {
   const { logout } = useAuth();
   const { state, isSessionUnlocked, getProgress, setUserName } = useShikharStore();
   const [nameInput, setNameInput] = useState('');
+  const [activeTab, setActiveTab] = useState<'journey' | 'apps'>('journey');
+  const [isUnfoldingOpen, setIsUnfoldingOpen] = useState(false);
   const progress = getProgress();
 
   if (!state.programStarted) {
@@ -186,68 +188,146 @@ export default function ShikharDashboard() {
         </div>
       </div>
 
-      {/* Sessions Grid */}
+      {/* Tabs & Content */}
       <div className="container dashboard-body">
-        <div className="dashboard-section-header">
-          <h2>Your Sessions</h2>
-          <p>Complete each session to unlock the next one</p>
+        
+        {/* Tab Navigation */}
+        <div className="shikhar-tabs">
+          <button 
+            className={`shikhar-tab ${activeTab === 'journey' ? 'active' : ''}`}
+            onClick={() => setActiveTab('journey')}
+          >
+            <Compass size={18} /> My Journey
+          </button>
+          <button 
+            className={`shikhar-tab ${activeTab === 'apps' ? 'active' : ''}`}
+            onClick={() => setActiveTab('apps')}
+          >
+            <LayoutGrid size={18} /> Productivity Apps
+          </button>
         </div>
 
-        <div className="sessions-grid">
-          <AnimatePresence>
-            {SESSIONS.map((session, index) => {
-              const unlocked = isSessionUnlocked(session.id);
-              const completed = state.sessions[session.id]?.completed;
+        {/* Tab 1: Journey */}
+        {activeTab === 'journey' && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }} 
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="dashboard-section-header">
+              <h2>Your Sessions</h2>
+              <p>Complete each session to unlock the next one</p>
+            </div>
 
-              return (
-                <motion.div
-                  key={session.id}
-                  className={`session-card ${unlocked ? 'unlocked' : 'locked'} ${completed ? 'completed' : ''}`}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={unlocked ? { y: -8, transition: { duration: 0.2 } } : {}}
-                >
-                  {unlocked ? (
-                    <Link to={`/shikhar/session/${session.id}`} className="session-card-link">
-                      <div className="session-card-top" style={{ '--accent': session.color } as React.CSSProperties}>
-                        <div className="session-card-number">
-                          {completed ? <CheckCircle2 size={20} /> : session.id}
+            <div className="sessions-grid">
+              <AnimatePresence>
+                {SESSIONS.map((session, index) => {
+                  const unlocked = isSessionUnlocked(session.id);
+                  const completed = state.sessions[session.id]?.completed;
+
+                  return (
+                    <motion.div
+                      key={session.id}
+                      className={`session-card ${unlocked ? 'unlocked' : 'locked'} ${completed ? 'completed' : ''}`}
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={unlocked ? { y: -8, transition: { duration: 0.2 } } : {}}
+                    >
+                      {unlocked ? (
+                        <Link to={`/shikhar/session/${session.id}`} className="session-card-link">
+                          <div className="session-card-top" style={{ '--accent': session.color } as React.CSSProperties}>
+                            <div className="session-card-number">
+                              {completed ? <CheckCircle2 size={20} /> : session.id}
+                            </div>
+                            <div className="session-card-icon">{session.icon}</div>
+                          </div>
+                          <div className="session-card-content">
+                            <h3>{session.title}</h3>
+                            <p className="session-card-subtitle">{session.subtitle}</p>
+                            <p className="session-card-desc">{session.description}</p>
+                            <div className="session-card-footer">
+                              <span className="exercise-tag">
+                                <Star size={12} /> {session.exerciseName}
+                              </span>
+                              <span className={`session-status ${completed ? 'done' : 'pending'}`}>
+                                {completed ? '✓ Completed' : 'Start →'}
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                      ) : (
+                        <div className="session-card-link locked-card">
+                          <div className="session-card-top locked-top">
+                            <div className="session-card-number locked-num">{session.id}</div>
+                            <Lock size={24} className="lock-icon" />
+                          </div>
+                          <div className="session-card-content">
+                            <h3>{session.title}</h3>
+                            <p className="session-card-subtitle">{session.subtitle}</p>
+                            <p className="session-locked-msg">Complete Session {session.id - 1} to unlock</p>
+                          </div>
                         </div>
-                        <div className="session-card-icon">{session.icon}</div>
-                      </div>
-                      <div className="session-card-content">
-                        <h3>{session.title}</h3>
-                        <p className="session-card-subtitle">{session.subtitle}</p>
-                        <p className="session-card-desc">{session.description}</p>
-                        <div className="session-card-footer">
-                          <span className="exercise-tag">
-                            <Star size={12} /> {session.exerciseName}
-                          </span>
-                          <span className={`session-status ${completed ? 'done' : 'pending'}`}>
-                            {completed ? '✓ Completed' : 'Start →'}
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  ) : (
-                    <div className="session-card-link locked-card">
-                      <div className="session-card-top locked-top">
-                        <div className="session-card-number locked-num">{session.id}</div>
-                        <Lock size={24} className="lock-icon" />
-                      </div>
-                      <div className="session-card-content">
-                        <h3>{session.title}</h3>
-                        <p className="session-card-subtitle">{session.subtitle}</p>
-                        <p className="session-locked-msg">Complete Session {session.id - 1} to unlock</p>
-                      </div>
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Tab 2: Productivity Apps */}
+        {activeTab === 'apps' && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }} 
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="apps-grid-wrapper"
+          >
+            <div className="dashboard-section-header">
+              <h2>Productivity Apps</h2>
+              <p>Exclusive tools to accelerate your leadership journey</p>
+            </div>
+            
+            <div className="sessions-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+              
+              {/* Unfolding App Card */}
+              <motion.div
+                className="session-card unlocked"
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                onClick={() => setIsUnfoldingOpen(true)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="session-card-top" style={{ '--accent': 'var(--shikhar-olive)' } as React.CSSProperties}>
+                  <div className="session-card-icon"><FolderClosed size={28} /></div>
+                </div>
+                <div className="session-card-content">
+                  <h3>Unfolding Companion</h3>
+                  <p className="session-card-subtitle">AI Guided Reflection Tool</p>
+                  <p className="session-card-desc">Interact with your personal AI leadership coach to navigate complex challenges and gain deeper insights into your daily decisions.</p>
+                  <div className="session-card-footer">
+                    <span className="session-status pending" style={{ background: 'var(--shikhar-olive)', color: 'white', border: 'none' }}>
+                      Launch App →
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Add more apps here in the future */}
+              <div className="session-card locked" style={{ opacity: 0.6 }}>
+                <div className="session-card-top locked-top">
+                  <Lock size={24} className="lock-icon" />
+                </div>
+                <div className="session-card-content">
+                  <h3>Coming Soon</h3>
+                  <p className="session-card-subtitle">More tools in development</p>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        )}
 
         {/* Program Info */}
         <motion.div
@@ -277,6 +357,37 @@ export default function ShikharDashboard() {
           </div>
         </motion.div>
       </div>
+
+      {/* Embedded Unfolding App Modal */}
+      <AnimatePresence>
+        {isUnfoldingOpen && (
+          <div className="unfolding-dashboard-modal">
+            <motion.div 
+              className="unfolding-modal-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsUnfoldingOpen(false)}
+            />
+            <motion.div 
+              className="unfolding-modal-content"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            >
+              <div className="unfolding-modal-header">
+                <h3>Unfolding Companion</h3>
+                <button onClick={() => setIsUnfoldingOpen(false)} className="close-btn">×</button>
+              </div>
+              <iframe 
+                src="/unfolding/index.html" 
+                title="Unfolding App" 
+                className="unfolding-iframe-full"
+              />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

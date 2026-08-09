@@ -4,31 +4,33 @@
 .prog-detail-hero {
   padding: clamp(10rem, 15vw, 14rem) 0 clamp(5rem, 10vw, 7rem);
   position: relative;
-  background-image: url('/shikhar-bg.png');
-  background-size: cover;
-  background-position: center;
+  background: var(--gradient-dark-green);
   z-index: 1;
+  overflow: hidden;
 }
 
 .prog-detail-hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(46,52,56,0.3) 0%, rgba(46,52,56,0.85) 100%);
-  z-index: -1;
+  background-image: radial-gradient(circle, rgba(200, 151, 62, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .pd-tag {
   display: inline-block;
-  background-color: rgba(218,165,32,0.15);
-  color: var(--color-secondary);
-  padding: 0.4rem 1.25rem;
+  background-color: rgba(200, 151, 62, 0.12);
+  color: var(--color-gold);
+  padding: 0.45rem 1.25rem;
   border-radius: 100px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
   font-weight: 700;
   margin-bottom: 2rem;
+  border: 1px solid rgba(200, 151, 62, 0.25);
 }
 
 .pd-hero-content h1 {
@@ -190,10 +192,20 @@
 
 /* ── Testimonial ── */
 .pd-testimonial {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  background: var(--gradient-dark-green);
+  color: var(--color-offwhite);
   text-align: center;
   padding: clamp(4rem, 8vw, 7rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.pd-testimonial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(200, 151, 62, 0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .stars {
@@ -241,8 +253,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary));
+  height: 4px;
+  background: var(--gradient-gold);
 }
 
 .price {

@@ -28,19 +28,18 @@ const Footer = () => {
             <h4>Explore</h4>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About Pooja</Link></li>
+              <li><Link to="/about">My Story</Link></li>
               <li><Link to="/programmes">Programmes</Link></li>
-              <li><Link to="/shikhar">Shikhar Login</Link></li>
               <li><Link to="/success-stories">Success Stories</Link></li>
             </ul>
           </div>
 
           <div className="footer-links-group">
-            <h4>Resources</h4>
+            <h4>Quick Links</h4>
             <ul>
-              <li><Link to="/blog">Blog & Insights</Link></li>
-              <li><Link to="/resources">Free Resources</Link></li>
-              <li><a href="https://www.icf-coaching.org/" target="_blank" rel="noopener noreferrer">ICF Foundation</a></li>
+              <li><Link to="/shikhar">Member Login: Shikhar</Link></li>
+              <li><Link to="/resources">Resources</Link></li>
+              <li><Link to="/contact">Get in touch</Link></li>
             </ul>
           </div>
 

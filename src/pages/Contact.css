@@ -1,44 +1,70 @@
+/* ═══════════════════════════════════════
+   CONTACT PAGE — Premium & Warm
+   ═══════════════════════════════════════ */
+
 .contact-page {
-  background: var(--color-bg);
+  background: var(--color-offwhite);
+}
+
+.contact-page .page-header {
+  background: var(--gradient-warm-bg);
+}
+
+/* ── Section ── */
+.contact-page .section-decorated {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-page .section-decorated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 50% at 50% 30%, rgba(200, 151, 62, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pt-0 {
+  padding-top: 0 !important;
 }
 
 .contact-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin-top: -2rem;
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 .contact-info-wrapper {
-  width: 100%;
-  max-width: 640px;
+  position: relative;
+  z-index: 1;
 }
 
+/* ── Contact Card — Glassmorphism ── */
 .contact-card {
-  padding: clamp(3rem, 5vw, 4rem);
+  padding: 4rem 3rem;
   border-radius: 24px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(200, 151, 62, 0.12);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(200, 151, 62, 0.04);
 }
 
 .contact-card h2 {
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  margin-bottom: 0.5rem;
-  color: var(--color-primary);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-dark-green);
+  margin-bottom: 0.25rem;
 }
 
 .contact-name {
-  font-family: var(--font-body);
-  font-size: 1.25rem;
-  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-gold) !important;
   font-weight: 500;
-  margin-bottom: 3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
 }
 
+/* ── Contact Methods ── */
 .contact-methods {
   display: flex;
   flex-direction: column;
@@ -48,73 +74,75 @@
 .contact-method {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   padding: 1.25rem 1.5rem;
   border-radius: 16px;
-  background-color: rgba(255,255,255,0.5);
-  transition: all var(--transition-normal);
+  border: 1px solid var(--color-border-light);
+  background: var(--color-offwhite);
+  transition: all 0.35s var(--ease);
   text-decoration: none;
-  border: 1px solid rgba(85,107,47,0.1);
 }
 
 .contact-method:hover {
-  background-color: var(--color-bg);
-  border-color: rgba(218,165,32,0.3);
+  border-color: rgba(200, 151, 62, 0.30);
+  box-shadow: var(--shadow-md), 0 0 15px rgba(200, 151, 62, 0.06);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
+  background: var(--color-card);
 }
 
 .contact-icon {
-  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary));
-  color: var(--color-bg);
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 14px;
+  background: var(--color-gold-muted);
+  border: 1px solid rgba(200, 151, 62, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--color-gold);
   flex-shrink: 0;
-  transition: transform var(--transition-normal);
-  box-shadow: 0 4px 12px rgba(218,165,32,0.25);
+  transition: all 0.3s var(--ease);
 }
 
 .contact-method:hover .contact-icon {
-  transform: scale(1.05) rotate(5deg);
+  background: var(--color-gold);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(200, 151, 62, 0.25);
 }
 
 .contact-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   text-align: left;
 }
 
 .contact-text span {
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text);
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.15rem;
 }
 
 .contact-text strong {
-  font-family: var(--font-body);
-  font-size: 1.15rem;
-  color: var(--color-primary);
+  font-size: 0.95rem;
+  color: var(--color-dark-green);
   font-weight: 600;
-  word-break: break-all;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 2.5rem 1.5rem;
+  }
+
   .contact-method {
     flex-direction: column;
     text-align: center;
-    padding: 1.5rem;
+    gap: 0.75rem;
   }
-  
+
   .contact-text {
-    align-items: center;
     text-align: center;
   }
 }

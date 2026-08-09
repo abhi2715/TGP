@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail, GraduationCap, Award, BarChart, Microscope, CheckCircle, Leaf, Mountain, Sprout, Heart } from 'lucide-react';
+import { ArrowRight, Mail, GraduationCap, Award, BarChart, Microscope, CheckCircle, Mountain, Sprout, Heart, Star, Users, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
@@ -9,86 +9,90 @@ const About = () => {
   return (
     <div className="about-page">
       {/* ── Hero ── */}
-      <section className="about-hero-exact">
-        <div className="about-bg-elements">
-          <div className="about-waves-bottom"></div>
-        </div>
+      <section className="about-hero">
+        <div className="container about-hero-container">
+          <motion.div 
+            className="about-image-wrap"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <img src="/pooja_sharma_updated.jpg" alt="Dr. Pooja Sharma" />
+          </motion.div>
 
-        <div className="container about-container-exact" style={{ position: 'relative', zIndex: 2 }}>
-          <ScrollReveal direction="up" delay={0.1}>
-            <div className="about-image-exact">
-              <img src="/pooja_sharma_updated.jpg" alt="Dr. Pooja Sharma" />
-            </div>
-          </ScrollReveal>
-
-          <div className="about-content-exact">
+          <div className="about-hero-content">
             <ScrollReveal direction="up" delay={0.2}>
-              <div className="about-label-exact">MY STORY</div>
+              <div className="about-label">MY STORY</div>
               <h2>
-                Hi, I'm <span className="text-gold-italic">Pooja.</span>
+                Hi, I'm <span className="text-gold">Pooja Sharma</span>
               </h2>
 
-              <div className="about-divider-top" style={{ justifyContent: 'flex-start', marginBottom: '1.5rem' }}>
+              <div className="about-divider-top" style={{ marginBottom: '1.5rem' }}>
                 <div className="line"></div>
-                <Leaf size={16} className="icon-gold" strokeWidth={1.5} />
+                <span className="icon-gold">◆</span>
                 <div className="line"></div>
               </div>
               
-              <p className="lead-text-exact text-left">
-                A certified workplace coach, business leader, and passionate advocate for professionals in leadership — with over 25 years of experience transforming global banking and technology organizations.
+              <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
+                Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant—the ability to grow through change.
               </p>
               
-              <p className="lead-text-exact text-left">
-                As a doctoral researcher and IIM Bangalore alumna, I've explored how AI and the future of work are reshaping leadership. My passion lies in coaching professionals and leaders to find clarity, confidence, and purpose in their growth journeys.
+              <p className="lead-text" style={{ marginBottom: '2rem' }}>
+                As an ICF Certified Leadership Coach, an alumna of IIM Bangalore, and a doctoral researcher on Artificial Intelligence and the Future of Work, I bring together the perspectives of a business leader, technologist and coach. My work is grounded not only in leadership theory but in decades of real-world executive experience.
               </p>
-            </ScrollReveal>
-
-            <ScrollReveal direction="up" delay={0.3}>
-              <div className="about-creds-horizontal">
-                <div className="cred-item">
-                  <div className="cred-icon"><CheckCircle size={20} strokeWidth={1.5} /></div>
-                  <p>Specializing in<br/>Sustainable Innovation-<br/>led Growth</p>
-                </div>
-                <div className="cred-divider"></div>
-                <div className="cred-item">
-                  <div className="cred-icon"><CheckCircle size={20} strokeWidth={1.5} /></div>
-                  <p>ICF Certified Coach<br/>(ACC Credential)</p>
-                </div>
-                <div className="cred-divider"></div>
-                <div className="cred-item">
-                  <div className="cred-icon"><CheckCircle size={20} strokeWidth={1.5} /></div>
-                  <p>IIM Bangalore<br/>Alumna</p>
-                </div>
-              </div>
             </ScrollReveal>
           </div>
+        </div>
+      </section>
+
+      {/* ── Features Band (Moved to be separate blocks below hero) ── */}
+      <section className="features-band" id="features">
+        <div className="container features-container">
+          {[
+            { icon: <Award strokeWidth={1.5} />, text: '20+ Years\nof Global Leadership\nExperience' },
+            { icon: <Star strokeWidth={1.5} />, text: 'Transformative\nCoaching for\nLasting Impact' },
+            { icon: <Users strokeWidth={1.5} />, text: 'Empowering\nProfessionals to\nLead with Confidence' },
+            { icon: <Target strokeWidth={1.5} />, text: 'Purpose-Driven\nGrowth &\nMeasurable Results' },
+          ].map((feature, i) => (
+            <ScrollReveal key={i} direction="up" delay={i * 0.1}>
+              <div className="about-feature-item">
+                <div className="about-feature-icon-wrapper">
+                  <div className="about-feature-icon">{feature.icon}</div>
+                </div>
+                <p>{feature.text}</p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
       {/* ── Personal Story ── */}
       <hr className="section-separator" />
       <section className="section about-timeline-section">
-        <div className="about-timeline-leaves">
-          <img src="/golden-leaves.png" alt="" />
-        </div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="timeline-container">
             <div className="timeline-line"></div>
+            <div className="timeline-line-glow"></div>
             
             <ScrollReveal direction="up" delay={0.1}>
               <div className="timeline-item">
                 <div className="timeline-marker">
-                  <Mountain size={28} className="text-gold" strokeWidth={1.5} />
+                  <div className="timeline-marker-inner">
+                    <Mountain size={24} className="text-gold" strokeWidth={1.5} />
+                  </div>
                 </div>
-                <div className="timeline-card glass-card-light">
-                  <h2>Where It All Began</h2>
-                  <div className="title-underline" style={{ margin: '1rem 0 2rem' }} />
-                  <p>
-                    My career began in the world of banking and finance — building teams, launching products, and leading multi-million-dollar businesses across global markets. For over two decades, I navigated the complex landscapes of corporate leadership, learning firsthand what it takes to succeed at the highest levels.
-                  </p>
-                  <p>
-                    But along the way, I noticed something: brilliant professionals were stalling in their careers. Not because they lacked talent or competence, but because they lacked the right guidance, the right frameworks, and someone who truly understood their journey.
-                  </p>
+                <div className="timeline-card premium-glass">
+                  <div className="timeline-card-content">
+                    <div className="step-number">01</div>
+                    <h2>Where It All Began</h2>
+                    <div className="title-underline" style={{ margin: '1rem 0 1.5rem' }} />
+                    <p>
+                      My career began in the world of banking and finance — building teams, launching products, and leading multi-million-dollar businesses across global markets. For over two decades, I navigated the complex landscapes of corporate leadership, learning firsthand what it takes to succeed at the highest levels.
+                    </p>
+                    <p>
+                      But along the way, I noticed something: brilliant professionals were stalling in their careers. Not because they lacked talent or competence, but because they lacked the right guidance, the right frameworks, and someone who truly understood their journey.
+                    </p>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
@@ -96,17 +100,22 @@ const About = () => {
             <ScrollReveal direction="up" delay={0.2}>
               <div className="timeline-item">
                 <div className="timeline-marker">
-                  <Sprout size={28} className="text-gold" strokeWidth={1.5} />
+                  <div className="timeline-marker-inner">
+                    <Sprout size={24} className="text-gold" strokeWidth={1.5} />
+                  </div>
                 </div>
-                <div className="timeline-card glass-card-light">
-                  <h2>Why I Started The Growth Project</h2>
-                  <div className="title-underline" style={{ margin: '1rem 0 2rem' }} />
-                  <p>
-                    The Growth Project was born from a simple belief: <strong>everyone deserves access to the kind of mentorship that changes lives.</strong> I wanted to create a space where ambitious professionals and learners stepping into leadership could find clarity, build confidence, and chart their own path to impact.
-                  </p>
-                  <p>
-                    As an IIM Bangalore alumna and ICF-certified coach (ACC credential), I bring both the rigour of strategic thinking and the warmth of genuine human connection to every coaching engagement. My doctoral research into AI and the future of work has also shaped my unique perspective on how leadership must evolve.
-                  </p>
+                <div className="timeline-card premium-glass">
+                  <div className="timeline-card-content">
+                    <div className="step-number">02</div>
+                    <h2>Why I Started The Growth Project</h2>
+                    <div className="title-underline" style={{ margin: '1rem 0 1.5rem' }} />
+                    <p>
+                      The Growth Project was born from a simple belief: <strong>everyone deserves access to the kind of mentorship that changes lives.</strong> I wanted to create a space where ambitious professionals and learners stepping into leadership could find clarity, build confidence, and chart their own path to impact.
+                    </p>
+                    <p>
+                      As an IIM Bangalore alumna and ICF-certified coach (ACC credential), I bring both the rigour of strategic thinking and the warmth of genuine human connection to every coaching engagement. My doctoral research into AI and the future of work has also shaped my unique perspective on how leadership must evolve.
+                    </p>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
@@ -114,17 +123,22 @@ const About = () => {
             <ScrollReveal direction="up" delay={0.3}>
               <div className="timeline-item">
                 <div className="timeline-marker">
-                  <Heart size={28} className="text-gold" strokeWidth={1.5} />
+                  <div className="timeline-marker-inner">
+                    <Heart size={24} className="text-gold" strokeWidth={1.5} />
+                  </div>
                 </div>
-                <div className="timeline-card glass-card-light">
-                  <h2>What I Believe</h2>
-                  <div className="title-underline" style={{ margin: '1rem 0 2rem' }} />
-                  <p>
-                    I believe that true leadership starts with self-awareness. That growth is not a destination but a daily practice. And that every individual who finds their voice makes the world a little brighter.
-                  </p>
-                  <p>
-                    Through structured coaching, deep reflection, and real-world frameworks, I help my clients unlock the leader within — whether they're navigating their first managerial role or stepping onto the global stage.
-                  </p>
+                <div className="timeline-card premium-glass">
+                  <div className="timeline-card-content">
+                    <div className="step-number">03</div>
+                    <h2>What I Believe</h2>
+                    <div className="title-underline" style={{ margin: '1rem 0 1.5rem' }} />
+                    <p>
+                      I believe that true leadership starts with self-awareness. That growth is not a destination but a daily practice. And that every individual who finds their voice makes the world a little brighter.
+                    </p>
+                    <p>
+                      Through structured coaching, deep reflection, and real-world frameworks, I help my clients unlock the leader within — whether they're navigating their first managerial role or stepping onto the global stage.
+                    </p>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
@@ -133,10 +147,9 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── Credentials Strip ── */}
+      {/* ── Credentials Strip — Dark Green ── */}
       <hr className="section-separator" />
-      <section className="about-credentials paripakv-bg-wrap">
-        <div className="about-credentials-bg" />
+      <section className="about-credentials">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="3d-up">
             <div className="creds-grid">
@@ -148,7 +161,7 @@ const About = () => {
               ].map((cred, i) => (
                 <motion.div
                   key={i}
-                  className="cred-card glass-card-dark"
+                  className="cred-card"
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
@@ -161,6 +174,8 @@ const About = () => {
           </ScrollReveal>
         </div>
       </section>
+
+
 
       {/* ── Approach ── */}
       <hr className="section-separator" />
@@ -192,23 +207,22 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <hr className="section-separator" />
-      <section className="section about-cta-section text-center">
-        <div className="container text-center">
-          <ScrollReveal direction="up">
-            <h2>Let's work together.</h2>
-            <p style={{ maxWidth: '560px', margin: '0 auto 2rem' }}>
-              Whether you're looking to step into leadership, navigate a career transition, or simply find clarity — I'd love to hear from you.
+      {/* ══════════════════════════════════
+          FINAL CTA — Gold background
+         ══════════════════════════════════ */}
+      <section className="section final-cta" id="cta">
+        <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
+          <ScrollReveal direction="3d-up">
+            <h2>Ready to accelerate your Leadership journey?</h2>
+            <p>
+              Join hundreds of professionals who have transformed their Professional journey.
             </p>
             <div className="cta-buttons">
               <MagneticButton>
-                <Link to="/book-consultation" className="btn btn-primary">Book a conversation <ArrowRight size={16} /></Link>
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
               </MagneticButton>
               <MagneticButton>
-                <a href="mailto:contact.thegrowthproject@gmail.com" className="btn btn-secondary">
-                  <Mail size={16} /> Get in touch
-                </a>
+                <Link to="/programmes" className="btn" style={{ background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>Explore Programmes</Link>
               </MagneticButton>
             </div>
           </ScrollReveal>

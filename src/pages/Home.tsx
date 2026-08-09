@@ -1,55 +1,69 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Mail, Target, Rocket, Brain, Handshake, Sprout, Award, Leaf, Users, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, Mail, Target, Rocket, Brain, Handshake, Sprout, Award, Users, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import MagneticButton from '../components/ui/MagneticButton';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import './Home.css';
 
 
-
 const Home = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY } = e;
-    const { innerWidth, innerHeight } = window;
-    const x = (clientX / innerWidth - 0.5) * 2;
-    const y = (clientY / innerHeight - 0.5) * 2;
-    setMousePos({ x, y });
-  };
 
   return (
     <div className="home-page">
       {/* ══════════════════════════════════
-          HERO — Full viewport, cinematic
+          HERO — Off-white, bold, simple
          ══════════════════════════════════ */}
-      <section className="hero-section" onMouseMove={handleMouseMove}>
-        <div className="hero-bg-layer" />
-        <div className="hero-particles" />
+      <section className="hero-section" id="home">
         <div className="container hero-container">
           <div className="hero-content">
             <motion.div
-              initial={{ opacity: 0, y: 40, rotateX: 10 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              style={{ perspective: '1200px' }}
             >
               <span className="hero-tag">The Growth Project</span>
               <h1 className="display-title">
-                Coaching Professionals<br />
-                <span className="text-gold">For Excellence</span>
+                Leadership coaching<br />
+                <span className="text-gold">for professionals</span>
               </h1>
             </motion.div>
 
-            <motion.p
+            <motion.div
               className="hero-subtitle"
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              style={{ textAlign: 'left', fontSize: '0.95rem', lineHeight: '1.6' }}
             >
-              With over two decades of leading and transforming global businesses in banking and technology, I bring deep insights into navigating complex professional landscapes with confidence and purpose.
-            </motion.p>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <strong style={{ color: 'var(--color-dark-green)', display: 'block', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Leadership is Being Rewritten:</strong>
+                <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  <li><span style={{color:'var(--color-gold)', marginRight: '8px'}}>✦</span> The world has changed more in the last 5 years than the previous 20.</li>
+                  <li><span style={{color:'var(--color-gold)', marginRight: '8px'}}>✦</span> Artificial Intelligence is transforming industries exponentially.</li>
+                  <li><span style={{color:'var(--color-gold)', marginRight: '8px'}}>✦</span> Business models are reinvented and decision cycles are shrinking.</li>
+                </ul>
+              </div>
+
+              <div style={{ marginBottom: '1.5rem' }}>
+                <strong style={{ color: 'var(--color-dark-green)', display: 'block', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Beyond VUCA — The Speed of Disruption:</strong>
+                <p style={{ margin: '0 0 0.5rem 0' }}>Leaders now operate where disruption compounds faster than organisations can adapt:</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
+                  <div><span style={{color:'var(--color-gold)', marginRight: '6px'}}>•</span> AI & Tech Change</div>
+                  <div><span style={{color:'var(--color-gold)', marginRight: '6px'}}>•</span> Hybrid Workplaces</div>
+                  <div><span style={{color:'var(--color-gold)', marginRight: '6px'}}>•</span> Geopolitical Shifts</div>
+                  <div><span style={{color:'var(--color-gold)', marginRight: '6px'}}>•</span> Generational Shifts</div>
+                  <div style={{ gridColumn: 'span 2' }}><span style={{color:'var(--color-gold)', marginRight: '6px'}}>•</span> Increasing Stakeholder Expectations</div>
+                </div>
+              </div>
+
+              <div>
+                <strong style={{ color: 'var(--color-dark-green)', display: 'block', marginBottom: '0.5rem', fontSize: '1.05rem' }}>Shape the Change:</strong>
+                <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  <li><span style={{color:'var(--color-gold)', marginRight: '8px'}}>✦</span> Tomorrow’s leaders won't just keep pace—they will grow faster than change itself.</li>
+                  <li><span style={{color:'var(--color-gold)', marginRight: '8px'}}>✦</span> Our programmes prepare you not merely to respond to change, but to shape it.</li>
+                </ul>
+              </div>
+            </motion.div>
 
             <motion.div
               className="hero-ctas"
@@ -59,11 +73,11 @@ const Home = () => {
             >
               <MagneticButton>
                 <Link to="/programmes" className="btn btn-dark">
-                  Discover Shikhar <ArrowRight size={18} />
+                  Explore Programmes <ArrowRight size={18} />
                 </Link>
               </MagneticButton>
               <MagneticButton>
-                <Link to="/contact" className="btn btn-secondary" style={{ padding: '0.9rem 3rem' }}>
+                <Link to="/contact" className="btn btn-secondary">
                   Get in Touch
                 </Link>
               </MagneticButton>
@@ -75,178 +89,146 @@ const Home = () => {
             initial={{ opacity: 0, x: 60, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center'
+            }}
           >
-
-            <div className="hero-photo-frame">
-              <img src="/pooja_sharma_updated.jpg" alt="Dr. Pooja Sharma" className="hero-photo" />
-            </div>
-            
-            <motion.div 
-              className="hero-leaves-overlay"
-              initial={{ x: "-50%", y: "-50%" }}
-              animate={{ 
-                x: `calc(-50% + ${mousePos.x * 20}px)`, 
-                y: `calc(-50% + ${mousePos.y * 20}px)`
+            <img 
+              src="/leadership_books_compass.png" 
+              alt="Leadership and Strategic Direction" 
+              className="hero-image-sculpture" 
+              style={{ 
+                objectFit: 'contain', 
+                width: '100%', 
+                maxWidth: '500px',
+                zIndex: 2,
+                position: 'relative'
               }}
-              transition={{ type: "spring", stiffness: 40, damping: 30 }}
-            >
-              <img src="/leaves.png" alt="" className="hero-leaves-img" />
-            </motion.div>
+            />
           </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.a
+          href="#about"
+          className="hero-scroll-indicator"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.6 }}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="var(--color-gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </motion.a>
       </section>
 
       {/* ══════════════════════════════════
-          FEATURES BAND
+          ABOUT PREVIEW
          ══════════════════════════════════ */}
-      <hr className="section-separator" />
-      <section className="features-band">
-        <div className="container features-container">
-          <div className="feature-item">
-            <div className="feature-icon-wrapper">
-              <Award className="feature-icon" strokeWidth={1.5} />
-            </div>
-            <p>20+ Years<br/>of Global Leadership<br/>Experience</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon-wrapper">
-              <Leaf className="feature-icon" strokeWidth={1.5} />
-            </div>
-            <p>Transformative<br/>Coaching for<br/>Lasting Impact</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon-wrapper">
-              <Users className="feature-icon" strokeWidth={1.5} />
-            </div>
-            <p>Empowering<br/>Professionals to<br/>Lead with Confidence</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon-wrapper">
-              <Star className="feature-icon" strokeWidth={1.5} />
-            </div>
-            <p>Purpose-Driven<br/>Growth &<br/>Measurable Results</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════
-          ENHANCED MARQUEE BANNER
-         ══════════════════════════════════ */}
-      <div className="marquee-section">
-        <div className="marquee-glass-banner">
-          <div className="marquee-wrapper">
-              <div className="marquee">
-                <div className="marquee-content">
-                  <span>✦ ICF Certified Coach (ACC)</span>
-                  <span>✦ IIM Bangalore Alumna</span>
-                  <span>✦ 25+ Years Leadership Experience</span>
-                  <span>✦ Doctoral Researcher</span>
-                  <span>✦ Industry Leader Banking & Financial Markets</span>
-                  <span>✦ Built & Led Multi-Million-Dollar Businesses</span>
-                </div>
-                <div className="marquee-content" aria-hidden="true">
-                  <span>✦ ICF Certified Coach (ACC)</span>
-                  <span>✦ IIM Bangalore Alumna</span>
-                  <span>✦ 25+ Years Leadership Experience</span>
-                  <span>✦ Doctoral Researcher</span>
-                  <span>✦ Industry Leader Banking & Financial Markets</span>
-                  <span>✦ Built & Led Multi-Million-Dollar Businesses</span>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-
-      {/* ══════════════════════════════════
-          ABOUT PREVIEW — EXACT DESIGN
-         ══════════════════════════════════ */}
-      <hr className="section-separator" />
-      <section className="about-preview-exact">
-        <div className="about-bg-elements">
-          <div className="about-dots-right"></div>
-          <div className="about-waves-bottom"></div>
-        </div>
-
-        <div className="container" style={{ maxWidth: '800px', position: 'relative', zIndex: 2 }}>
-          <ScrollReveal direction="up" delay={0.1}>
-            <div className="about-header-exact">
-              <div className="about-divider-top">
-                <div className="line"></div>
-                <Leaf size={20} className="icon-gold" strokeWidth={1.5} />
-                <div className="line"></div>
-              </div>
-              
-              <h2>
-                Empowering Your<br />
-                <span className="text-gold">Leadership Journey</span>
-              </h2>
-
-              <div className="about-divider-bottom">
-                <div className="line"></div>
-                <div className="diamond">◇</div>
-                <div className="line"></div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <div style={{ textAlign: 'center' }}>
-            <ScrollReveal direction="up" delay={0.2}>
-              <p className="lead-text-exact">
-                My passion lies in empowering professionals to step into leadership<br className="desktop-break" />
-                with clarity and confidence. Having built and led global multi-<br className="desktop-break" />
-                million-dollar businesses, I understand the challenges professionals face in<br className="desktop-break" />
-                navigating the corporate landscape.
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal direction="up" delay={0.3}>
-              <p className="lead-text-exact">
-                Through my coaching, I help professionals discover their unique voice,<br className="desktop-break" />
-                sharpen their leadership presence, and chart pathways for sustainable<br className="desktop-break" />
-                success. Together, we create a space where aspirations turn into action and<br className="desktop-break" />
-                potential transforms into impact.
-              </p>
+      <section className="about-preview" id="about">
+        <div className="container about-preview-container">
+          
+          <div className="about-image-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <ScrollReveal direction="up" delay={0.1}>
+              <img 
+                src="/realistic_mountain_peak.png" 
+                alt="Leadership and Growth" 
+                style={{ 
+                  objectFit: 'cover', 
+                  width: '100%', 
+                  maxWidth: '550px',
+                  height: 'auto', 
+                  borderRadius: '24px',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
+                  zIndex: 2,
+                  position: 'relative'
+                }}
+              />
             </ScrollReveal>
           </div>
 
-          <ScrollReveal direction="up" delay={0.4}>
-            <div className="about-cta-wrapper">
-              <Link to="/about" className="btn-read-story">
-                Read My Story <ArrowRight size={16} />
-              </Link>
+          <div className="about-content">
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="section-title-wrap" style={{ textAlign: 'left', marginBottom: '2rem' }}>
+                <div className="about-divider-top" style={{ margin: '0 0 1rem 0', justifyContent: 'flex-start' }}>
+                  <div className="line"></div>
+                  <span className="icon-gold">◆</span>
+                  <div className="line"></div>
+                </div>
+                <h2>
+                  Accelerate Your<br />
+                  <span className="text-gold">Leadership Journey</span>
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div style={{ textAlign: 'left' }}>
+              <ScrollReveal direction="up" delay={0.2}>
+                <h4 style={{ color: 'var(--color-dark-green)', marginBottom: '1rem', fontWeight: 600 }}>Enabling your Leadership Journey</h4>
+                <p className="lead-text" style={{ marginBottom: '1.5rem', fontWeight: 500 }}>
+                  Leadership today demands more than experience. It demands the ability to continually evolve.
+                </p>
+                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                  Hi, I'm Pooja Sharma — Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant—the ability to grow through change.
+                </p>
+                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                  As an ICF Certified Leadership Coach, an alumna of IIM Bangalore, and a doctoral researcher on Artificial Intelligence and the Future of Work, I bring together the perspectives of a business leader, technologist, and coach. My work is grounded not only in leadership theory but in decades of real-world executive experience.
+                </p>
+                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                  I founded The Growth Project with a simple belief: leadership is no longer about keeping pace with change—it is about growing faster than change itself.
+                </p>
+                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                  Through executive and leadership coaching, I help professionals:
+                </p>
+                <ul style={{ listStyleType: 'none', padding: 0, margin: '0 0 2rem 0' }}>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                    <span style={{ color: 'var(--color-gold)', marginRight: '10px' }}>✦</span>
+                    <span style={{ color: 'var(--color-text)' }}>Unlock their potential and strengthen leadership presence</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                    <span style={{ color: 'var(--color-gold)', marginRight: '10px' }}>✦</span>
+                    <span style={{ color: 'var(--color-text)' }}>Build habits that create exponential growth</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                    <span style={{ color: 'var(--color-gold)', marginRight: '10px' }}>✦</span>
+                    <span style={{ color: 'var(--color-text)' }}>Lead with confidence in an AI-enabled world</span>
+                  </li>
+                </ul>
+                <p className="lead-text" style={{ marginBottom: '2rem', fontStyle: 'italic', fontWeight: 500 }}>
+                  My coaching combines deep reflection with practical action, enabling leaders to navigate complexity, influence with authenticity, and create lasting impact.<br/><br/>
+                  Because leadership isn't defined by the position you hold.<br/>
+                  <strong style={{ color: 'var(--color-dark-green)' }}>It's defined by the person you become.</strong>
+                </p>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.4}>
+              <div className="about-cta-wrapper" style={{ textAlign: 'left', marginTop: '1rem' }}>
+                <Link to="/programmes" className="btn btn-dark">
+                  Explore Programmes <ArrowRight size={16} />
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════
-          FIVE PILLARS — EXACT DESIGN
+          FIVE PILLARS — Dark Green
          ══════════════════════════════════ */}
-      <hr className="section-separator" />
-      <section className="pillars-section-exact paripakv-bg-wrap">
-        <div className="paripakv-bg" style={{ backgroundImage: "url('/services-bg.png')", opacity: 0.15 }}></div>
-        <div className="pillars-bg-exact">
-        </div>
-
+      <section className="pillars-section" id="pillars">
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <ScrollReveal direction="up">
-            <div className="about-header-exact">
+            <div className="section-title-wrap">
               <div className="about-divider-top">
-                <div className="line"></div>
-                <Leaf size={20} className="icon-gold" strokeWidth={1.5} />
-                <div className="line"></div>
+                <div className="line" style={{ backgroundColor: 'var(--color-gold)' }}></div>
+                <span style={{ color: 'var(--color-gold)' }}>◆</span>
+                <div className="line" style={{ backgroundColor: 'var(--color-gold)' }}></div>
               </div>
-              
               <h2>
                 The <span className="text-gold">Five Pillars</span> of Growth
               </h2>
-
-              <div className="about-divider-bottom">
-                <div className="line"></div>
-                <div className="diamond">◇</div>
-                <div className="line"></div>
-              </div>
-              
               <p className="pillars-subtitle">
                 A holistic approach to comprehensive development<br/>
                 across your professional and personal life.
@@ -254,7 +236,7 @@ const Home = () => {
             </div>
           </ScrollReveal>
 
-          <div className="pillars-grid-exact">
+          <div className="pillars-grid">
             {[
               { icon: <Target size={36} strokeWidth={1.5} />, title: 'Leadership', desc: 'Command the room, inspire teams, and drive strategic vision.' },
               { icon: <Rocket size={36} strokeWidth={1.5} />, title: 'Career', desc: 'Accelerate your trajectory and unlock new opportunities.' },
@@ -263,14 +245,14 @@ const Home = () => {
               { icon: <Sprout size={36} strokeWidth={1.5} />, title: 'Personal\nGrowth', desc: 'Align your purpose with your daily actions and habits.' },
             ].map((pillar, idx) => (
               <ScrollReveal key={idx} direction="up" delay={0.1 + (idx * 0.1)}>
-                <div className="pillar-card-exact">
-                  <div className="pillar-icon-exact">{pillar.icon}</div>
+                <div className="pillar-card">
+                  <div className="pillar-icon">{pillar.icon}</div>
                   <h3>{pillar.title.includes('\n') ? pillar.title.split('\n').map((line, i) => <span key={i}>{line}{i === 0 && <br/>}</span>) : pillar.title}</h3>
                   <p>{pillar.desc}</p>
-                  <div className="pillar-card-divider">
-                    <div className="line"></div>
-                    <Leaf size={14} className="icon-gold" strokeWidth={1.5} />
-                    <div className="line"></div>
+                  <div className="pillar-divider">
+                    <div className="pillar-divider-line" />
+                    <div className="pillar-divider-dot" />
+                    <div className="pillar-divider-line" />
                   </div>
                 </div>
               </ScrollReveal>
@@ -279,89 +261,23 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ══════════════════════════════════
-          MENTOR — Pooja's Story
-         ══════════════════════════════════ */}
-      <hr className="section-separator" />
-      <section className="mentor-section-exact paripakv-bg-wrap">
-        <div className="paripakv-bg" style={{ backgroundImage: "url('/section-light.png')", opacity: 0.3 }}></div>
-        <div className="container mentor-container-exact">
-          <ScrollReveal direction="up" duration={0.9}>
-            <div className="mentor-image-exact">
-              <img src="/pooja_sharma_updated.jpg" alt="Dr. Pooja Sharma" />
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" duration={0.9} delay={0.2}>
-            <div className="mentor-content-exact">
-              <div className="mentor-label-exact">THE GROWTH PROJECT</div>
-              
-              <div className="about-divider-top" style={{ justifyContent: 'flex-start', marginBottom: '1.25rem', marginTop: '0.5rem' }}>
-                <div className="line" style={{ width: '30px' }}></div>
-                <Leaf size={16} className="icon-gold" strokeWidth={1.5} />
-                <div className="line" style={{ width: '30px' }}></div>
-              </div>
-
-              <h2>Dr. Pooja Sharma</h2>
-              <h4 className="mentor-role-exact">Industry Leader • Banking & Financial Markets</h4>
-              
-              <p className="mentor-bio-exact">
-                Hi, I'm Pooja Sharma — a certified workplace coach and business leader with over two decades of experience driving transformation across global banking and technology organizations. My journey has spanned building high-performing teams, leading large-scale businesses, and pioneering innovation at the intersection of people, strategy, and technology.
-              </p>
-              <p className="mentor-bio-exact">
-                As a doctoral researcher and IIM Bangalore alumna, I've explored how AI and the future of work are reshaping leadership. My passion lies in coaching professionals and leaders to find clarity, confidence, and purpose in their growth journeys.
-              </p>
-
-              <ul className="mentor-creds-exact">
-                <li>
-                  <div className="cred-icon"><CheckCircle size={20} strokeWidth={1.5} /></div>
-                  Specializing in Sustainable Innovation-led Growth
-                </li>
-                <li>
-                  <div className="cred-icon"><CheckCircle size={20} strokeWidth={1.5} /></div>
-                  ICF Certified Coach (ACC Credential)
-                </li>
-                <li>
-                  <div className="cred-icon"><CheckCircle size={20} strokeWidth={1.5} /></div>
-                  IIM Bangalore Alumna
-                </li>
-              </ul>
-
-              <div className="mentor-socials-exact">
-                <MagneticButton>
-                  <a href="mailto:contact.thegrowthproject@gmail.com" className="btn-mentor-primary">
-                    <Mail size={18} strokeWidth={1.5} /> Get in touch
-                  </a>
-                </MagneticButton>
-                <MagneticButton>
-                  <a href="https://www.linkedin.com/in/poojasharma72" target="_blank" rel="noopener noreferrer" className="btn-mentor-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn
-                  </a>
-                </MagneticButton>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
 
       {/* ══════════════════════════════════
-          FINAL CTA
+          FINAL CTA — Gold background
          ══════════════════════════════════ */}
-      <hr className="section-separator" />
-      <section className="section final-cta">
-        <div className="final-cta-bg" />
+      <section className="section final-cta" id="cta">
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="3d-up">
-            <h2 style={{ color: 'var(--color-bg)', marginBottom: '1rem' }}>Ready to accelerate your growth?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.8)', maxWidth: '560px', margin: '0 auto 2.5rem' }}>
-              Join hundreds of professionals who have transformed their leadership and careers.
+            <h2>Ready to accelerate your Leadership journey?</h2>
+            <p>
+              Join hundreds of professionals who have transformed their Professional journey.
             </p>
             <div className="cta-buttons">
               <MagneticButton>
                 <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
               </MagneticButton>
               <MagneticButton>
-                <Link to="/programmes" className="btn btn-accent">Explore Programmes</Link>
+                <Link to="/programmes" className="btn" style={{ background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>Explore Programmes</Link>
               </MagneticButton>
             </div>
           </ScrollReveal>

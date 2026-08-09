@@ -1,34 +1,43 @@
 /* ═══════════════════════════════════════
-   RESOURCES PAGE
+   RESOURCES PAGE — Warm & Rich
    ═══════════════════════════════════════ */
-.resources-page {}
+
+.resources-page {
+  background: var(--color-offwhite);
+}
 
 .resources-hero {
-  padding: clamp(8rem, 14vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  background: url('/resources-bg.png') center/cover no-repeat;
+  background-attachment: fixed; /* Optional parallax */
   position: relative;
   overflow: hidden;
-  background-image: url('/resources-bg.png');
-  background-size: cover;
-  background-position: center;
 }
 
 .resources-hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(245, 241, 232, 0.75); /* Light cream overlay for text readability */
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.resources-hero > * {
+.resources-hero h1 {
+  margin-bottom: 1rem;
   position: relative;
   z-index: 1;
 }
 
-.hero-sub {
+.resources-hero .hero-sub {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
   max-width: 600px;
   margin: 0 auto;
-  opacity: 0.85;
-  font-size: 1.1rem;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Tab Switcher ── */
@@ -37,79 +46,81 @@
   gap: 0.5rem;
   justify-content: center;
   margin-bottom: 3rem;
+  padding: 0.35rem;
   background: var(--color-surface);
-  border-radius: 100px;
-  padding: 0.375rem;
-  width: fit-content;
+  border-radius: 14px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-light);
 }
 
 .resources-tab {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.5rem;
-  border-radius: 100px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
   border: none;
   background: transparent;
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 500;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease);
+  font-family: var(--font-body);
+  flex: 1;
+  justify-content: center;
 }
 
 .resources-tab:hover {
-  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-dark-green);
+  background: rgba(200, 151, 62, 0.06);
 }
 
 .resources-tab.active {
-  background: var(--color-primary);
-  color: var(--color-bg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: var(--color-card);
+  color: var(--color-dark-green);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(200, 151, 62, 0.15);
 }
 
 .tab-count {
-  background: rgba(199, 154, 58, 0.2);
-  color: var(--color-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 100px;
+  background: var(--color-gold-muted);
+  color: var(--color-gold-dark);
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 20px;
+  border: 1px solid rgba(200, 151, 62, 0.20);
 }
 
-.resources-tab.active .tab-count {
-  background: rgba(255, 255, 255, 0.2);
-  color: var(--color-bg);
-}
-
-/* ── Resource Grid ── */
+/* ── Resources Grid ── */
 .resources-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
 }
 
 .resource-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: 20px;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  text-decoration: none;
-  color: inherit;
+  transition: all 0.4s var(--ease);
 }
 
 .resource-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(200, 151, 62, 0.06);
+  border-color: rgba(200, 151, 62, 0.25);
 }
 
 .resource-card-blog {
@@ -117,70 +128,70 @@
   overflow: hidden;
 }
 
+.resource-card-blog .resource-card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.resource-card-blog .resource-card-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, var(--color-card), transparent);
+}
+
+.resource-card-blog .resource-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+.resource-card-blog:hover .resource-card-image img {
+  transform: scale(1.05);
+}
+
 .resource-card-blog .res-type,
 .resource-card-blog h3,
 .resource-card-blog p,
 .resource-card-blog .resource-card-meta {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-.resource-card-blog h3 {
-  margin-top: 0.25rem;
-}
-
-.resource-card-blog p {
-  margin-bottom: 0;
+.resource-card-blog .res-type {
+  padding-top: 1.5rem;
 }
 
 .resource-card-blog .resource-card-meta {
-  padding-bottom: 1.5rem;
-}
-
-.resource-card-image {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
-
-.resource-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.resource-card:hover .resource-card-image img {
-  transform: scale(1.05);
-}
-
-.res-icon {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+  padding-bottom: 2rem;
 }
 
 .res-type {
-  display: inline-block;
   font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-secondary);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
+  letter-spacing: 0.13em;
+  color: var(--color-gold);
+  margin-bottom: 0.75rem;
+  display: block;
 }
 
 .resource-card h3 {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
+  color: var(--color-dark-green);
   line-height: 1.3;
 }
 
 .resource-card p {
-  font-size: 0.9375rem;
-  color: var(--color-text);
-  opacity: 0.75;
-  line-height: 1.6;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
   flex: 1;
 }
 
@@ -188,52 +199,64 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
-  font-size: 0.8125rem;
-  color: var(--color-text);
-  opacity: 0.5;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-light);
 }
 
 .resource-card-meta span:last-child {
-  color: var(--color-secondary);
+  color: var(--color-gold);
   font-weight: 600;
-  opacity: 1;
+}
+
+.res-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .btn-full {
   width: 100%;
-  margin-top: auto;
 }
 
-/* ── Empty State ── */
+/* ── Empty state ── */
 .resources-empty {
   text-align: center;
   padding: 5rem 2rem;
-  color: var(--color-text);
+  color: var(--color-text-muted);
 }
 
 .resources-empty svg {
-  color: var(--color-secondary);
-  opacity: 0.4;
+  color: var(--color-gold);
+  opacity: 0.3;
   margin-bottom: 1.5rem;
 }
 
 .resources-empty h3 {
-  font-size: 1.5rem;
   margin-bottom: 0.75rem;
-  font-family: var(--font-heading);
+  color: var(--color-dark-green);
 }
 
 .resources-empty p {
   max-width: 500px;
   margin: 0 auto;
-  opacity: 0.6;
-  font-size: 1rem;
+  color: var(--color-text-muted);
 }
 
 /* ── CTA Section ── */
 .resource-cta {
-  margin-top: 2rem;
+  background: var(--color-surface) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.resource-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(200, 151, 62, 0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .resource-cta h2 {
@@ -241,28 +264,21 @@
 }
 
 .resource-cta p {
-  max-width: 560px;
+  max-width: 600px;
   margin: 0 auto 2rem;
+  color: var(--color-text-muted);
 }
 
-/* ── Spinner ── */
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* ── Responsive ── */
 @media (max-width: 768px) {
+  .resources-hero {
+    padding: 7rem 0 3rem;
+  }
+
   .resources-grid {
     grid-template-columns: 1fr;
   }
 
   .resources-tabs {
     flex-direction: column;
-    border-radius: 16px;
-    width: 100%;
-  }
-
-  .resources-tab {
-    justify-content: center;
   }
 }
