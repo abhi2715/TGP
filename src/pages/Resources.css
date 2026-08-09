@@ -8,7 +8,7 @@
 
 .resources-hero {
   padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
-  background: url('/resources-bg.png') center/cover no-repeat;
+  background: url('/shikhar-mountain-bg.png') center/cover no-repeat;
   background-attachment: fixed; /* Optional parallax */
   position: relative;
   overflow: hidden;
