@@ -2,6 +2,40 @@
   background: var(--color-offwhite);
 }
 
+.programmes-hero {
+  padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  background: url('/cta_mountain_bg.png') center/cover no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+.programmes-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 241, 232, 0.5); /* Warm cream overlay for text readability */
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.programmes-hero h1, .programmes-hero .subtitle {
+  position: relative;
+  z-index: 1;
+}
+
+.programmes-hero h1 {
+  margin-bottom: 0.75rem;
+  color: var(--color-dark-green);
+}
+
+.programmes-hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-muted) !important;
+  line-height: 1.7;
+}
+
 .programmes-list {
   display: grid;
   grid-template-columns: 1fr 1fr;

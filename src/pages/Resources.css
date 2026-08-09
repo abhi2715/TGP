@@ -18,7 +18,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(245, 241, 232, 0.75); /* Light cream overlay for text readability */
+  background: rgba(245, 241, 232, 0.4); /* Less opaque overlay so the realistic background is visible */
   backdrop-filter: blur(2px);
   pointer-events: none;
   z-index: 0;

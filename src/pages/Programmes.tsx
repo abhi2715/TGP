@@ -9,7 +9,7 @@ const Programmes = () => {
   const [isFlyerOpen, setIsFlyerOpen] = useState(false);
   return (
     <div className="programmes-page">
-      <div className="page-header text-center">
+      <div className="programmes-hero text-center">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="up" delay={0.1}>
             <span className="about-tag" style={{ marginBottom: '1.5rem' }}>Pathways to Growth</span>
