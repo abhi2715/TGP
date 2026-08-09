@@ -14,7 +14,7 @@
 .login-bg {
   position: absolute;
   inset: 0;
-  background: url('/shikhar-login-bg.png') center/cover no-repeat;
+  background: url('/shikhar-mountain-bg.png') center/cover no-repeat;
   z-index: 0;
 }
 
@@ -22,7 +22,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* Dark overlay to make the glass card pop */
+  background: rgba(255, 255, 255, 0.2); /* Light overlay to keep it bright */
   backdrop-filter: blur(4px);
 }
 
@@ -45,7 +45,7 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 24px;
-  padding: 3.5rem;
+  padding: 2.5rem 3rem;
   width: 100%;
   max-width: 480px;
   box-shadow: 0 40px 80px rgba(0,0,0,0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Mail, Target, Rocket, Brain, Handshake, Sprout, Award, Users, Star } from 'lucide-react';
+import { ArrowRight, Target, Rocket, Brain, Handshake, Sprout } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MagneticButton from '../components/ui/MagneticButton';
 import ScrollReveal from '../components/ui/ScrollReveal';

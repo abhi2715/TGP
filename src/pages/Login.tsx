@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, ArrowRight, Mail, User, Phone } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import MagneticButton from '../components/ui/MagneticButton';
 import { requestShikharAccess, loginShikhar } from '../lib/api';
 import './Login.css';
 
@@ -121,97 +120,93 @@ const Login = () => {
             <form onSubmit={handleLogin} className="login-form">
               <div className="input-group">
                 <div style={{ position: 'relative' }}>
-                  <Mail size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.3)' }} />
+                  <Mail size={16} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--shikhar-olive)' }} />
                   <input
                     type="email"
                     placeholder="Enter your approved email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="login-input"
-                    style={{ paddingLeft: '40px' }}
+                    style={{ paddingLeft: '44px' }}
                     autoFocus
                     required
                   />
                 </div>
-                <div style={{ position: 'relative', marginTop: '0.75rem' }}>
-                  <Lock size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.3)' }} />
+                <div style={{ position: 'relative', marginTop: '1rem' }}>
+                  <Lock size={16} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--shikhar-olive)' }} />
                   <input
                     type="password"
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="login-input"
-                    style={{ paddingLeft: '40px' }}
+                    style={{ paddingLeft: '44px' }}
                     required
                   />
                 </div>
               </div>
-              <MagneticButton>
-                <button type="submit" className="btn btn-primary w-full" style={{ width: '100%' }} disabled={loading}>
-                  {loading ? 'Checking...' : 'Access Shikhar'} <ArrowRight size={18} />
-                </button>
-              </MagneticButton>
+              <button type="submit" className="shikhar-btn primary" style={{ width: '100%', marginTop: '0.5rem', justifyContent: 'center' }} disabled={loading}>
+                {loading ? 'Checking...' : 'Access Shikhar'} <ArrowRight size={18} />
+              </button>
             </form>
           ) : (
             <form onSubmit={handleRequest} className="login-form">
               <div className="input-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 <div style={{ position: 'relative' }}>
-                  <User size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.3)' }} />
+                  <User size={16} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--shikhar-olive)' }} />
                   <input
                     type="text"
                     placeholder="Your full name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="login-input"
-                    style={{ paddingLeft: '40px' }}
+                    style={{ paddingLeft: '44px' }}
                     required
                   />
                 </div>
                 <div style={{ position: 'relative' }}>
-                  <Mail size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.3)' }} />
+                  <Mail size={16} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--shikhar-olive)' }} />
                   <input
                     type="email"
                     placeholder="Your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="login-input"
-                    style={{ paddingLeft: '40px' }}
+                    style={{ paddingLeft: '44px' }}
                     required
                   />
                 </div>
                 <div style={{ position: 'relative' }}>
-                  <Phone size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.3)' }} />
+                  <Phone size={16} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--shikhar-olive)' }} />
                   <input
                     type="tel"
                     placeholder="Phone number (optional)"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="login-input"
-                    style={{ paddingLeft: '40px' }}
+                    style={{ paddingLeft: '44px' }}
                   />
                 </div>
                 <div style={{ position: 'relative' }}>
-                  <Lock size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.3)' }} />
+                  <Lock size={16} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--shikhar-olive)' }} />
                   <input
                     type="password"
                     placeholder="Create a password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="login-input"
-                    style={{ paddingLeft: '40px' }}
+                    style={{ paddingLeft: '44px' }}
                     required
                   />
                 </div>
               </div>
-              <MagneticButton>
-                <button type="submit" className="btn btn-primary w-full" style={{ width: '100%' }} disabled={loading}>
-                  {loading ? 'Submitting...' : 'Request Access'} <ArrowRight size={18} />
-                </button>
-              </MagneticButton>
+              <button type="submit" className="shikhar-btn primary" style={{ width: '100%', marginTop: '0.5rem', justifyContent: 'center' }} disabled={loading}>
+                {loading ? 'Submitting...' : 'Request Access'} <ArrowRight size={18} />
+              </button>
             </form>
           )}
 
-          <div className="login-footer">
+          <div className="login-footer" style={{ textAlign: 'center', marginTop: '2rem' }}>
             <p>Need help? <a href="/contact">Contact us</a></p>
           </div>
         </div>
