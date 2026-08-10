@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="footer-top">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <img src="/logo.png" alt="The Growth Project" />
+              <img src="/logo.png?v=2" alt="The Growth Project" />
             </Link>
             <p className="footer-description">
               Empowering the next generation of global leaders with authenticity, resilience, and strategic clarity.

@@ -52,7 +52,7 @@ const Navbar = () => {
       <div className="navbar-container container">
         <MagneticButton>
           <Link to="/" className="navbar-logo">
-            <img src="/logo.png" alt="The Growth Project" />
+            <img src="/logo.png?v=2" alt="The Growth Project" />
           </Link>
         </MagneticButton>
 
