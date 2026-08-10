@@ -14,7 +14,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(10, 20, 10, 0.65); /* Dark overlay for realism and contrast */
+  background: rgba(10, 20, 10, 0.75); /* Dark overlay for maximum text contrast */
   pointer-events: none;
   z-index: 0;
 }

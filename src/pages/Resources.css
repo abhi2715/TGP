@@ -18,7 +18,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(10, 20, 10, 0.65); /* Dark overlay */
+  background: rgba(10, 20, 10, 0.75); /* Dark overlay */
   pointer-events: none;
   z-index: 0;
 }
