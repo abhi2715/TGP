@@ -92,9 +92,8 @@
   align-items: center;
   gap: 2rem;
   flex-wrap: nowrap;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-link {
@@ -196,7 +195,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    transform: none;
+    transform: translateY(-12px);
     width: 100%;
     background: var(--color-offwhite);
     flex-direction: column;
@@ -210,6 +209,7 @@
   }
 
   .navbar-links.open {
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
