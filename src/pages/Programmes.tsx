@@ -20,6 +20,16 @@ const Programmes = () => {
               Designed to empower leaders to navigate complexity with confidence, build high-performing teams, and lead with purpose.
             </p>
           </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.3}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem', flexWrap: 'wrap' }}>
+              <MagneticButton>
+                <a href="#shikhar" className="btn btn-primary" style={{ padding: '0.8rem 2rem' }}>Explore Shikhar</a>
+              </MagneticButton>
+              <MagneticButton>
+                <a href="#aarohan" className="btn btn-secondary" style={{ padding: '0.8rem 2rem', background: 'transparent', borderColor: 'var(--color-gold)', color: 'var(--color-gold)' }}>Explore Aarohan</a>
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
       
@@ -30,7 +40,7 @@ const Programmes = () => {
           <div className="programmes-detailed-list">
             
             {/* ── Shikhar ── */}
-            <div className="programme-detailed-card">
+            <div className="programme-detailed-card" id="shikhar">
               <div className="programme-detailed-image shikhar-bg"></div>
               <ScrollReveal direction="up" delay={0.1} className="programme-detailed-content">
                 <div className="programme-icon-wrap">
@@ -81,7 +91,7 @@ const Programmes = () => {
             </div>
 
             {/* ── Aarohan ── */}
-            <div className="programme-detailed-card reverse">
+            <div className="programme-detailed-card reverse" id="aarohan">
               <div className="programme-detailed-image leadership-bg"></div>
               <ScrollReveal direction="up" delay={0.2} className="programme-detailed-content">
                 <div className="programme-icon-wrap" style={{ background: 'rgba(85,107,47,0.1)', borderColor: 'rgba(85,107,47,0.2)' }}>
