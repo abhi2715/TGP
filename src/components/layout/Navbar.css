@@ -60,6 +60,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  max-width: 1350px; /* Wider container just for navbar to fit all links */
 }
 
 /* ── Logo ── */
@@ -90,7 +91,7 @@
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem; /* Reduced from 2rem to prevent overflow */
   flex-wrap: nowrap;
   flex: 1;
   justify-content: center;
@@ -98,10 +99,10 @@
 
 .nav-link {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.75rem; /* Slightly smaller */
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.08em; /* Reduced spacing */
   position: relative;
   transition: color var(--transition-fast);
   white-space: nowrap;
