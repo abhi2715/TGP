@@ -75,7 +75,7 @@
 
 .navbar-logo img {
   height: 80px;
-  width: auto;
+  width: 68px; /* Fixed width to prevent flexbox collapsing */
   border-radius: 8px;
   object-fit: contain;
   transition: all var(--transition-normal);
@@ -83,6 +83,7 @@
 
 .navbar.scrolled .navbar-logo img {
   height: 50px;
+  width: 42px; /* Fixed width for scrolled state */
 }
 
 /* ── Nav Links ── */

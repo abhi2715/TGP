@@ -50,11 +50,9 @@ const Navbar = () => {
   return (
     <header className={navbarClass}>
       <div className="navbar-container container">
-        <MagneticButton>
-          <Link to="/" className="navbar-logo">
-            <img src="/logo.png?v=2" alt="The Growth Project" />
-          </Link>
-        </MagneticButton>
+        <Link to="/" className="navbar-logo">
+          <img src="/logo.png?v=4" alt="The Growth Project" />
+        </Link>
 
         <nav className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
           <Link to="/" className={`nav-link ${isActive('/') && (activeSection === 'home' || !activeSection) ? 'active' : ''}`}>Home</Link>
