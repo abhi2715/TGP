@@ -7,7 +7,7 @@
 }
 
 .success-stories-hero {
-  background: url('/cta_mountain_bg.png') center/cover no-repeat !important;
+  background: url('/realistic_mountain_peak.png') center/cover no-repeat !important;
   background-attachment: fixed !important;
   position: relative;
 }
@@ -16,8 +16,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(250, 248, 245, 0.85); /* High opacity warm cream for perfect contrast */
-  backdrop-filter: blur(12px); /* Beautiful frosted glass blur */
+  background: rgba(10, 20, 10, 0.65); /* Dark overlay */
   pointer-events: none;
   z-index: 0;
 }

@@ -8,7 +8,7 @@
 
 .resources-hero {
   padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
-  background: url('/about-hero-bg.png') center/cover no-repeat;
+  background: url('/hero_leadership.png') center/cover no-repeat;
   background-attachment: fixed; /* Parallax looks amazing on uniform textures */
   position: relative;
   overflow: hidden;
@@ -18,8 +18,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(250, 248, 245, 0.85); /* High opacity warm cream for perfect contrast */
-  backdrop-filter: blur(12px); /* Beautiful frosted glass blur */
+  background: rgba(10, 20, 10, 0.65); /* Dark overlay */
   pointer-events: none;
   z-index: 0;
 }
@@ -28,11 +27,12 @@
   margin-bottom: 1rem;
   position: relative;
   z-index: 1;
+  color: #fff;
 }
 
 .resources-hero .hero-sub {
   font-size: 1.1rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.9) !important;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.7;

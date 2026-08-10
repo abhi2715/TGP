@@ -7,7 +7,29 @@
 }
 
 .contact-page .page-header {
-  background: var(--gradient-warm-bg);
+  background: url('/zen_stones.png') center/cover no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.contact-page .page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 10, 0.65); /* Dark overlay */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact-page .page-header h1,
+.contact-page .page-header .subtitle {
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-page .page-header .subtitle {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* ── Section ── */

@@ -4,7 +4,7 @@
 
 .programmes-hero {
   padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
-  background: url('/cta_mountain_bg.png') center/cover no-repeat;
+  background: url('/hero-bg.jpg') center/cover no-repeat;
   background-attachment: fixed;
   position: relative;
   overflow: hidden;
@@ -14,8 +14,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(250, 248, 245, 0.85); /* High opacity warm cream for perfect contrast */
-  backdrop-filter: blur(12px); /* Beautiful frosted glass blur */
+  background: rgba(10, 20, 10, 0.65); /* Dark overlay for realism and contrast */
   pointer-events: none;
   z-index: 0;
 }
@@ -27,12 +26,12 @@
 
 .programmes-hero h1 {
   margin-bottom: 0.75rem;
-  color: var(--color-dark-green);
+  color: #fff;
 }
 
 .programmes-hero .subtitle {
   font-size: 1.15rem;
-  color: var(--color-text-muted) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   line-height: 1.7;
 }
 

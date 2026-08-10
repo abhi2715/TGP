@@ -16,7 +16,7 @@ const Programmes = () => {
             <h1>Our Programmes</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
-            <p className="subtitle" style={{maxWidth: '700px', margin: '0 auto', color: 'var(--color-text)'}}>
+            <p className="subtitle" style={{maxWidth: '700px', margin: '0 auto'}}>
               Designed to empower leaders to navigate complexity with confidence, build high-performing teams, and lead with purpose.
             </p>
           </ScrollReveal>

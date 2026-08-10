@@ -13,7 +13,7 @@ const Contact = () => {
             <h1>Let's Get Started!</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
-            <p className="subtitle" style={{ color: 'var(--color-text)' }}>
+            <p className="subtitle">
               We'd love to hear from you. Reach out to discuss how we can help.
             </p>
           </ScrollReveal>

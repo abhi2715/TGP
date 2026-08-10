@@ -54,7 +54,7 @@ const SuccessStories = () => {
             <h1>Transformations that speak for themselves.</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
-            <p className="subtitle" style={{ maxWidth: '800px', margin: '0 auto', color: 'var(--color-text)' }}>
+            <p className="subtitle" style={{ maxWidth: '800px', margin: '0 auto' }}>
               Meet the leaders, founders, and professionals who have accelerated their growth and redefined their potential with The Growth Project.
             </p>
           </ScrollReveal>
