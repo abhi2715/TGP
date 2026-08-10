@@ -68,8 +68,7 @@
   align-items: center;
   gap: 0.5rem;
   transition: all var(--transition-fast);
-  flex: 1;
-  justify-content: flex-start;
+  flex-shrink: 0;
 }
 
 .navbar-logo:hover { opacity: 0.85; transform: scale(0.98); }
@@ -91,10 +90,11 @@
 .navbar-links {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 2rem;
   flex-wrap: nowrap;
-  flex: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav-link {
@@ -170,9 +170,8 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 1rem;
-  flex: 1;
+  flex-shrink: 0;
 }
 
 .desktop-cta {
@@ -197,13 +196,13 @@
     position: absolute;
     top: 100%;
     left: 0;
+    transform: none;
     width: 100%;
     background: var(--color-offwhite);
     flex-direction: column;
     padding: 2rem;
     gap: 1.5rem;
     box-shadow: var(--shadow-lg);
-    transform: translateY(-12px);
     opacity: 0;
     visibility: hidden;
     transition: all var(--transition-normal);
@@ -211,7 +210,6 @@
   }
 
   .navbar-links.open {
-    transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
