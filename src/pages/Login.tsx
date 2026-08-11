@@ -75,14 +75,14 @@ const Login = () => {
           </div>
 
           {/* Mode Toggle */}
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', background: 'rgba(255,255,255,0.06)', borderRadius: '100px', padding: '0.25rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.05)', borderRadius: '100px', padding: '0.35rem' }}>
             <button
               type="button"
               onClick={() => { setMode('login'); setError(''); setSuccess(''); }}
               style={{
-                flex: 1, padding: '0.5rem', borderRadius: '100px', border: 'none',
+                flex: 1, padding: '0.6rem', borderRadius: '100px', border: 'none',
                 background: mode === 'login' ? 'var(--color-secondary)' : 'transparent',
-                color: mode === 'login' ? '#0F1117' : 'rgba(255,255,255,0.6)',
+                color: mode === 'login' ? '#0F1117' : 'var(--color-text-muted)',
                 fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer',
                 fontFamily: 'Inter, sans-serif', transition: 'all 0.2s ease',
               }}
@@ -93,9 +93,9 @@ const Login = () => {
               type="button"
               onClick={() => { setMode('request'); setError(''); setSuccess(''); }}
               style={{
-                flex: 1, padding: '0.5rem', borderRadius: '100px', border: 'none',
+                flex: 1, padding: '0.6rem', borderRadius: '100px', border: 'none',
                 background: mode === 'request' ? 'var(--color-secondary)' : 'transparent',
-                color: mode === 'request' ? '#0F1117' : 'rgba(255,255,255,0.6)',
+                color: mode === 'request' ? '#0F1117' : 'var(--color-text-muted)',
                 fontWeight: 600, fontSize: '0.8125rem', cursor: 'pointer',
                 fontFamily: 'Inter, sans-serif', transition: 'all 0.2s ease',
               }}
