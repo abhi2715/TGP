@@ -67,12 +67,21 @@ const SESSIONS = [
 ];
 
 export default function ShikharDashboard() {
-  const { logout } = useAuth();
+  const { logout, userEmail } = useAuth();
   const { state, isSessionUnlocked, getProgress, setUserName } = useShikharStore();
   const [nameInput, setNameInput] = useState('');
   const [activeTab, setActiveTab] = useState<'journey' | 'apps'>('journey');
   const [isUnfoldingOpen, setIsUnfoldingOpen] = useState(false);
   const progress = getProgress();
+
+  const getDisplayName = () => {
+    if (userEmail) {
+      const prefix = userEmail.split('@')[0].replace(/[^a-zA-Z]/g, ' ').trim().split(' ')[0];
+      return prefix.charAt(0).toUpperCase() + prefix.slice(1).toLowerCase();
+    }
+    return state.userName || 'Leader';
+  };
+  const displayName = getDisplayName();
 
   if (!state.programStarted) {
     return (
@@ -151,7 +160,7 @@ export default function ShikharDashboard() {
                 <LogOut size={16} /> Log Out
               </button>
             </div>
-            <h1>Welcome back, {state.userName} 👋</h1>
+            <h1>Welcome back, {displayName} 👋</h1>
             <p className="dashboard-tagline">Continue your leadership journey. Each session builds on the last.</p>
           </motion.div>
 
