@@ -1,4 +1,4 @@
-import { CheckCircle, Star } from 'lucide-react';
+
 import ScrollReveal from '../components/ui/ScrollReveal';
 import './Contact.css'; 
 import './BookConsultation.css';

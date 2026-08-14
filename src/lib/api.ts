@@ -195,12 +195,12 @@ export async function requestShikharAccess(data: { name: string; email: string; 
   return res.json();
 }
 
-export async function loginShikhar(email: string, password?: string) {
+export async function loginShikhar(_email: string, _password?: string): Promise<{ status: string; sessionToken?: string; error?: string }> {
   // TEMPORARY BYPASS: Always allow login since backend is not on Vercel
   return { status: 'approved', sessionToken: 'temp-vercel-token-123' };
 }
 
-export async function verifyShikharSession(email: string, sessionToken: string) {
+export async function verifyShikharSession(_email: string, _sessionToken: string) {
   // TEMPORARY BYPASS: Always return valid
   return { valid: true };
 }

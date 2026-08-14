@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Award, BarChart, Microscope, Mountain, Sprout, Heart, Star, Users, Target, GraduationCap, Clock } from 'lucide-react';
+import { Award, Microscope, Mountain, Sprout, Heart, Users, GraduationCap, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
