@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, Rocket, Brain, Handshake, Sprout } from 'lucide-react';
+import { ArrowRight, Target, Rocket, Brain, Handshake, Sprout, GraduationCap, Award, Clock, Users, Microscope } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MagneticButton from '../components/ui/MagneticButton';
 import ScrollReveal from '../components/ui/ScrollReveal';
@@ -21,7 +21,6 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="hero-tag">The Growth Project</span>
               <h1 className="display-title">
                 Leadership coaching<br />
                 <span className="text-gold">for professionals</span>
@@ -123,6 +122,34 @@ const Home = () => {
         </motion.a>
       </section>
 
+      {/* ── Credentials Strip — Dark Green ── */}
+      <section className="about-credentials">
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <ScrollReveal direction="3d-up">
+            <div className="creds-grid">
+              {[
+                { icon: <GraduationCap className="text-gold" size={32} />, title: 'IIM Bangalore', sub: 'MBA · Finance & International Business' },
+                { icon: <Award className="text-gold" size={32} />, title: 'ICF Certified', sub: 'Associate Certified Coach (ACC)' },
+                { icon: <Clock className="text-gold" size={32} />, title: '500+ Hours', sub: 'Professional Teaching & Coaching' },
+                { icon: <Users className="text-gold" size={32} />, title: '50+ Professionals', sub: 'Transformed' },
+                { icon: <Microscope className="text-gold" size={32} />, title: 'Doctoral Researcher', sub: 'AI & The Future of Work' },
+              ].map((cred, i) => (
+                <motion.div
+                  key={i}
+                  className="cred-card"
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
+                  <div className="cred-icon">{cred.icon}</div>
+                  <h4>{cred.title}</h4>
+                  <p>{cred.sub}</p>
+                </motion.div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ══════════════════════════════════
           ABOUT PREVIEW
          ══════════════════════════════════ */}
@@ -132,17 +159,16 @@ const Home = () => {
           <div className="about-image-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <ScrollReveal direction="up" delay={0.1}>
               <img 
-                src="/realistic_mountain_peak.png" 
-                alt="Leadership and Growth" 
+                src="/leadership_compass.png" 
+                alt="Leadership and Growth Compass" 
                 style={{ 
-                  objectFit: 'cover', 
+                  objectFit: 'contain', 
                   width: '100%', 
                   maxWidth: '550px',
                   height: 'auto', 
-                  borderRadius: '24px',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
+                  position: 'relative',
                   zIndex: 2,
-                  position: 'relative'
+                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.08))'
                 }}
               />
             </ScrollReveal>
@@ -204,7 +230,7 @@ const Home = () => {
             </div>
 
             <ScrollReveal direction="up" delay={0.4}>
-              <div className="about-cta-wrapper" style={{ textAlign: 'left', marginTop: '1rem' }}>
+              <div className="about-cta-wrapper" style={{ marginTop: '1rem' }}>
                 <Link to="/programmes" className="btn btn-dark">
                   Explore Programmes <ArrowRight size={16} />
                 </Link>

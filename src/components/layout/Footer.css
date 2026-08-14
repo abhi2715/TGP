@@ -56,8 +56,11 @@
 .footer-logo:hover { opacity: 0.8; transform: scale(0.98); }
 
 .footer-logo img {
-  height: 80px;
-  border-radius: 8px;
+  height: 160px;
+  background: rgba(250, 248, 245, 0.95);
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   object-fit: contain;
 }
 

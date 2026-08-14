@@ -50,13 +50,13 @@
 .about-image-wrap img {
   width: 100%;
   max-width: 380px; /* Slightly narrower for elegant arch proportions */
-  aspect-ratio: 3 / 4; /* Enforce professional portrait ratio */
+  aspect-ratio: 3 / 4; /* Taller portrait ratio */
   object-fit: cover;
   margin: 0 auto;
   display: block;
   position: relative;
   z-index: 2;
-  border-radius: 200px 200px 16px 16px; /* Premium Archway shape */
+  border-radius: 16px; /* Uniform rounded corners instead of arch */
   border: 1px solid rgba(200, 151, 62, 0.4); /* Subtle gold accent border */
   box-shadow: 0 25px 50px rgba(0,0,0,0.12); /* Rich, floating shadow */
 }
@@ -338,64 +338,7 @@
 
 
 /* ── Credentials Strip — Rich Dark Green ── */
-.about-credentials {
-  background: var(--gradient-dark-green);
-  padding: 5rem 0;
-  position: relative;
-  overflow: hidden;
-}
 
-/* Dot pattern */
-.about-credentials::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(200, 151, 62, 0.04) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.creds-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.cred-card {
-  background: rgba(250, 248, 243, 0.06);
-  border: 1px solid rgba(200, 151, 62, 0.15);
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  transition: all 0.4s var(--ease);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.cred-card:hover {
-  border-color: rgba(200, 151, 62, 0.45);
-  background: rgba(250, 248, 243, 0.10);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(200, 151, 62, 0.06);
-}
-
-.cred-card .cred-icon {
-  margin-bottom: 1.25rem;
-}
-
-.cred-card h4 {
-  color: var(--color-offwhite);
-  margin-bottom: 0.5rem;
-}
-
-.cred-card p {
-  color: rgba(250, 248, 243, 0.6);
-  font-size: 0.9rem;
-  margin: 0;
-}
 
 
 /* ── Approach — Warm Surface ── */

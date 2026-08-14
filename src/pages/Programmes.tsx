@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, User, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, Sparkles, User, Image as ImageIcon, ZoomIn, ZoomOut, Maximize } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
 import { useState } from 'react';
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import './Programmes.css';
 
 const Programmes = () => {
@@ -146,12 +147,54 @@ const Programmes = () => {
         </div>
       </section>
 
+      {/* ══════════════════════════════════
+          FINAL CTA — Dark Green Background
+         ══════════════════════════════════ */}
+      <section className="section final-cta" id="cta">
+        <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
+          <ScrollReveal direction="3d-up">
+            <h2>Ready to accelerate your Leadership journey?</h2>
+            <p>
+              Join hundreds of professionals who have transformed their Professional journey.
+            </p>
+            <div className="cta-buttons">
+              <MagneticButton>
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link to="/programmes" className="btn" style={{ background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>Explore Programmes</Link>
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ── Flyer Modal Overlay ── */}
       {isFlyerOpen && (
         <div className="flyer-modal-overlay" onClick={() => setIsFlyerOpen(false)}>
-          <div className="flyer-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="flyer-modal-close" onClick={() => setIsFlyerOpen(false)}>×</button>
-            <img src="/shikhar-flyer.png" alt="Shikhar Program Flyer" />
+          <div className="flyer-modal-content" onClick={(e) => e.stopPropagation()} style={{ width: '90vw', height: '90vh', display: 'flex', flexDirection: 'column' }}>
+            <button className="flyer-modal-close" onClick={() => setIsFlyerOpen(false)} style={{ zIndex: 100 }}>×</button>
+            
+            <TransformWrapper
+              initialScale={1}
+              minScale={0.5}
+              maxScale={4}
+              centerOnInit={true}
+              wheel={{ step: 0.1 }}
+            >
+              {({ zoomIn, zoomOut, resetTransform }) => (
+                <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                  <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '15px', zIndex: 100, background: 'rgba(0,0,0,0.7)', padding: '10px 20px', borderRadius: '30px', backdropFilter: 'blur(8px)' }}>
+                    <button onClick={() => zoomOut()} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', color: 'white' }} title="Zoom Out"><ZoomOut size={22} /></button>
+                    <button onClick={() => resetTransform()} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', color: 'white' }} title="Reset"><Maximize size={22} /></button>
+                    <button onClick={() => zoomIn()} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', color: 'white' }} title="Zoom In"><ZoomIn size={22} /></button>
+                  </div>
+                  <TransformComponent wrapperStyle={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} contentStyle={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <img src="/shikhar-flyer.png" alt="Shikhar Program Flyer" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                  </TransformComponent>
+                </div>
+              )}
+            </TransformWrapper>
           </div>
         </div>
       )}

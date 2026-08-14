@@ -81,3 +81,12 @@
     gap: 2rem;
   }
 }
+
+/* ── Custom Header Background for Booking Page ── */
+.booking-page .page-header {
+  background: var(--color-offwhite) !important;
+}
+
+.booking-page .page-header::before {
+  display: none !important;
+}

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Award, BarChart, Microscope, Mountain, Sprout, Heart, Star, Users, Target, GraduationCap } from 'lucide-react';
+import { Award, BarChart, Microscope, Mountain, Sprout, Heart, Star, Users, Target, GraduationCap, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
@@ -45,26 +45,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── Features Band (Moved to be separate blocks below hero) ── */}
-      <section className="features-band" id="features">
-        <div className="container features-container">
-          {[
-            { icon: <Award strokeWidth={1.5} />, text: '20+ Years\nof Global Leadership\nExperience' },
-            { icon: <Star strokeWidth={1.5} />, text: 'Transformative\nCoaching for\nLasting Impact' },
-            { icon: <Users strokeWidth={1.5} />, text: 'Empowering\nProfessionals to\nLead with Confidence' },
-            { icon: <Target strokeWidth={1.5} />, text: 'Purpose-Driven\nGrowth &\nMeasurable Results' },
-          ].map((feature, i) => (
-            <ScrollReveal key={i} direction="up" delay={i * 0.1}>
-              <div className="about-feature-item">
-                <div className="about-feature-icon-wrapper">
-                  <div className="about-feature-icon">{feature.icon}</div>
-                </div>
-                <p>{feature.text}</p>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
+
 
       {/* ── Personal Story ── */}
       <hr className="section-separator" />
@@ -156,7 +137,8 @@ const About = () => {
               {[
                 { icon: <GraduationCap className="text-gold" size={32} />, title: 'IIM Bangalore', sub: 'MBA · Finance & International Business' },
                 { icon: <Award className="text-gold" size={32} />, title: 'ICF Certified', sub: 'Associate Certified Coach (ACC)' },
-                { icon: <BarChart className="text-gold" size={32} />, title: '25+ Years', sub: 'Banking & Technology Leadership' },
+                { icon: <Clock className="text-gold" size={32} />, title: '500+ Hours', sub: 'Professional Teaching & Coaching' },
+                { icon: <Users className="text-gold" size={32} />, title: '50+ Professionals', sub: 'Transformed' },
                 { icon: <Microscope className="text-gold" size={32} />, title: 'Doctoral Researcher', sub: 'AI & The Future of Work' },
               ].map((cred, i) => (
                 <motion.div

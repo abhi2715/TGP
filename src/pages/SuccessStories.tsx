@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { PlayCircle, Quote, MessageSquareQuote } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
+import MagneticButton from '../components/ui/MagneticButton';
 import { fetchTestimonials } from '../lib/api';
 import './SuccessStories.css';
 
@@ -124,6 +126,28 @@ const SuccessStories = () => {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════
+          FINAL CTA — Dark Green Background
+         ══════════════════════════════════ */}
+      <section className="section final-cta" id="cta">
+        <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
+          <ScrollReveal direction="3d-up">
+            <h2>Ready to accelerate your Leadership journey?</h2>
+            <p>
+              Join hundreds of professionals who have transformed their Professional journey.
+            </p>
+            <div className="cta-buttons">
+              <MagneticButton>
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link to="/programmes" className="btn" style={{ background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>Explore Programmes</Link>
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, Download, BookOpen, Loader } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
+import MagneticButton from '../components/ui/MagneticButton';
 import { fetchBlogs, fetchStudyMaterials } from '../lib/api';
 import './Resources.css';
 
@@ -151,11 +152,25 @@ const Resources = () => {
         </div>
       </section>
 
-      <section className="section resource-cta bg-surface text-center">
-        <div className="container">
-          <h2>Looking for more personalized guidance?</h2>
-          <p>These resources are just the beginning. Our coaches can help you apply them to your specific situation.</p>
-          <a href="/book-consultation" className="btn btn-primary">Book a conversation</a>
+      {/* ══════════════════════════════════
+          FINAL CTA — Dark Green Background
+         ══════════════════════════════════ */}
+      <section className="section final-cta" id="cta">
+        <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
+          <ScrollReveal direction="3d-up">
+            <h2>Ready to accelerate your Leadership journey?</h2>
+            <p>
+              Join hundreds of professionals who have transformed their Professional journey.
+            </p>
+            <div className="cta-buttons">
+              <MagneticButton>
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link to="/programmes" className="btn" style={{ background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>Explore Programmes</Link>
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

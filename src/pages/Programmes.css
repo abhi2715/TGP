@@ -5,7 +5,6 @@
 .programmes-hero {
   padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
   background: url('/hero-bg.jpg') center/cover no-repeat;
-  background-attachment: fixed;
   position: relative;
   overflow: hidden;
 }
@@ -201,7 +200,6 @@
 .programme-detailed-image {
   flex: 0 0 38%;
   background-size: cover;
-  background-attachment: fixed; /* True CSS parallax */
   min-height: 350px;
   position: relative;
   background-color: var(--color-surface);
@@ -217,9 +215,6 @@
 }
 
 @media (max-width: 992px) {
-  .programme-detailed-image {
-    background-attachment: scroll; /* Disable parallax on mobile */
-  }
   
   .programme-detailed-card:not(.reverse) .programme-detailed-image,
   .programme-detailed-card.reverse .programme-detailed-image {
