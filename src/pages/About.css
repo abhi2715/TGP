@@ -4,7 +4,7 @@
 
 /* ── Hero — Warm gradient background ── */
 .about-hero {
-  padding: clamp(8rem, 14vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
+  padding: clamp(11rem, 14vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
   background: var(--gradient-warm-bg);
   position: relative;
   overflow: hidden;
@@ -470,7 +470,7 @@
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: 7rem 0 3rem;
+    padding: 9rem 0 3rem;
   }
 
   .timeline-line { left: 20px; }

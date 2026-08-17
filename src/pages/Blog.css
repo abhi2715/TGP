@@ -4,7 +4,7 @@
 
 /* ── Hero ── */
 .blog-hero {
-  padding: clamp(9rem, 15vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
+  padding: clamp(11rem, 15vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
   position: relative;
   overflow: hidden;
   background: var(--gradient-warm-bg);

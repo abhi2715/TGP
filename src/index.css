@@ -525,7 +525,7 @@ p {
    PAGE HEADERS (shared across pages)
    ═══════════════════════════════════════ */
 .page-header {
-  padding: clamp(8rem, 14vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  padding: clamp(11rem, 14vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
   background: url('/about-hero-bg.png') center/cover no-repeat;
   background-attachment: fixed; /* Parallax effect for all headers */
   position: relative;

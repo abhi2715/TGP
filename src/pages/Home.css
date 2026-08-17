@@ -9,7 +9,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: clamp(7rem, 12vw, 10rem) 0 clamp(4rem, 6vw, 6rem);
+  padding: clamp(11rem, 12vw, 10rem) 0 clamp(4rem, 6vw, 6rem);
   background: var(--gradient-hero);
 }
 
@@ -337,7 +337,7 @@
 .about-preview {
   position: relative;
   background: var(--gradient-warm-bg);
-  padding: 7rem 0;
+  padding: 9rem 0;
   overflow: clip;
 }
 
@@ -430,7 +430,7 @@
 .pillars-section {
   position: relative;
   background: var(--gradient-warm-bg);
-  padding: 7rem 0 8rem 0;
+  padding: 9rem 0 8rem 0;
   overflow: hidden;
 }
 
@@ -594,7 +594,7 @@
    ══════════════════════════════════ */
 .mentor-section {
   background: var(--gradient-steel);
-  padding: 8rem 0;
+  padding: 10rem 0;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -852,7 +852,7 @@
 }
 
 @media (max-width: 768px) {
-  .hero-section { padding-top: 7rem; }
+  .hero-section { padding-top: 9rem; }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .hero-ctas .btn { width: 100%; }
   .hero-photo-frame { width: 240px; }

@@ -7,7 +7,7 @@
 }
 
 .resources-hero {
-  padding: clamp(9rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  padding: clamp(11rem, 15vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
   background: url('/leadership_books_compass.png') center/cover no-repeat;
   background-attachment: fixed; /* Parallax looks amazing on uniform textures */
   position: relative;
@@ -271,7 +271,7 @@
 
 @media (max-width: 768px) {
   .resources-hero {
-    padding: 7rem 0 3rem;
+    padding: 9rem 0 3rem;
   }
 
   .resources-grid {

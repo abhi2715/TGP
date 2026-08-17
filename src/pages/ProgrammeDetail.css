@@ -2,7 +2,7 @@
    PROGRAMME DETAIL PAGE
    ═══════════════════════════════════════ */
 .prog-detail-hero {
-  padding: clamp(10rem, 15vw, 14rem) 0 clamp(5rem, 10vw, 7rem);
+  padding: clamp(11rem, 15vw, 14rem) 0 clamp(5rem, 10vw, 7rem);
   position: relative;
   background: var(--gradient-dark-green);
   z-index: 1;
