@@ -260,7 +260,8 @@
   position: absolute;
   top: -40px;
   right: -20px;
-font-size: 10rem;
+  font-family: var(--font-heading);
+  font-size: 10rem;
   font-weight: 800;
   line-height: 1;
   color: rgba(200, 151, 62, 0.05);
@@ -391,7 +392,8 @@ font-size: 10rem;
 }
 
 .approach-num {
-font-size: 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
   font-weight: 800;
   background: var(--gradient-gold);
   -webkit-background-clip: text;

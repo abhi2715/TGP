@@ -21,7 +21,7 @@
 
 .pd-tag {
   display: inline-block;
-  background-color: var(--color-gold-muted);
+  background-color: rgba(200, 151, 62, 0.12);
   color: var(--color-gold);
   padding: 0.45rem 1.25rem;
   border-radius: 100px;
@@ -176,7 +176,8 @@
 }
 
 .curr-week {
-font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-secondary);
   text-transform: uppercase;
@@ -217,7 +218,8 @@ font-size: 0.85rem;
 
 .testimonial-quote {
   color: var(--color-bg);
-font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   max-width: 900px;
   margin: 0 auto 2rem;
   font-style: italic;
@@ -256,7 +258,8 @@ font-size: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 .price {
-font-size: clamp(3rem, 6vw, 4rem);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 4rem);
   font-weight: 700;
   color: var(--color-primary);
   margin: 1.5rem 0 1rem;

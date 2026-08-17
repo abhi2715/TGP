@@ -137,7 +137,8 @@
 }
 
 .programme-tag {
-font-size: 0.78rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -244,7 +245,8 @@ font-size: 0.78rem;
 }
 
 .programme-subtitle {
-font-size: 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
   color: var(--color-gold);
   font-style: italic;
   margin-bottom: 2rem;
@@ -272,6 +274,23 @@ font-size: 1.25rem;
   margin: 0 0 2rem 0;
 }
 
+.programme-detailed-content li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.programme-detailed-content li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--color-gold);
+  font-size: 0.8rem;
+}
 
 @media (max-width: 992px) {
   .programmes-list {

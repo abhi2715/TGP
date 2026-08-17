@@ -130,7 +130,8 @@
 }
 
 .ed-day {
-font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-dark-green);
   line-height: 1;
