@@ -196,6 +196,11 @@
 
 /* ── Mobile ── */
 @media (max-width: 1024px) {
+  .navbar-logo img {
+    height: 90px;
+    width: 76px;
+  }
+
   .navbar-links {
     position: absolute;
     top: 100%;
@@ -238,4 +243,11 @@
   }
 
   .mobile-cta .btn { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .navbar-logo img {
+    height: 80px;
+    width: 68px;
+  }
 }

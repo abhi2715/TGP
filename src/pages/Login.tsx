@@ -26,7 +26,7 @@ const Login = () => {
       const result = await loginShikhar(email, password);
       if (result.status === 'approved' && result.sessionToken) {
         loginWithEmail(email, result.sessionToken);
-        navigate('/shikhar');
+        navigate('/dashboard');
       } else if (result.status === 'pending') {
         setError('Your access request is still pending approval. Please wait for admin confirmation.');
       } else if (result.status === 'denied') {
@@ -50,7 +50,7 @@ const Login = () => {
       const result = await requestShikharAccess({ name, email, phone, password });
       if (result.status === 'approved' && result.sessionToken) {
         loginWithEmail(email, result.sessionToken);
-        navigate('/shikhar');
+        navigate('/dashboard');
       } else {
         setSuccess(result.message || 'Access request submitted! You will be notified once approved.');
       }

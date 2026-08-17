@@ -26,6 +26,9 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
+// Dashboard & Apps
+import MemberDashboard from './pages/MemberDashboard';
+import UnfoldingView from './pages/UnfoldingView';
 
 // Shikhar
 import ShikharDashboard from './pages/shikhar/ShikharDashboard';
@@ -97,8 +100,10 @@ function App() {
             {/* Auth Routes */}
             <Route path="/login" element={<Login />} />
 
-            {/* Protected Shikhar Program */}
+            {/* Protected Member Routes */}
             <Route element={<ProtectedRoute requireShikhar={true} />}>
+              <Route path="/dashboard" element={<MemberDashboard />} />
+              <Route path="/unfolding-app" element={<UnfoldingView />} />
               <Route path="/shikhar" element={<ShikharDashboard />} />
               <Route path="/shikhar/session/1" element={<Session1 />} />
               <Route path="/shikhar/session/2" element={<Session2 />} />
