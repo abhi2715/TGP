@@ -195,7 +195,7 @@ const Home = () => {
                 <p className="lead-text" style={{ marginBottom: '1.5rem', fontWeight: 500 }}>
                   Leadership today demands more than experience. It demands the ability to continually evolve.
                 </p>
-                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                <p className="lead-text" style={{ textAlign: 'right', marginBottom: '1.5rem' }}>
                   Hi, I'm Pooja Sharma — Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant—the ability to grow through change.
                 </p>
                 <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
