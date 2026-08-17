@@ -131,7 +131,7 @@ const Home = () => {
                 { icon: <GraduationCap className="text-gold" size={32} />, title: 'IIM Bangalore', sub: 'MBA · Finance & International Business' },
                 { icon: <Award className="text-gold" size={32} />, title: 'ICF Certified', sub: 'Associate Certified Coach (ACC)' },
                 { icon: <Clock className="text-gold" size={32} />, title: '500+ Hours', sub: 'Professional Teaching & Coaching' },
-                { icon: <Users className="text-gold" size={32} />, title: '50+ Professionals', sub: 'Transformed' },
+                { icon: <Users className="text-gold" size={32} />, title: '50+ Professional Journeys', sub: 'Transformed' },
                 { icon: <Microscope className="text-gold" size={32} />, title: 'Doctoral Researcher', sub: 'AI & The Future of Work' },
               ].map((cred, i) => (
                 <motion.div
