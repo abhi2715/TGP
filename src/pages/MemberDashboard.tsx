@@ -12,7 +12,7 @@ export default function MemberDashboard() {
   const progress = getProgress();
   
   // Dummy streak/activity data for productivity tracking
-  const [streak, setStreak] = useState(3);
+  const [streak] = useState(3);
   const [sessionsCompleted, setSessionsCompleted] = useState(0);
 
   useEffect(() => {
