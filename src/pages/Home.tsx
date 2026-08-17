@@ -22,8 +22,8 @@ const Home = () => {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
               <h1 className="display-title">
-                Leadership coaching <span className="text-gold">for</span><br />
-                <span className="text-gold">professionals</span>
+                Leadership coaching <span className="gold-gradient-text">for</span><br />
+                <span className="gold-gradient-text">professionals</span>
               </h1>
             </motion.div>
 
