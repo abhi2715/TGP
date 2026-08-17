@@ -118,7 +118,6 @@
   border-radius: 12px;
   font-size: 1.1rem;
   color: var(--shikhar-olive-dark);
-  font-family: var(--font-heading);
 }
 
 /* ── Belief Flip Cards ── */
@@ -192,7 +191,7 @@
 
 .flip-hint {
   font-size: 0.7rem;
-  color: #999;
+  color: var(--color-text-muted);
   margin-top: auto;
   text-align: right;
 }
@@ -512,7 +511,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
+  color: var(--color-text-muted);
   transition: all 0.2s;
 }
 
@@ -594,7 +593,6 @@
   font-weight: 700;
   color: var(--color-text);
   transition: all 0.2s;
-  font-family: var(--font-body);
 }
 
 .score-dot.active {
@@ -625,8 +623,7 @@
 
 .stat-num {
   display: block;
-  font-family: var(--font-heading);
-  font-size: 2rem;
+font-size: 2rem;
   font-weight: 700;
   color: var(--shikhar-olive-dark);
 }
@@ -649,8 +646,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  font-family: var(--font-body);
-  color: var(--color-text);
+color: var(--color-text);
 }
 
 .quadrant-select-btn.active {
@@ -717,8 +713,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  font-family: var(--font-body);
-  color: var(--color-text);
+color: var(--color-text);
 }
 
 .quiz-option:hover {
@@ -936,8 +931,7 @@
   background: transparent;
   text-align: center;
   font-size: 1.1rem;
-  font-family: var(--font-body);
-  color: var(--color-text);
+color: var(--color-text);
 }
 
 .signature-input:focus {

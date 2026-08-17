@@ -57,8 +57,7 @@
 
 .hero-tag {
   display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
+font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -71,8 +70,7 @@
 }
 
 .hero-content h1.display-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+font-size: clamp(2.5rem, 6vw, 4.5rem);
   line-height: 1.08;
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -399,8 +397,7 @@
 }
 
 .section-title-wrap h2 {
-  font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+font-size: clamp(2.5rem, 5vw, 3.5rem);
   line-height: 1.2;
   color: var(--color-dark-green);
   margin-bottom: 1rem;
@@ -455,7 +452,7 @@
   width: 800px;
   height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 151, 62, 0.12) 0%, transparent 60%);
+  background: radial-gradient(circle, var(--color-gold-muted) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -530,8 +527,7 @@
 }
 
 .pillar-card h3 {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
+font-size: 1.3rem;
   color: var(--color-dark-green);
   margin-bottom: 1rem;
   line-height: 1.2;
@@ -543,8 +539,7 @@
 }
 
 .pillar-card p {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+font-size: 0.95rem;
   color: var(--color-text-muted);
   line-height: 1.6;
   font-weight: 400;
@@ -660,7 +655,7 @@
   right: -5%;
   bottom: -5%;
   border-radius: 24px;
-  background: radial-gradient(ellipse, rgba(200, 151, 62, 0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse, var(--color-gold-muted) 0%, transparent 70%);
   filter: blur(25px);
   z-index: 0;
 }
@@ -709,8 +704,7 @@
 }
 
 .mentor-role {
-  font-family: var(--font-heading);
-  font-style: italic;
+font-style: italic;
   font-weight: 400;
   font-size: 1.1rem;
   color: rgba(250, 248, 243, 0.65);
@@ -718,8 +712,7 @@
 }
 
 .mentor-bio {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+font-size: 0.95rem;
   color: rgba(250, 248, 243, 0.8);
   line-height: 1.75;
   margin-bottom: 1.25rem;
@@ -740,7 +733,7 @@
   gap: 0.75rem;
   font-size: 0.95rem;
   color: rgba(250, 248, 243, 0.8);
-  border-bottom: 1px solid rgba(200, 151, 62, 0.12);
+  border-bottom: 1px solid var(--color-gold-muted);
   padding-bottom: 0.75rem;
   transition: all 0.3s ease;
 }

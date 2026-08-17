@@ -48,7 +48,7 @@
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--color-gold-light);
-  background: rgba(200, 151, 62, 0.12);
+  background: var(--color-gold-muted);
   padding: 0.45rem 1.2rem;
   border-radius: 100px;
   border: 1px solid rgba(200, 151, 62, 0.25);
@@ -88,8 +88,7 @@
 }
 
 .c-stat-num {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3rem);
+font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   display: block;
   margin-bottom: 0.25rem;

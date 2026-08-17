@@ -130,8 +130,7 @@
 }
 
 .step-num {
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
+font-size: 2.5rem;
   font-weight: 700;
   line-height: 1;
   background: var(--gradient-gold);
@@ -192,8 +191,7 @@
 }
 
 .cs-metric {
-  font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 0.25rem;
   line-height: 1;
@@ -218,8 +216,7 @@
   margin-bottom: 1.5rem;
   color: var(--color-text-muted);
   line-height: 1.7;
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
+font-size: 1.05rem;
 }
 
 .cs-author {

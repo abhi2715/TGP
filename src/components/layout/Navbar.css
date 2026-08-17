@@ -102,8 +102,7 @@
 }
 
 .nav-link {
-  font-family: var(--font-body);
-  font-size: 0.75rem; /* Slightly smaller */
+font-size: 0.75rem; /* Slightly smaller */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em; /* Reduced spacing */
@@ -146,7 +145,7 @@
 
 /* ── Shikhar CTA pill ── */
 .nav-link-shikhar {
-  background: rgba(200, 151, 62, 0.12);
+  background: var(--color-gold-muted);
   border: 1px solid rgba(200, 151, 62, 0.35);
   padding: 0.5rem 1rem;
   border-radius: 100px;

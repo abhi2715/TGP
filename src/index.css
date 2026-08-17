@@ -6,17 +6,17 @@
    ═══════════════════════════════════════ */
 :root {
   /* ── Brand Palette — Warmed & Deepened ── */
-  --color-offwhite: #FAF8F3;
-  --color-cream: #F5F1E8;
-  --color-gold: #C8973E;
-  --color-gold-light: #DEBA6A;
-  --color-gold-dark: #A67D2A;
-  --color-gold-muted: rgba(200, 151, 62, 0.12);
-  --color-steel: #3A3F45;
-  --color-steel-light: #5C6670;
-  --color-dark-green: #2A3C1A;
-  --color-dark-green-light: #3F5627;
-  --color-dark-green-medium: #354A22;
+  --color-offwhite: var(--color-offwhite);
+  --color-cream: var(--color-cream);
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-dark: var(--color-gold-dark);
+  --color-gold-muted: var(--color-gold-muted);
+  --color-steel: var(--color-steel);
+  --color-steel-light: var(--color-steel-light);
+  --color-dark-green: var(--color-dark-green);
+  --color-dark-green-light: var(--color-dark-green-light);
+  --color-dark-green-medium: var(--color-dark-green-medium);
   --color-warm-charcoal: #1D1D1B;
 
   /* ── Semantic Aliases ── */
@@ -27,8 +27,8 @@
   --color-surface: #EFECE3;
   --color-surface-warm: #EAE5D9;
   --color-card: #FFFFFF;
-  --color-text: #2A2A28;
-  --color-text-muted: #6B6B65;
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
   --color-border: #DDD9CE;
   --color-border-light: #E8E4DA;
 
@@ -60,13 +60,13 @@
   --perspective: 1200px;
 
   /* ── Gradients ── */
-  --gradient-warm-bg: linear-gradient(165deg, #FAF8F3 0%, #F5F1E8 40%, #EFECE3 100%);
+  --gradient-warm-bg: linear-gradient(165deg, var(--color-offwhite) 0%, var(--color-cream) 40%, #EFECE3 100%);
   --gradient-hero: radial-gradient(ellipse 80% 60% at 30% 40%, rgba(200, 151, 62, 0.06) 0%, transparent 60%),
                     radial-gradient(ellipse 60% 50% at 80% 30%, rgba(42, 60, 26, 0.04) 0%, transparent 50%),
-                    linear-gradient(175deg, #FAF8F3 0%, #F2EEE4 50%, #EBE6DA 100%);
-  --gradient-dark-green: linear-gradient(175deg, #2A3C1A 0%, #1F2D13 50%, #1A2610 100%);
-  --gradient-steel: linear-gradient(175deg, #3A3F45 0%, #2F343A 50%, #282D32 100%);
-  --gradient-gold: linear-gradient(135deg, #DEBA6A 0%, #C8973E 40%, #A67D2A 100%);
+                    linear-gradient(175deg, var(--color-offwhite) 0%, #F2EEE4 50%, #EBE6DA 100%);
+  --gradient-dark-green: linear-gradient(175deg, var(--color-dark-green) 0%, #1F2D13 50%, #1A2610 100%);
+  --gradient-steel: linear-gradient(175deg, var(--color-steel) 0%, #2F343A 50%, #282D32 100%);
+  --gradient-gold: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 40%, var(--color-gold-dark) 100%);
   --gradient-gold-soft: linear-gradient(135deg, rgba(200, 151, 62, 0.08) 0%, rgba(200, 151, 62, 0.02) 100%);
   --gradient-separator: linear-gradient(90deg, transparent 0%, rgba(200, 151, 62, 0.4) 50%, transparent 100%);
 
@@ -82,7 +82,7 @@
   --shikhar-gold-bg: rgba(200, 151, 62, 0.1);
   --shikhar-white: var(--color-offwhite);
   --shikhar-cream: #F0EDE5;
-  --shikhar-charcoal: #2A2A28;
+  --shikhar-charcoal: var(--color-text);
   --shikhar-glass: rgba(255,255,255,0.88);
   --shikhar-glass-border: rgba(42, 60, 26, 0.15);
   --shikhar-radius: 16px;
@@ -192,6 +192,39 @@ p {
   margin-bottom: 1rem;
   line-height: 1.78;
   letter-spacing: 0.005em;
+}
+
+/* Global List Styles (Normalized) */
+ul:not([class*="nav"]):not([class*="menu"]):not([class*="social"]):not(.no-bullets) {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+ul:not([class*="nav"]):not([class*="menu"]):not([class*="social"]):not(.no-bullets) > li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.0625rem;
+  color: var(--color-text);
+  line-height: 1.78;
+}
+
+ul:not([class*="nav"]):not([class*="menu"]):not([class*="social"]):not(.no-bullets) > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem; /* Align with text baseline */
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-gold);
+  border-radius: 1px; /* Subtle square edge, like a diamond/square */
+}
+
+/* Dark Section Lists */
+.bg-dark-green ul:not([class*="nav"]):not([class*="menu"]):not([class*="social"]):not(.no-bullets) > li,
+.bg-steel ul:not([class*="nav"]):not([class*="menu"]):not([class*="social"]):not(.no-bullets) > li {
+  color: rgba(250, 248, 243, 0.85);
 }
 
 

@@ -91,8 +91,7 @@
   border: 2px solid var(--color-border);
   border-radius: 14px;
   font-size: 1rem;
-  font-family: var(--font-body);
-  color: var(--color-text);
+color: var(--color-text);
   text-align: center;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -274,8 +273,7 @@
   background: transparent;
   border: none;
   border-radius: 100px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text-muted);
   cursor: pointer;
@@ -344,7 +342,7 @@
 .session-card.locked .session-card-content h3,
 .session-card.locked .session-card-subtitle,
 .session-card.locked .session-card-desc {
-  color: #777 !important;
+  color: var(--color-text-muted) !important;
 }
 
 .session-card.completed {
@@ -420,7 +418,6 @@
   font-size: 1.2rem;
   color: var(--shikhar-olive-dark);
   margin-bottom: 0.25rem;
-  font-family: var(--font-heading);
 }
 
 .session-card-subtitle {
@@ -439,7 +436,7 @@
 
 .session-locked-msg {
   font-size: 0.85rem;
-  color: #999 !important;
+  color: var(--color-text-muted) !important;
   font-style: italic;
 }
 
@@ -496,8 +493,7 @@
 }
 
 .info-number {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
+font-size: 1.75rem;
   font-weight: 700;
   color: var(--shikhar-olive-dark);
 }
@@ -583,7 +579,7 @@
   flex: 1;
   width: 100%;
   border: none;
-  background: #fdfbf7;
+  background: var(--color-offwhite);
 }
 
 /* Responsive */
