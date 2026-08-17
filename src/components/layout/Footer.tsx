@@ -39,7 +39,7 @@ const Footer = () => {
             <ul>
               <li><Link to="/shikhar">Member Login: Shikhar</Link></li>
               <li><Link to="/resources">Resources</Link></li>
-              <li><Link to="/contact">Get in touch</Link></li>
+              <li><Link to="/contact">Book a conversation</Link></li>
             </ul>
           </div>
 
@@ -47,7 +47,7 @@ const Footer = () => {
             <h4>Stay Connected</h4>
             <p>Join our community for insights on leadership, growth, and upcoming programmes.</p>
             <Link to="/contact" className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', marginTop: '1rem' }}>
-              Get in touch
+              Book a conversation
             </Link>
             <p className="mt-4" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
               contact.thegrowthproject@gmail.com

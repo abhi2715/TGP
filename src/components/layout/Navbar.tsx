@@ -61,7 +61,7 @@ const Navbar = () => {
           <Link to="/dashboard" className={`nav-link nav-link-shikhar mobile-only-link ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER LOGIN</Link>
           <Link to="/resources" className={`nav-link ${isActive('/resources') ? 'active' : ''}`}>Resources</Link>
           <Link to="/success-stories" className={`nav-link ${isActive('/success-stories') ? 'active' : ''}`}>Success Stories</Link>
-          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Get in touch</Link>
+          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Book a conversation</Link>
           
           <div className="mobile-cta">
             <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>

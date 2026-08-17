@@ -9,7 +9,7 @@ const Contact = () => {
       <div className="page-header text-center" style={{ padding: '8rem 0 4rem' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="up" delay={0.1}>
-            <span className="about-tag" style={{ marginBottom: '1.5rem' }}>Get in Touch</span>
+            <span className="about-tag" style={{ marginBottom: '1.5rem' }}>Book a conversation</span>
             <h1>Let's Get Started!</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>

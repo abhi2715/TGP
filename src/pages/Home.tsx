@@ -77,7 +77,7 @@ const Home = () => {
               </MagneticButton>
               <MagneticButton>
                 <Link to="/contact" className="btn btn-secondary">
-                  Get in Touch
+                  Book a conversation
                 </Link>
               </MagneticButton>
             </motion.div>
