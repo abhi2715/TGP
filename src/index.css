@@ -196,6 +196,14 @@ p {
 
 
 /* ═══════════════════════════════════════
+   GLOBAL TEXT NORMALIZATION
+   ═══════════════════════════════════════ */
+p, .lead-text, .subtitle, .hero-subtitle, .hero-sub, .pillars-subtitle, .section-subtitle, .journey-subtitle, .programme-subtitle, .pd-subtitle, .benefit-desc, .story-excerpt, .faq-answer {
+  font-size: 1.0625rem !important;
+}
+
+
+/* ═══════════════════════════════════════
    DARK SECTION TEXT OVERRIDES
    ═══════════════════════════════════════ */
 .bg-dark-green,
