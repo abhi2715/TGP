@@ -185,6 +185,9 @@
 
 .mobile-cta { display: none; }
 
+.mobile-only-link { display: none; }
+.desktop-only-link { display: inline-flex; }
+
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -235,6 +238,8 @@
   
   .mobile-menu-btn { display: block; }
   .desktop-cta     { display: none; }
+  .desktop-only-link { display: none !important; }
+  .mobile-only-link { display: block; }
 
   .mobile-cta {
     display: block;

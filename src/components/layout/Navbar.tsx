@@ -58,7 +58,7 @@ const Navbar = () => {
           <Link to="/" className={`nav-link ${isActive('/') && (activeSection === 'home' || !activeSection) ? 'active' : ''}`}>Home</Link>
           <Link to="/about" className={`nav-link ${isActive('/about') || activeSection === 'about' ? 'active' : ''}`}>My Story</Link>
           <Link to="/programmes" className={`nav-link ${isActive('/programmes') ? 'active' : ''}`}>Programmes</Link>
-          <Link to="/dashboard" className={`nav-link nav-link-shikhar ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER DASHBOARD</Link>
+          <Link to="/dashboard" className={`nav-link nav-link-shikhar mobile-only-link ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER LOGIN</Link>
           <Link to="/resources" className={`nav-link ${isActive('/resources') ? 'active' : ''}`}>Resources</Link>
           <Link to="/success-stories" className={`nav-link ${isActive('/success-stories') ? 'active' : ''}`}>Success Stories</Link>
           <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Get in touch</Link>
@@ -69,6 +69,7 @@ const Navbar = () => {
         </nav>
 
         <div className="navbar-actions">
+          <Link to="/dashboard" className={`nav-link nav-link-shikhar desktop-only-link ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER LOGIN</Link>
           <MagneticButton>
             <Link to="/book-consultation" className="btn btn-primary desktop-cta">
               Book a conversation
