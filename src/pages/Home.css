@@ -355,16 +355,17 @@
 }
 
 .about-preview-container {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(300px, 45%) 1fr;
+  gap: 4rem;
+  align-items: start;
   position: relative;
   z-index: 2;
 }
 
 .about-image-wrapper {
-  float: left;
-  width: 45%;
+  width: 100%;
   max-width: 450px;
-  margin-right: 4rem;
   margin-bottom: 2rem;
 }
 
