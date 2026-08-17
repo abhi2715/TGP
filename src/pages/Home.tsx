@@ -70,16 +70,10 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <MagneticButton>
-                <Link to="/programmes" className="btn btn-dark">
-                  Explore Programmes <ArrowRight size={18} />
-                </Link>
-              </MagneticButton>
-              <MagneticButton>
-                <Link to="/contact" className="btn btn-secondary">
-                  Book a conversation
-                </Link>
-              </MagneticButton>
+              <div className="cta-group mt-4">
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+              </div>
             </motion.div>
           </div>
 
@@ -230,10 +224,9 @@ const Home = () => {
             </div>
 
             <ScrollReveal direction="up" delay={0.4}>
-              <div className="about-cta-wrapper" style={{ marginTop: '1rem' }}>
-                <Link to="/programmes" className="btn btn-dark">
-                  Explore Programmes <ArrowRight size={16} />
-                </Link>
+              <div className="cta-group mt-4">
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
               </div>
             </ScrollReveal>
           </div>
@@ -298,12 +291,12 @@ const Home = () => {
             <p>
               Join hundreds of professionals who have transformed their Professional journey.
             </p>
-            <div className="cta-buttons">
+            <div className="cta-group center">
               <MagneticButton>
                 <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
               </MagneticButton>
               <MagneticButton>
-                <Link to="/programmes" className="btn" style={{ background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>Explore Programmes</Link>
+                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
               </MagneticButton>
             </div>
           </ScrollReveal>

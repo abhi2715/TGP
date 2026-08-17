@@ -24,10 +24,10 @@ const Programmes = () => {
           <ScrollReveal direction="up" delay={0.3}>
             <div className="cta-group center" style={{ marginTop: '2.5rem' }}>
               <MagneticButton>
-                <Link to="/book-consultation" className="btn btn-primary" style={{ padding: '0.8rem 2rem' }}>Book a conversation</Link>
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
               </MagneticButton>
               <MagneticButton>
-                <Link to="/programmes" className="btn btn-secondary" style={{ padding: '0.8rem 2rem' }}>Explore programmes</Link>
+                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
               </MagneticButton>
             </div>
           </ScrollReveal>
@@ -155,12 +155,12 @@ const Programmes = () => {
             <p>
               Join hundreds of professionals who have transformed their Professional journey.
             </p>
-            <div className="cta-buttons">
+            <div className="cta-group center">
               <MagneticButton>
                 <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
               </MagneticButton>
               <MagneticButton>
-                <Link to="/programmes" className="btn" style={{ background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>Explore Programmes</Link>
+                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
               </MagneticButton>
             </div>
           </ScrollReveal>

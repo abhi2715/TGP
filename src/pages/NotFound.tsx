@@ -19,9 +19,9 @@ const NotFound = () => {
         <p style={{ fontSize: '1.125rem', color: 'var(--color-text)', marginBottom: '3rem' }}>
           It seems you've navigated to a page that doesn't exist. Let's get you back on track for your growth journey.
         </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link to="/" className="btn btn-primary">Return Home</Link>
-          <Link to="/programmes" className="btn btn-secondary">Explore Programmes <ArrowRight size={18}/></Link>
+        <div className="cta-group center mt-4">
+          <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+          <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
         </div>
       </div>
     </div>
