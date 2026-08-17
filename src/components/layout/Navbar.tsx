@@ -69,12 +69,12 @@ const Navbar = () => {
         </nav>
 
         <div className="navbar-actions">
-          <Link to="/dashboard" className={`nav-link nav-link-shikhar desktop-only-link ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER LOGIN</Link>
           <MagneticButton>
             <Link to="/book-consultation" className="btn btn-primary desktop-cta">
               Book a conversation
             </Link>
           </MagneticButton>
+          <Link to="/dashboard" className={`nav-link nav-link-shikhar desktop-only-link ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER LOGIN</Link>
           
           {/* Mobile Menu Toggle */}
           <button 
