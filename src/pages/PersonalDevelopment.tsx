@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Brain, BatteryCharging, Sunrise } from 'lucide-react';
+import { Brain, BatteryCharging, Sunrise } from 'lucide-react';
 import './Services.css';
 
 const PersonalDevelopment = () => {
@@ -12,7 +12,10 @@ const PersonalDevelopment = () => {
           <p className="hero-sub">
             True professional success is built on a foundation of profound personal growth. Master your habits, mindset, and energy.
           </p>
-          <Link to="/contact" className="btn btn-primary">Start Your Evolution</Link>
+          <div className="cta-group">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
 
@@ -105,7 +108,10 @@ const PersonalDevelopment = () => {
         <div className="container">
           <h2>Your transformation begins here.</h2>
           <p>Join a community of individuals committed to lifelong growth.</p>
-          <Link to="/programmes" className="btn btn-primary">View Programmes <ArrowRight size={18}/></Link>
+          <div className="cta-group center">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
     </div>

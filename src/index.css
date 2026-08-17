@@ -264,6 +264,18 @@ p {
   background-color: var(--color-offwhite);
 }
 
+/* ── CTA Groups ── */
+.cta-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cta-group.center {
+  justify-content: center;
+}
+
+
 .bg-gold {
   background-color: var(--color-gold);
 }

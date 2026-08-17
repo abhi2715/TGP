@@ -140,7 +140,10 @@ const ProgrammeDetail = () => {
             <div className="pricing-card">
               <div className="price">{programme.price}</div>
               <p className="price-desc">Comprehensive access to all live sessions, course materials, 1-on-1 coaching, and lifetime alumni network access.</p>
-              <Link to="/contact" className="btn btn-primary btn-full">Apply for Next Cohort</Link>
+              <div className="cta-group">
+                <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+              </div>
               <p className="finance-note">Payment plans and corporate sponsorship brochures available upon request.</p>
             </div>
           </div>

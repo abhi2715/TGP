@@ -93,9 +93,9 @@ const Community = () => {
         <div className="container">
           <h2>Ready to find your tribe?</h2>
           <p>Community access is included in all our premium programmes and available via separate membership.</p>
-          <div className="cta-buttons">
-            <Link to="/contact" className="btn btn-primary">Apply for Membership</Link>
-            <Link to="/programmes" className="btn btn-secondary">View Programmes</Link>
+          <div className="cta-group center">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
           </div>
         </div>
       </section>

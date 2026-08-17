@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Map, LineChart, Briefcase } from 'lucide-react';
+import { Map, LineChart, Briefcase } from 'lucide-react';
 import './Services.css';
 
 const CareerGrowth = () => {
@@ -12,7 +12,10 @@ const CareerGrowth = () => {
           <p className="hero-sub">
             Whether you are aiming for a promotion, a pivot, or entirely new horizons, we provide the strategic roadmap to get you there.
           </p>
-          <Link to="/contact" className="btn btn-primary">Start Your Journey</Link>
+          <div className="cta-group">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
 
@@ -105,7 +108,10 @@ const CareerGrowth = () => {
         <div className="container">
           <h2>Stop leaving your career to chance.</h2>
           <p>Take control of your professional trajectory today.</p>
-          <Link to="/programmes" className="btn btn-primary">Explore Programmes <ArrowRight size={18}/></Link>
+          <div className="cta-group center">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
     </div>

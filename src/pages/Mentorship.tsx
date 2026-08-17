@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, MessageSquare, Compass, ShieldCheck } from 'lucide-react';
+import { MessageSquare, Compass, ShieldCheck } from 'lucide-react';
 import './Services.css';
 
 const Mentorship = () => {
@@ -12,7 +12,10 @@ const Mentorship = () => {
           <p className="hero-sub">
             Accelerate your growth with personalized, high-impact mentorship from seasoned executives and industry leaders.
           </p>
-          <Link to="/contact" className="btn btn-primary">Match with a Mentor</Link>
+          <div className="cta-group">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
 
@@ -106,7 +109,10 @@ const Mentorship = () => {
         <div className="container">
           <h2>Find your perfect match.</h2>
           <p>Our matching algorithm pairs you with a mentor whose experience aligns perfectly with your goals.</p>
-          <Link to="/book-consultation" className="btn btn-primary">Start the Process <ArrowRight size={18}/></Link>
+          <div className="cta-group center">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
     </div>

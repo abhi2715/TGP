@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const FAQ = () => {
   const faqs = [
@@ -92,7 +93,10 @@ const FAQ = () => {
           <div className="text-center mt-5" style={{ marginTop: '4rem' }}>
             <h3>Still have questions?</h3>
             <p className="mb-3 text-muted">We're here to help clarify anything you need.</p>
-            <a href="/contact" className="btn btn-secondary">Get in touch</a>
+          <div className="cta-group center">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Anchor, Target, Zap } from 'lucide-react';
+import { Anchor, Target, Zap } from 'lucide-react';
 import './Services.css';
 
 const LeadershipCoaching = () => {
@@ -12,7 +12,10 @@ const LeadershipCoaching = () => {
           <p className="hero-sub">
             Bespoke coaching for senior leaders navigating complex organizational challenges and driving strategic transformation.
           </p>
-          <Link to="/contact" className="btn btn-primary">Inquire About Coaching</Link>
+          <div className="cta-group">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
 
@@ -105,7 +108,10 @@ const LeadershipCoaching = () => {
         <div className="container">
           <h2>Elevate your leadership narrative.</h2>
           <p>Schedule a confidential consultation to discuss your leadership challenges.</p>
-          <Link to="/book-consultation" className="btn btn-primary">Book a conversation <ArrowRight size={18}/></Link>
+          <div className="cta-group center">
+            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
+          </div>
         </div>
       </section>
     </div>

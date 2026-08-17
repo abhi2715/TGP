@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, User, Image as ImageIcon, ZoomIn, ZoomOut, Maximize } from 'lucide-react';
+import { Sparkles, User, Image as ImageIcon, ZoomIn, ZoomOut, Maximize } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
 import { useState } from 'react';
@@ -22,12 +22,12 @@ const Programmes = () => {
             </p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.3}>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2.5rem', flexWrap: 'wrap' }}>
+            <div className="cta-group center" style={{ marginTop: '2.5rem' }}>
               <MagneticButton>
-                <a href="#shikhar" className="btn btn-primary" style={{ padding: '0.8rem 2rem' }}>Explore Shikhar</a>
+                <Link to="/book-consultation" className="btn btn-primary" style={{ padding: '0.8rem 2rem' }}>Book a conversation</Link>
               </MagneticButton>
               <MagneticButton>
-                <a href="#aarohan" className="btn btn-secondary" style={{ padding: '0.8rem 2rem', background: 'transparent', borderColor: 'var(--color-gold)', color: 'var(--color-gold)' }}>Explore Aarohan</a>
+                <Link to="/programmes" className="btn btn-secondary" style={{ padding: '0.8rem 2rem' }}>Explore programmes</Link>
               </MagneticButton>
             </div>
           </ScrollReveal>
@@ -76,11 +76,10 @@ const Programmes = () => {
                   </p>
 
                   <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-                    <MagneticButton>
-                      <a href="https://docs.google.com/forms/d/e/1FAIpQLScqHDm8OXbFnHkDa4sNxjCY59VcXWz75BRfVeeRfycFAn3nUA/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>
-                        Apply for Shikhar <ArrowRight size={18} />
-                      </a>
-                    </MagneticButton>
+                    <div className="cta-group" style={{ marginTop: '1rem' }}>
+                    <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Book a conversation</Link>
+                    <Link to="/programmes" className="btn btn-secondary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Explore programmes</Link>
+                  </div>
                     
                     <MagneticButton>
                       <button onClick={() => setIsFlyerOpen(true)} className="btn btn-secondary" style={{ display: 'inline-flex', alignSelf: 'flex-start', background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>
@@ -135,11 +134,10 @@ const Programmes = () => {
                     <li>High-potential executives preparing for enterprise leadership</li>
                   </ul>
 
-                  <MagneticButton>
-                    <Link to="/contact" className="btn btn-primary mt-4" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>
-                      Enquire about Aarohan <ArrowRight size={18} />
-                    </Link>
-                  </MagneticButton>
+                  <div className="cta-group mt-4">
+                    <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Book a conversation</Link>
+                    <Link to="/programmes" className="btn btn-secondary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Explore programmes</Link>
+                  </div>
               </ScrollReveal>
             </div>
 
