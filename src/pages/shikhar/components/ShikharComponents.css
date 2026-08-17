@@ -38,7 +38,7 @@
 
 .session-hero {
   position: relative;
-  padding: 8rem 0 3rem;
+  padding: 11rem 0 3rem;
   overflow: hidden;
 }
 
@@ -619,7 +619,7 @@
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .session-hero {
-    padding: 7rem 0 2rem;
+    padding: 9rem 0 2rem;
   }
 
   .session-body {
