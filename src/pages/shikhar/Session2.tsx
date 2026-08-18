@@ -65,6 +65,11 @@ export default function Session2() {
     save('myBeliefs', updated);
   };
 
+  const addBelief = () => {
+    const updated = [...myBeliefs, ''];
+    save('myBeliefs', updated);
+  };
+
   const updateReframe = (i: number, value: string) => {
     const updated = [...myReframes];
     updated[i] = value;
@@ -174,7 +179,7 @@ export default function Session2() {
           icon={<span>🔍</span>}
         >
           <p style={{ fontSize: '0.9rem', color: 'var(--color-text)', marginBottom: '1.5rem' }}>
-            Write up to 3 of your own self-limiting beliefs, then ask "Why?" five times to find the root cause.
+            Write your self-limiting beliefs below, then ask "Why?" five times to find the root cause. You can add as many as you need.
           </p>
 
           {myBeliefs.map((belief, bi) => (
@@ -205,6 +210,16 @@ export default function Session2() {
               )}
             </div>
           ))}
+
+          {myBeliefs.length < 10 && (
+            <button 
+              onClick={addBelief}
+              className="shikhar-btn secondary"
+              style={{ marginTop: '0.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <span>+</span> Add another belief
+            </button>
+          )}
 
           <div className="abc-framework">
             <h4 style={{ color: 'var(--shikhar-olive-dark)', marginBottom: '1rem' }}>📐 ABC Framework</h4>
