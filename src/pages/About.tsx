@@ -195,7 +195,7 @@ const About = () => {
       <section className="section final-cta" id="cta">
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="3d-up">
-            <h2>Ready to accelerate your Leadership journey?</h2>
+            <h2>Get Started!</h2>
             <p>
               Join hundreds of professionals who have transformed their Professional journey.
             </p>
