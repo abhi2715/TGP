@@ -544,14 +544,16 @@ p, .lead-text, .subtitle, .hero-subtitle, .hero-sub, .pillars-subtitle, .section
 /* Secondary Buttons on dark backgrounds */
 .bg-dark-green .btn-secondary,
 .programmes-hero .btn-secondary,
-.dark-section .btn-secondary {
+.dark-section .btn-secondary,
+.final-cta .btn-secondary {
   color: var(--color-offwhite);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
 .bg-dark-green .btn-secondary:hover,
 .programmes-hero .btn-secondary:hover,
-.dark-section .btn-secondary:hover {
+.dark-section .btn-secondary:hover,
+.final-cta .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
   border-color: #fff;
