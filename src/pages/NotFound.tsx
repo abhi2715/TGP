@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Compass } from 'lucide-react';
+import { Compass } from 'lucide-react';
 
 const NotFound = () => {
   return (
