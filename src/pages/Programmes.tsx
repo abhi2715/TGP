@@ -75,17 +75,19 @@ const Programmes = () => {
                     Mid-career professional women (30-40years), working for about 10-12 years in services sectors like IT services, Banking & Financial Services, Consulting etc. Should have an ambition for career growth and progression. Should be willing to make the time commitment for the weekly sessions and for taking steps towards achieving her aspiration (since this is a group session there will not be any flexibility in scheduling the weekly sessions).
                   </p>
 
-                  <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-                    <div className="cta-group" style={{ marginTop: '1rem' }}>
-                    <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Book a conversation</Link>
-                    <Link to="/programmes" className="btn btn-secondary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Explore programmes</Link>
-                  </div>
+                  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', marginTop: '1.5rem' }}>
+                    <div className="cta-group">
+                      <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex' }}>Book a conversation</Link>
+                      <Link to="/programmes" className="btn btn-secondary" style={{ display: 'inline-flex' }}>Explore programmes</Link>
+                    </div>
                     
-                    <MagneticButton>
-                      <button onClick={() => setIsFlyerOpen(true)} className="btn btn-secondary" style={{ display: 'inline-flex', alignSelf: 'flex-start', background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>
-                        <ImageIcon size={18} style={{ marginRight: '8px' }} /> View Program Flyer
-                      </button>
-                    </MagneticButton>
+                    <div style={{ marginTop: '1rem' }}>
+                      <MagneticButton>
+                        <button onClick={() => setIsFlyerOpen(true)} className="btn btn-secondary" style={{ display: 'inline-flex', background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>
+                          <ImageIcon size={18} style={{ marginRight: '8px' }} /> View Program Flyer
+                        </button>
+                      </MagneticButton>
+                    </div>
                   </div>
               </ScrollReveal>
             </div>
