@@ -417,6 +417,12 @@
   font-weight: 400;
 }
 
+.about-content {
+  flex: 1;
+  min-width: 300px;
+  overflow: hidden; /* Establishes BFC to prevent text wrapping under floated image */
+}
+
 .about-cta-wrapper {
   text-align: center;
   margin-top: 2rem;

@@ -186,19 +186,19 @@ const Home = () => {
             <div style={{ textAlign: 'left' }}>
               <ScrollReveal direction="up" delay={0.2}>
                 <h4 style={{ color: 'var(--color-dark-green)', marginBottom: '1rem', fontWeight: 600 }}>Enabling your Leadership Journey</h4>
-                <p className="lead-text" style={{ marginBottom: '1.5rem', fontWeight: 500 }}>
+                <p className="lead-text" style={{ textAlign: 'justify', marginBottom: '1.5rem', fontWeight: 500 }}>
                   Leadership today demands more than experience. It demands the ability to continually evolve.
                 </p>
-                <p className="lead-text" style={{ textAlign: 'right', marginBottom: '1.5rem', marginLeft: 'auto', maxWidth: '75%' }}>
+                <p className="lead-text" style={{ textAlign: 'justify', marginBottom: '1.5rem' }}>
                   Hi, I'm Pooja Sharma — Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant—the ability to grow through change.
                 </p>
-                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                <p className="lead-text" style={{ textAlign: 'justify', marginBottom: '1.5rem' }}>
                   As an ICF Certified Leadership Coach, an alumna of IIM Bangalore, and a doctoral researcher on Artificial Intelligence and the Future of Work, I bring together the perspectives of a business leader, technologist, and coach. My work is grounded not only in leadership theory but in decades of real-world executive experience.
                 </p>
-                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                <p className="lead-text" style={{ textAlign: 'justify', marginBottom: '1.5rem' }}>
                   I founded The Growth Project with a simple belief: leadership is no longer about keeping pace with change—it is about growing faster than change itself.
                 </p>
-                <p className="lead-text" style={{ marginBottom: '1.5rem' }}>
+                <p className="lead-text" style={{ textAlign: 'justify', marginBottom: '1.5rem' }}>
                   Through executive and leadership coaching, I help professionals:
                 </p>
                 <ul style={{ listStyleType: 'none', padding: 0, margin: '0 0 2rem 0' }}>
@@ -215,7 +215,7 @@ const Home = () => {
                     <span style={{ color: 'var(--color-text)' }}>Lead with confidence in an AI-enabled world</span>
                   </li>
                 </ul>
-                <p className="lead-text" style={{ marginBottom: '2rem', fontStyle: 'italic', fontWeight: 500 }}>
+                <p className="lead-text" style={{ textAlign: 'justify', marginBottom: '2rem', fontStyle: 'italic', fontWeight: 500 }}>
                   My coaching combines deep reflection with practical action, enabling leaders to navigate complexity, influence with authenticity, and create lasting impact.<br/><br/>
                   Because leadership isn't defined by the position you hold.<br/>
                   <strong style={{ color: 'var(--color-dark-green)' }}>It's defined by the person you become.</strong>
