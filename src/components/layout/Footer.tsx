@@ -52,15 +52,15 @@ const Footer = () => {
             <p className="mt-4" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
               contact.thegrowthproject@gmail.com
             </p>
+            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.9rem' }}>
+              <Link to="/privacy-policy" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Privacy Policy</Link>
+              <Link to="/terms" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Terms of Service</Link>
+            </div>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} The Growth Project. All rights reserved.</p>
-          <div className="footer-legal">
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/terms">Terms of Service</Link>
-          </div>
         </div>
       </div>
     </footer>
