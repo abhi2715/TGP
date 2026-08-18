@@ -6,8 +6,10 @@ interface AuthContextType {
   isAuthenticated: boolean;
   isShikharUnlocked: boolean;
   userEmail: string | null;
+  userName: string | null;
+  serverShikharState: any | null;
   login: (code: string) => boolean;
-  loginWithEmail: (email: string, token: string) => void;
+  loginWithEmail: (email: string, token: string, name: string, state?: any) => void;
   logout: () => void;
 }
 
@@ -17,6 +19,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => localStorage.getItem('tgp_auth') === 'true');
   const [isShikharUnlocked, setIsShikharUnlocked] = useState<boolean>(() => localStorage.getItem('tgp_auth') === 'true');
   const [userEmail, setUserEmail] = useState<string | null>(() => localStorage.getItem('tgp_user_email'));
+  const [userName, setUserName] = useState<string | null>(() => localStorage.getItem('tgp_user_name'));
+  const [serverShikharState, setServerShikharState] = useState<any | null>(null);
 
   useEffect(() => {
     const checkSession = async () => {
@@ -27,6 +31,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           const res = await verifyShikharSession(email, token);
           if (!res.valid) {
             logout();
+          } else {
+            if (res.user && res.user.name) {
+              setUserName(res.user.name);
+              localStorage.setItem('tgp_user_name', res.user.name);
+            }
+            if (res.shikharState) {
+              setServerShikharState(res.shikharState);
+            }
           }
         } catch (e) {
           logout();
@@ -47,12 +59,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return false;
   };
 
-  const loginWithEmail = (email: string, token: string) => {
+  const loginWithEmail = (email: string, token: string, name: string, state?: any) => {
     setIsAuthenticated(true);
     setIsShikharUnlocked(true);
     setUserEmail(email);
+    setUserName(name);
+    if (state) setServerShikharState(state);
     localStorage.setItem('tgp_auth', 'true');
     localStorage.setItem('tgp_user_email', email);
+    localStorage.setItem('tgp_user_name', name);
     localStorage.setItem('tgp_session_token', token);
   };
 
@@ -66,13 +81,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsAuthenticated(false);
     setIsShikharUnlocked(false);
     setUserEmail(null);
+    setUserName(null);
+    setServerShikharState(null);
     localStorage.removeItem('tgp_auth');
     localStorage.removeItem('tgp_user_email');
+    localStorage.removeItem('tgp_user_name');
     localStorage.removeItem('tgp_session_token');
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, isShikharUnlocked, userEmail, login, loginWithEmail, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, isShikharUnlocked, userEmail, userName, serverShikharState, login, loginWithEmail, logout }}>
       {children}
     </AuthContext.Provider>
   );

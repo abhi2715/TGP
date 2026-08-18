@@ -67,17 +67,19 @@ const SESSIONS = [
 ];
 
 export default function ShikharDashboard() {
-  const { userEmail } = useAuth();
+  const { userEmail, userName } = useAuth();
   const { state, isSessionUnlocked, getProgress, setUserName } = useShikharStore();
   const [nameInput, setNameInput] = useState('');
   const progress = getProgress();
 
   const getDisplayName = () => {
+    if (userName) return userName;
+    if (state.userName) return state.userName;
     if (userEmail) {
       const prefix = userEmail.split('@')[0].replace(/[^a-zA-Z]/g, ' ').trim().split(' ')[0];
-      return prefix.charAt(0).toUpperCase() + prefix.slice(1).toLowerCase();
+      return prefix ? prefix.charAt(0).toUpperCase() + prefix.slice(1).toLowerCase() : 'Leader';
     }
-    return state.userName || 'Leader';
+    return 'Leader';
   };
   const displayName = getDisplayName();
 

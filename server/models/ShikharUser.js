@@ -9,6 +9,7 @@ const shikharUserSchema = new mongoose.Schema({
   accessCode: { type: String, default: '' },
   sessionToken: { type: String, default: '' },
   notes: { type: String, default: '' },
+  shikharState: { type: mongoose.Schema.Types.Mixed, default: {} },
   lastLoginAttempt: { type: Date },
 }, { timestamps: true });
 

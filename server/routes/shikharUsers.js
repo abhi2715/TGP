@@ -76,7 +76,8 @@ router.post('/login', async (req, res) => {
       return res.json({ 
         status: 'approved', 
         user: { name: user.name, email: user.email },
-        sessionToken
+        sessionToken,
+        shikharState: user.shikharState || {}
       });
     }
     
@@ -95,7 +96,11 @@ router.post('/verify', async (req, res) => {
 
     const user = await ShikharUser.findOne({ email: email.toLowerCase(), sessionToken });
     if (user && user.status === 'approved') {
-      return res.json({ valid: true });
+      return res.json({ 
+        valid: true,
+        user: { name: user.name, email: user.email },
+        shikharState: user.shikharState || {}
+      });
     }
     return res.json({ valid: false });
   } catch (err) {
@@ -115,6 +120,24 @@ router.post('/logout', async (req, res) => {
       }
     }
     res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ success: false });
+  }
+});
+
+// PUT /api/shikhar-users/state — sync shikhar state
+router.put('/state', async (req, res) => {
+  try {
+    const { email, sessionToken, state } = req.body;
+    if (!email || !sessionToken || !state) return res.status(400).json({ success: false });
+
+    const user = await ShikharUser.findOne({ email: email.toLowerCase(), sessionToken });
+    if (user && user.status === 'approved') {
+      user.shikharState = state;
+      await user.save();
+      return res.json({ success: true });
+    }
+    return res.status(401).json({ success: false });
   } catch (err) {
     res.status(500).json({ success: false });
   }

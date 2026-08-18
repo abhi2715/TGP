@@ -1,4 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { syncShikharState } from '../lib/api';
 
 export interface SessionData {
   completed: boolean;
@@ -43,16 +45,35 @@ function loadState(): ShikharState {
 }
 
 export function useShikharStore() {
-  const [state, setState] = useState<ShikharState>(loadState);
+  const { serverShikharState, userEmail } = useAuth();
+
+  const [state, setState] = useState<ShikharState>(() => {
+    let baseState = loadState();
+    if (serverShikharState && Object.keys(serverShikharState).length > 0) {
+      baseState = { ...DEFAULT_STATE, ...serverShikharState };
+    }
+    return baseState;
+  });
+
+  useEffect(() => {
+    if (serverShikharState && Object.keys(serverShikharState).length > 0) {
+      setState(prev => ({ ...prev, ...serverShikharState }));
+    }
+  }, [serverShikharState]);
+
   const saveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const token = localStorage.getItem('tgp_session_token');
 
   useEffect(() => {
     clearTimeout(saveTimer.current);
     saveTimer.current = setTimeout(() => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }, 300);
+      if (userEmail && token) {
+        syncShikharState(userEmail, token, state).catch(() => {});
+      }
+    }, 500);
     return () => clearTimeout(saveTimer.current);
-  }, [state]);
+  }, [state, userEmail, token]);
 
   const updateSession = useCallback((sessionId: number, data: Partial<SessionData>) => {
     setState(prev => ({
