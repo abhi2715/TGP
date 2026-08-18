@@ -39,7 +39,9 @@ const Footer = () => {
             <ul>
               <li><Link to="/shikhar">Member Login: Shikhar</Link></li>
               <li><Link to="/resources">Resources</Link></li>
-              <li><Link to="/contact">Book a conversation</Link></li>
+              <li><Link to="/contact">Get in touch</Link></li>
+              <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link to="/terms">Terms of Service</Link></li>
             </ul>
           </div>
 
@@ -52,10 +54,6 @@ const Footer = () => {
             <p className="mt-4" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
               contact.thegrowthproject@gmail.com
             </p>
-            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.9rem' }}>
-              <Link to="/privacy-policy" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Privacy Policy</Link>
-              <Link to="/terms" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Terms of Service</Link>
-            </div>
           </div>
         </div>
 
