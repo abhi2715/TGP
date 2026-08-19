@@ -40,41 +40,41 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Connect to MongoDB — try configured URI first, fall back to in-memory server
-async function startServer() {
-  let mongoUri = process.env.MONGODB_URI;
-  let usingMemory = false;
+// Connect to MongoDB
+async function startDatabase() {
+  const mongoUri = process.env.MONGODB_URI;
+  if (!mongoUri) {
+    console.error('❌ MONGODB_URI environment variable is missing.');
+    console.error('💡 Please configure it in your Vercel Dashboard (Settings > Environment Variables) or local .env file.');
+    if (!process.env.VERCEL) {
+      process.exit(1);
+    }
+    return;
+  }
 
   try {
-    // First, try connecting to the configured URI
-    await mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 3000 });
-    console.log('✅ Connected to MongoDB at', mongoUri);
+    if (mongoose.connection.readyState === 0) {
+      await mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 5000 });
+      console.log('✅ Connected to MongoDB Atlas');
+    }
   } catch (err) {
-    // Fall back to in-memory MongoDB server
-    console.log('⚠️  Could not connect to MongoDB at', mongoUri);
-    console.log('📦 Starting in-memory MongoDB server for development...');
-    
-    try {
-      const { MongoMemoryServer } = require('mongodb-memory-server');
-      const mongod = await MongoMemoryServer.create();
-      mongoUri = mongod.getUri();
-      await mongoose.connect(mongoUri);
-      usingMemory = true;
-      console.log('✅ Connected to in-memory MongoDB');
-      console.log('⚠️  Data will be lost when the server stops. Use a real MongoDB for persistence.');
-    } catch (memErr) {
-      console.error('❌ Failed to start in-memory MongoDB:', memErr.message);
+    console.error('❌ Failed to connect to MongoDB:', err.message);
+    if (!process.env.VERCEL) {
       process.exit(1);
     }
   }
+}
 
+// Ensure database connects (for Vercel it connects lazily or on boot)
+startDatabase();
+
+// If not running in Vercel, start the listener
+if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
     console.log(`📁 Uploads served from ${uploadsDir}`);
-    if (usingMemory) {
-      console.log('💡 To persist data, install MongoDB locally or set MONGODB_URI to a MongoDB Atlas connection string in server/.env');
-    }
   });
 }
 
-startServer();
+// Export the app for Vercel Serverless Functions
+module.exports = app;
