@@ -183,48 +183,29 @@ export async function fetchShikharStats() {
 }
 
 export async function requestShikharAccess(data: { name: string; email: string; phone?: string; password?: string }) {
-  const res = await fetch(`${API_BASE}/shikhar-users/request`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => ({}));
-    throw new Error(errorData.error || 'Failed to submit request');
-  }
-  return res.json();
+  // BYPASS: Mock approved response for frontend-only mode
+  return { status: 'approved', sessionToken: 'mock-token-123', message: 'Access granted instantly' };
 }
 
 export async function loginShikhar(email: string, password?: string): Promise<{ status: string; sessionToken?: string; error?: string; user?: { name: string; email: string }; shikharState?: any }> {
-  const res = await fetch(`${API_BASE}/shikhar-users/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  });
-  if (!res.ok) {
-    const data = await res.json().catch(() => ({}));
-    throw new Error(data.error || 'Login failed');
-  }
-  return res.json();
+  // BYPASS: Mock login response
+  return { 
+    status: 'approved', 
+    sessionToken: 'mock-token-123',
+    user: { 
+      name: email.split('@')[0].replace(/[^a-zA-Z]/g, ' ').trim(), 
+      email 
+    }
+  };
 }
 
 export async function verifyShikharSession(email: string, sessionToken: string) {
-  const res = await fetch(`${API_BASE}/shikhar-users/verify`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, sessionToken }),
-  });
-  if (!res.ok) return { valid: false };
-  return res.json();
+  // BYPASS: Always return valid for mock token
+  return { valid: sessionToken === 'mock-token-123' };
 }
 
 export async function syncShikharState(email: string, sessionToken: string, state: any) {
-  const res = await fetch(`${API_BASE}/shikhar-users/state`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, sessionToken, state }),
-  });
-  if (!res.ok) return false;
+  // BYPASS: Do nothing, relies on localStorage
   return true;
 }
 
