@@ -182,12 +182,12 @@ export async function fetchShikharStats() {
   return res.json();
 }
 
-export async function requestShikharAccess(data: { name: string; email: string; phone?: string; password?: string }) {
+export async function requestShikharAccess(_data: { name: string; email: string; phone?: string; password?: string }): Promise<{ status: string; sessionToken?: string; message?: string; user?: { name: string; email: string }; shikharState?: any; unlockedSessions?: number[] }> {
   // BYPASS: Mock approved response for frontend-only mode
   return { status: 'approved', sessionToken: 'mock-token-123', message: 'Access granted instantly' };
 }
 
-export async function loginShikhar(email: string, password?: string): Promise<{ status: string; sessionToken?: string; error?: string; user?: { name: string; email: string }; shikharState?: any; unlockedSessions?: number[] }> {
+export async function loginShikhar(email: string, _password?: string): Promise<{ status: string; sessionToken?: string; error?: string; user?: { name: string; email: string }; shikharState?: any; unlockedSessions?: number[] }> {
   // BYPASS: Mock login response
   return { 
     status: 'approved', 
@@ -200,12 +200,12 @@ export async function loginShikhar(email: string, password?: string): Promise<{ 
   };
 }
 
-export async function verifyShikharSession(email: string, sessionToken: string) {
+export async function verifyShikharSession(_email: string, sessionToken: string): Promise<{ valid: boolean; user?: { name: string; email: string }; shikharState?: any; unlockedSessions?: number[] }> {
   // BYPASS: Always return valid for mock token
   return { valid: sessionToken === 'mock-token-123' };
 }
 
-export async function syncShikharState(email: string, sessionToken: string, state: any) {
+export async function syncShikharState(_email: string, _sessionToken: string, _state: any) {
   // BYPASS: Do nothing, relies on localStorage
   return true;
 }

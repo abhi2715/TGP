@@ -16,7 +16,7 @@ interface SessionLayoutProps {
   completed: boolean;
 }
 
-export function SessionLayout({ sessionNumber, title, subtitle, icon, children, progress, completed }: SessionLayoutProps) {
+export function SessionLayout({ sessionNumber, title, subtitle, icon, children, completed }: SessionLayoutProps) {
   const handleDownloadTranscript = () => {
     generateSessionTranscript(sessionNumber, title);
   };

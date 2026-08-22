@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Compass, Brain, Rocket, Users, MessageCircle, Award,
-  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen, ArrowLeft
+  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useShikharStore } from '../../hooks/useShikharStore';
@@ -67,7 +67,7 @@ const SESSIONS = [
 ];
 
 export default function ShikharDashboard() {
-  const { userEmail, userName } = useAuth();
+  const { userName } = useAuth();
   const { state, isSessionUnlocked, getProgress, setUserName } = useShikharStore();
   const [nameInput, setNameInput] = useState('');
   const progress = getProgress();
