@@ -34,7 +34,7 @@ const About = () => {
               </div>
               
               <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
-                Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant—the ability to grow through change.
+                Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant - the ability to grow through change.
               </p>
               
               <p className="lead-text" style={{ marginBottom: '2rem' }}>
@@ -68,7 +68,7 @@ const About = () => {
                     <h2>Where It All Began</h2>
                     <div className="title-underline" style={{ margin: '1rem 0 1.5rem' }} />
                     <p>
-                      My career began in the world of banking and finance — building teams, launching products, and leading multi-million-dollar businesses across global markets. For over two decades, I navigated the complex landscapes of corporate leadership, learning firsthand what it takes to succeed at the highest levels.
+                      My career began in the world of banking and finance - building teams, launching products, and leading multi-million-dollar businesses across global markets. For over two decades, I navigated the complex landscapes of corporate leadership, learning firsthand what it takes to succeed at the highest levels.
                     </p>
                     <p>
                       But along the way, I noticed something: brilliant professionals were stalling in their careers. Not because they lacked talent or competence, but because they lacked the right guidance, the right frameworks, and someone who truly understood their journey.
@@ -117,7 +117,7 @@ const About = () => {
                       I believe that true leadership starts with self-awareness. That growth is not a destination but a daily practice. And that every individual who finds their voice makes the world a little brighter.
                     </p>
                     <p>
-                      Through structured coaching, deep reflection, and real-world frameworks, I help my clients unlock the leader within — whether they're navigating their first managerial role or stepping onto the global stage.
+                      Through structured coaching, deep reflection, and real-world frameworks, I help my clients unlock the leader within - whether they're navigating their first managerial role or stepping onto the global stage.
                     </p>
                   </div>
                 </div>
@@ -128,7 +128,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── Credentials Strip — Dark Green ── */}
+      {/* ── Credentials Strip - Dark Green ── */}
       <hr className="section-separator" />
       <section className="about-credentials">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -175,7 +175,7 @@ const About = () => {
             {[
               { num: '01', title: 'Listen & Understand', desc: "We start with a deep conversation about where you are, what's holding you back, and where you want to go." },
               { num: '02', title: 'Reflect & Reframe', desc: 'Together, we challenge old narratives, uncover blind spots, and reframe your relationship with success.' },
-              { num: '03', title: 'Act & Grow', desc: 'With clear frameworks and ongoing support, you take deliberate steps toward your goals — and watch real transformation happen.' },
+              { num: '03', title: 'Act & Grow', desc: 'With clear frameworks and ongoing support, you take deliberate steps toward your goals - and watch real transformation happen.' },
             ].map((step, i) => (
               <ScrollReveal key={i} direction="3d-up" delay={i * 0.15}>
                 <div className="approach-step glass-card">
@@ -190,7 +190,7 @@ const About = () => {
       </section>
 
       {/* ══════════════════════════════════
-          FINAL CTA — Gold background
+          FINAL CTA - Gold background
          ══════════════════════════════════ */}
       <section className="section final-cta" id="cta">
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>

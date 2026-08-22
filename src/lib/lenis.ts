@@ -37,7 +37,7 @@ export function useLenis(callback?: (lenis: Lenis) => void) {
       callbackRef.current(lenis);
     }
     return () => {
-      // Don't destroy on unmount — Lenis is a singleton
+      // Don't destroy on unmount - Lenis is a singleton
     };
   }, []);
 }

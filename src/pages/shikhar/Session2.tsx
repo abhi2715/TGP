@@ -48,9 +48,11 @@ export default function Session2() {
   const myBeliefs = (data.myBeliefs as string[]) || ['', '', ''];
   const myReframes = (data.myReframes as string[]) || ['', '', ''];
   const whys = (data.whys as Record<string, string[]>) || {};
-  const abcEvent = (data.abcEvent as string) || '';
-  const abcBelief = (data.abcBelief as string) || '';
-  const abcConsequence = (data.abcConsequence as string) || '';
+  const abcEvents = (data.abcEvents as any[]) || (
+    (data.abcEvent || data.abcBelief || data.abcConsequence) 
+      ? [{ event: data.abcEvent || '', belief: data.abcBelief || '', consequence: data.abcConsequence || '' }]
+      : [{ event: '', belief: '', consequence: '' }]
+  );
   const reflections = (data.reflections as Record<number, string>) || {};
 
   const toggleFlip = (i: number) => {
@@ -74,6 +76,17 @@ export default function Session2() {
     const updated = [...myReframes];
     updated[i] = value;
     save('myReframes', updated);
+  };
+
+  const updateAbcEvent = (i: number, field: string, value: string) => {
+    const updated = [...abcEvents];
+    updated[i] = { ...updated[i], [field]: value };
+    save('abcEvents', updated);
+  };
+
+  const addAbcEvent = () => {
+    const updated = [...abcEvents, { event: '', belief: '', consequence: '' }];
+    save('abcEvents', updated);
   };
 
   const updateWhy = (beliefIndex: number, whyIndex: number, value: string) => {
@@ -103,7 +116,7 @@ export default function Session2() {
     Math.round(
       ((myBeliefs.filter(b => b.trim()).length >= 2 ? 25 : 0) +
         (myReframes.filter(r => r.trim()).length >= 2 ? 25 : 0) +
-        (abcEvent ? 15 : 0) +
+        (abcEvents.filter(e => e.event.trim() || e.belief.trim() || e.consequence.trim()).length > 0 ? 15 : 0) +
         (Object.values(reflections).filter(r => (r as string).trim()).length >= 2 ? 35 : 0))
     ),
     100
@@ -211,52 +224,59 @@ export default function Session2() {
             </div>
           ))}
 
-          {myBeliefs.length < 10 && (
-            <button 
-              onClick={addBelief}
-              className="shikhar-btn secondary"
-              style={{ marginTop: '0.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-            >
-              <span>+</span> Add another belief
-            </button>
-          )}
+          <button 
+            onClick={addBelief}
+            className="shikhar-btn secondary"
+            style={{ marginTop: '0.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            <span>+</span> Add another belief
+          </button>
 
           <div className="abc-framework">
             <h4 style={{ color: 'var(--shikhar-olive-dark)', marginBottom: '1rem' }}>📐 ABC Framework</h4>
-            <div className="abc-grid">
-              <div className="abc-item">
-                <label className="shikhar-label">A — Activating Event</label>
-                <textarea
-                  className="shikhar-textarea"
-                  value={abcEvent}
-                  onChange={e => save('abcEvent', e.target.value)}
-                  placeholder="A specific situation that triggered a negative reaction..."
-                  rows={2}
-                />
+            {abcEvents.map((item, i) => (
+              <div key={i} className="abc-grid" style={{ marginBottom: '1.5rem', borderBottom: i < abcEvents.length - 1 ? '1px dashed var(--admin-border)' : 'none', paddingBottom: i < abcEvents.length - 1 ? '1.5rem' : '0' }}>
+                <div className="abc-item">
+                  <label className="shikhar-label">A - Activating Event</label>
+                  <textarea
+                    className="shikhar-textarea"
+                    value={item.event}
+                    onChange={e => updateAbcEvent(i, 'event', e.target.value)}
+                    placeholder="A specific situation that triggered a negative reaction..."
+                    rows={2}
+                  />
+                </div>
+                <div className="abc-arrow">→</div>
+                <div className="abc-item">
+                  <label className="shikhar-label">B - Beliefs</label>
+                  <textarea
+                    className="shikhar-textarea"
+                    value={item.belief}
+                    onChange={e => updateAbcEvent(i, 'belief', e.target.value)}
+                    placeholder="The self-talk and thoughts you had about that event..."
+                    rows={2}
+                  />
+                </div>
+                <div className="abc-arrow">→</div>
+                <div className="abc-item">
+                  <label className="shikhar-label">C - Consequences</label>
+                  <textarea
+                    className="shikhar-textarea"
+                    value={item.consequence}
+                    onChange={e => updateAbcEvent(i, 'consequence', e.target.value)}
+                    placeholder="The emotions and behaviors that resulted..."
+                    rows={2}
+                  />
+                </div>
               </div>
-              <div className="abc-arrow">→</div>
-              <div className="abc-item">
-                <label className="shikhar-label">B — Beliefs</label>
-                <textarea
-                  className="shikhar-textarea"
-                  value={abcBelief}
-                  onChange={e => save('abcBelief', e.target.value)}
-                  placeholder="The self-talk and thoughts you had about that event..."
-                  rows={2}
-                />
-              </div>
-              <div className="abc-arrow">→</div>
-              <div className="abc-item">
-                <label className="shikhar-label">C — Consequences</label>
-                <textarea
-                  className="shikhar-textarea"
-                  value={abcConsequence}
-                  onChange={e => save('abcConsequence', e.target.value)}
-                  placeholder="The emotions and behaviors that resulted..."
-                  rows={2}
-                />
-              </div>
-            </div>
+            ))}
+            <button 
+              onClick={addAbcEvent}
+              className="shikhar-btn secondary"
+              style={{ marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <span>+</span> Add another event
+            </button>
           </div>
 
           <div className="step-nav">

@@ -110,7 +110,7 @@ const Programmes = () => {
                     This is not a programme about becoming a better manager. It is not a programme about learning AI tools. It is about becoming the kind of leader who creates exponential impact in a world where technology changes faster than organisations.
                   </p>
                   <p>
-                    Rooted in timeless leadership principles and enriched by behavioural science, coaching psychology, neuroscience and Artificial Intelligence, Aarohan enables leaders to unlock their highest potential while building the capabilities required for the future of leadership. The journey is deeply personalised. Every conversation is centred around the leader’s context, aspirations and challenges—helping transform not only what they do, but who they become.
+                    Rooted in timeless leadership principles and enriched by behavioural science, coaching psychology, neuroscience and Artificial Intelligence, Aarohan enables leaders to unlock their highest potential while building the capabilities required for the future of leadership. The journey is deeply personalised. Every conversation is centred around the leader’s context, aspirations and challenges - helping transform not only what they do, but who they become.
                   </p>
 
                   <h3>What You Will Achieve</h3>
@@ -148,12 +148,12 @@ const Programmes = () => {
       </section>
 
       {/* ══════════════════════════════════
-          FINAL CTA — Dark Green Background
+          FINAL CTA - Dark Green Background
          ══════════════════════════════════ */}
       <section className="section final-cta" id="cta">
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="3d-up">
-            <h2>Ready to accelerate your Leadership journey?</h2>
+            <h2>Let's Get Started</h2>
             <p>
               Join hundreds of professionals who have transformed their Professional journey.
             </p>

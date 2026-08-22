@@ -58,13 +58,13 @@ const Navbar = () => {
           <Link to="/" className={`nav-link ${isActive('/') && (activeSection === 'home' || !activeSection) ? 'active' : ''}`}>Home</Link>
           <Link to="/about" className={`nav-link ${isActive('/about') || activeSection === 'about' ? 'active' : ''}`}>My Story</Link>
           <Link to="/programmes" className={`nav-link ${isActive('/programmes') ? 'active' : ''}`}>Programmes</Link>
-          <Link to="/dashboard" className={`nav-link nav-link-shikhar mobile-only-link ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER LOGIN</Link>
           <Link to="/resources" className={`nav-link ${isActive('/resources') ? 'active' : ''}`}>Resources</Link>
           <Link to="/success-stories" className={`nav-link ${isActive('/success-stories') ? 'active' : ''}`}>Success Stories</Link>
-          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Book a conversation</Link>
+          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Get in Touch</Link>
           
           <div className="mobile-cta">
-            <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
+            <Link to="/book-consultation" className="btn btn-primary" style={{ marginBottom: '1rem' }}>Book a conversation</Link>
+            <Link to="/shikhar" className={`nav-link nav-link-shikhar mobile-only-link ${location.pathname.includes('/shikhar') ? 'active' : ''}`} style={{ display: 'block', textAlign: 'center' }}>MEMBER LOGIN</Link>
           </div>
         </nav>
 
@@ -74,7 +74,7 @@ const Navbar = () => {
               Book a conversation
             </Link>
           </MagneticButton>
-          <Link to="/dashboard" className={`nav-link nav-link-shikhar desktop-only-link ${location.pathname.includes('/dashboard') ? 'active' : ''}`}>MEMBER LOGIN</Link>
+          <Link to="/shikhar" className={`nav-link nav-link-shikhar desktop-only-link ${location.pathname.includes('/shikhar') ? 'active' : ''}`}>MEMBER LOGIN</Link>
           
           {/* Mobile Menu Toggle */}
           <button 

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import ScrollToTop from './components/layout/ScrollToTop';
 import { AuthProvider } from './context/AuthContext';
@@ -58,7 +58,7 @@ function App() {
         <ScrollToTop />
         <Routes>
           {/* ══════════════════════════════════
-              ADMIN ROUTES — Separate layout, no public navbar/footer
+              ADMIN ROUTES - Separate layout, no public navbar/footer
              ══════════════════════════════════ */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
@@ -70,7 +70,7 @@ function App() {
           </Route>
 
           {/* ══════════════════════════════════
-              PUBLIC ROUTES — With navbar + footer layout
+              PUBLIC ROUTES - With navbar + footer layout
              ══════════════════════════════════ */}
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
@@ -102,7 +102,7 @@ function App() {
 
             {/* Protected Member Routes */}
             <Route element={<ProtectedRoute requireShikhar={true} />}>
-              <Route path="/dashboard" element={<MemberDashboard />} />
+              <Route path="/dashboard" element={<Navigate to="/shikhar" replace />} />
               <Route path="/unfolding-app" element={<UnfoldingView />} />
               <Route path="/shikhar" element={<ShikharDashboard />} />
               <Route path="/shikhar/session/1" element={<Session1 />} />

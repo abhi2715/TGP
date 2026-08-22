@@ -1,7 +1,7 @@
 const PrivacyPolicy = () => {
   return (
     <div className="legal-page">
-      <div className="container" style={{ maxWidth: '800px', padding: '10rem 0 5rem' }}>
+      <div className="container" style={{ maxWidth: '800px', padding: '11rem 0 5rem' }}>
         <h1 style={{ marginBottom: '2rem' }}>Privacy Policy</h1>
         <p style={{ color: 'var(--color-text)', marginBottom: '3rem' }}>Last Updated: August 20, 2026</p>
 

@@ -144,7 +144,7 @@ const AdminStudyMaterials = () => {
                   </td>
                   <td><span className="admin-badge" style={{ background: 'var(--admin-info-bg)', color: 'var(--admin-info)' }}>{m.category}</span></td>
                   <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{m.type}</td>
-                  <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{m.fileName || '—'}</td>
+                  <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{m.fileName || ' - '}</td>
                   <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{formatDate(m.createdAt)}</td>
                   <td><span className={`admin-badge ${m.published ? 'published' : 'draft'}`}>{m.published ? 'Published' : 'Draft'}</span></td>
                   <td>

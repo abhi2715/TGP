@@ -1,12 +1,12 @@
 /* ═══════════════════════════════════════
-   COMMUNITY PAGE — Premium & Warm
+   COMMUNITY PAGE - Premium & Warm
    ═══════════════════════════════════════ */
 
 .community-page {
   background: var(--color-offwhite);
 }
 
-/* ── Hero — Deep green gradient ── */
+/* ── Hero - Deep green gradient ── */
 .community-hero {
   padding: clamp(11rem, 15vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
   position: relative;

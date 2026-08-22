@@ -73,12 +73,8 @@ export default function ShikharDashboard() {
   const progress = getProgress();
 
   const getDisplayName = () => {
-    if (userName) return userName;
     if (state.userName) return state.userName;
-    if (userEmail) {
-      const prefix = userEmail.split('@')[0].replace(/[^a-zA-Z]/g, ' ').trim().split(' ')[0];
-      return prefix ? prefix.charAt(0).toUpperCase() + prefix.slice(1).toLowerCase() : 'Leader';
-    }
+    if (userName && userName !== 'Leader') return userName;
     return 'Leader';
   };
   const displayName = getDisplayName();
@@ -152,13 +148,6 @@ export default function ShikharDashboard() {
                 <Mountain size={24} />
                 <span>SHIKHAR PROGRAM</span>
               </div>
-              <Link 
-                to="/dashboard" 
-                className="shikhar-btn" 
-                style={{ background: 'rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.1)', padding: '0.5rem 1rem', fontSize: '0.85rem', color: 'var(--shikhar-olive-dark)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-              >
-                <ArrowLeft size={16} /> Back to Dashboard
-              </Link>
             </div>
             <h1>Welcome back, {displayName} 👋</h1>
             <p className="dashboard-tagline">Continue your leadership journey. Each session builds on the last.</p>

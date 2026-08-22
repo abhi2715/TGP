@@ -62,19 +62,6 @@ export function SessionLayout({ sessionNumber, title, subtitle, icon, children, 
               )}
             </div>
 
-            <div className="session-progress-bar-wrap" style={{ marginTop: '2rem' }}>
-              <div className="session-progress-bar">
-                <motion.div
-                  className="session-progress-fill"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 1, delay: 0.3 }}
-                />
-              </div>
-              <span className="session-progress-text">
-                {completed ? '✓ Completed' : `${progress}% Complete`}
-              </span>
-            </div>
           </motion.div>
         </div>
       </div>

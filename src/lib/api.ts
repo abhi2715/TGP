@@ -187,15 +187,16 @@ export async function requestShikharAccess(data: { name: string; email: string; 
   return { status: 'approved', sessionToken: 'mock-token-123', message: 'Access granted instantly' };
 }
 
-export async function loginShikhar(email: string, password?: string): Promise<{ status: string; sessionToken?: string; error?: string; user?: { name: string; email: string }; shikharState?: any }> {
+export async function loginShikhar(email: string, password?: string): Promise<{ status: string; sessionToken?: string; error?: string; user?: { name: string; email: string }; shikharState?: any; unlockedSessions?: number[] }> {
   // BYPASS: Mock login response
   return { 
     status: 'approved', 
     sessionToken: 'mock-token-123',
     user: { 
-      name: email.split('@')[0].replace(/[^a-zA-Z]/g, ' ').trim(), 
+      name: email.split('@')[0].split(/[\.\-\_]/).map(p => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()).join(' ') || 'Leader', 
       email 
-    }
+    },
+    unlockedSessions: [1] // Ensure only session 1 is unlocked initially in bypass mode
   };
 }
 
@@ -233,6 +234,16 @@ export async function denyShikharUser(id: string) {
     headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
   });
   if (!res.ok) throw new Error('Failed to deny user');
+  return res.json();
+}
+
+export async function toggleUserSessionUnlock(id: string, sessionId: number, unlocked: boolean) {
+  const res = await fetch(`${API_BASE}/shikhar-users/${id}/unlock-session`, {
+    method: 'PUT',
+    headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sessionId, unlocked })
+  });
+  if (!res.ok) throw new Error('Failed to toggle session unlock');
   return res.json();
 }
 

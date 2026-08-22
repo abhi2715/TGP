@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* ═══════════════════════════════════════
-   DESIGN SYSTEM — THE GROWTH PROJECT
+   DESIGN SYSTEM - THE GROWTH PROJECT
    Refined Warm Palette · Playfair Display + Inter
    ═══════════════════════════════════════ */
 :root {
-  /* ── Brand Palette — Warmed & Deepened ── */
+  /* ── Brand Palette - Warmed & Deepened ── */
   --color-offwhite: #FAF8F3;
   --color-cream: #F5F1E8;
   --color-gold: #C8973E;
@@ -44,7 +44,7 @@
   --transition-normal: 0.4s var(--ease);
   --transition-slow: 0.7s var(--ease-out);
 
-  /* ── Elevation — Warmer Shadows ── */
+  /* ── Elevation - Warmer Shadows ── */
   --shadow-xs: 0 1px 3px rgba(30, 20, 10, 0.04);
   --shadow-sm: 0 2px 8px rgba(30, 20, 10, 0.06);
   --shadow-md: 0 8px 28px rgba(30, 20, 10, 0.08);
@@ -157,7 +157,7 @@ section {
   position: relative;
 }
 
-/* Section separator — refined gold gradient line */
+/* Section separator - refined gold gradient line */
 .section-separator {
   width: 100%;
   height: 1px;
@@ -315,7 +315,7 @@ p, .lead-text, .subtitle, .hero-subtitle, .hero-sub, .pillars-subtitle, .section
    TEXTURED & DECORATIVE BACKGROUNDS
    ═══════════════════════════════════════ */
 
-/* Warm textured section — replaces flat solid backgrounds */
+/* Warm textured section - replaces flat solid backgrounds */
 .section-textured {
   position: relative;
 }
@@ -382,7 +382,7 @@ p, .lead-text, .subtitle, .hero-subtitle, .hero-sub, .pillars-subtitle, .section
   mix-blend-mode: multiply;
 }
 
-/* Gradient border — replaces hard solid borders */
+/* Gradient border - replaces hard solid borders */
 .gradient-border {
   border: none !important;
   position: relative;
@@ -409,7 +409,7 @@ p, .lead-text, .subtitle, .hero-subtitle, .hero-sub, .pillars-subtitle, .section
 
 
 /* ═══════════════════════════════════════
-   CARDS — Refined
+   CARDS - Refined
    ═══════════════════════════════════════ */
 .glass-card {
   background: rgba(255,255,255,0.88);
@@ -450,7 +450,7 @@ p, .lead-text, .subtitle, .hero-subtitle, .hero-sub, .pillars-subtitle, .section
 
 
 /* ═══════════════════════════════════════
-   BUTTONS — Refined
+   BUTTONS - Refined
    ═══════════════════════════════════════ */
 .btn {
   display: inline-flex;

@@ -89,7 +89,7 @@ export default function Session5() {
     >
       <KeyTakeaways items={[
         'Leaders with strong presence inspire, energize, build trust, and influence',
-        'Impactful presence comes from inner poise — not just outer performance',
+        'Impactful presence comes from inner poise - not just outer performance',
         'Key skills: Public Speaking, Storytelling, Managing Public Presence',
         'Communicate with confidence, clarity, authenticity, energy, empathy, courage, and poise',
         'Executive presence is the intersection of strong inner game + strong outer game'
@@ -129,7 +129,7 @@ export default function Session5() {
               content: (
                 <div>
                   <p style={{ fontSize: '0.8rem', color: 'var(--color-text)', marginBottom: '0.5rem' }}>
-                    Strong inner game, strong outer game — THE GOAL
+                    Strong inner game, strong outer game - THE GOAL
                   </p>
                   <button
                     className={`quadrant-select-btn ${presenceQuadrant === 'empowered' ? 'active' : ''}`}
@@ -320,8 +320,8 @@ export default function Session5() {
                     strokeLinecap="round"
                     transform="rotate(-90 50 50)"
                   />
-                  <text x="50" y="50" textAnchor="middle" dy="0.35em" fontSize="20" fontWeight="700" fill="var(--shikhar-olive-dark)">
-                    {scorePercent}%
+                  <text x="50" y="50" textAnchor="middle" dy="0.35em" fontSize="18" fontWeight="700" fill="var(--shikhar-olive-dark)">
+                    {quizScore}/{maxScore}
                   </text>
                 </svg>
               </div>

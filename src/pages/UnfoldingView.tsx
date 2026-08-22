@@ -10,7 +10,7 @@ export default function UnfoldingView() {
     <div className="unfolding-view-page" style={{ 
       minHeight: '100vh', 
       background: 'var(--color-surface)',
-      padding: isFullscreen ? '0' : '6rem 0 0',
+      padding: isFullscreen ? '0' : '11rem 0 0',
       display: 'flex',
       flexDirection: 'column',
       transition: 'padding 0.3s ease'
@@ -18,7 +18,7 @@ export default function UnfoldingView() {
       {/* Top Bar - Hidden when fullscreen */}
       {!isFullscreen && (
         <div className="container" style={{ paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link to="/dashboard" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', textDecoration: 'none', fontWeight: 500 }}>
+          <Link to="/shikhar" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', textDecoration: 'none', fontWeight: 500 }}>
             <ArrowLeft size={18} /> Back to Dashboard
           </Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--shikhar-olive-dark)', fontWeight: 600 }}>

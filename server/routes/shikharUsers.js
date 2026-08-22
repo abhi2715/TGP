@@ -77,7 +77,8 @@ router.post('/login', async (req, res) => {
         status: 'approved', 
         user: { name: user.name, email: user.email },
         sessionToken,
-        shikharState: user.shikharState || {}
+        shikharState: user.shikharState || {},
+        unlockedSessions: user.unlockedSessions || [1]
       });
     }
     
@@ -99,7 +100,8 @@ router.post('/verify', async (req, res) => {
       return res.json({ 
         valid: true,
         user: { name: user.name, email: user.email },
-        shikharState: user.shikharState || {}
+        shikharState: user.shikharState || {},
+        unlockedSessions: user.unlockedSessions || [1]
       });
     }
     return res.json({ valid: false });
@@ -190,6 +192,34 @@ router.put('/:id/deny', adminAuth, async (req, res) => {
       { new: true }
     );
     if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// PUT /api/shikhar-users/:id/unlock-session — admin only
+router.put('/:id/unlock-session', adminAuth, async (req, res) => {
+  try {
+    const { sessionId, unlocked } = req.body;
+    const user = await ShikharUser.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    let unlockedSessions = user.unlockedSessions || [1];
+    if (unlocked) {
+      if (!unlockedSessions.includes(sessionId)) {
+        unlockedSessions.push(sessionId);
+      }
+    } else {
+      unlockedSessions = unlockedSessions.filter(id => id !== sessionId);
+      // Ensure session 1 is always unlocked
+      if (sessionId === 1 && !unlockedSessions.includes(1)) {
+        unlockedSessions.push(1);
+      }
+    }
+    
+    user.unlockedSessions = unlockedSessions;
+    await user.save();
     res.json(user);
   } catch (err) {
     res.status(500).json({ error: err.message });

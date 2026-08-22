@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════
-   NAVBAR — Premium Fixed Header
+   NAVBAR - Premium Fixed Header
    ═══════════════════════════════════════ */
 .navbar {
   position: fixed;
@@ -126,7 +126,7 @@
   font-weight: 600;
 }
 
-/* Animated underline — slide in from left */
+/* Animated underline - slide in from left */
 .nav-link::after {
   content: '';
   position: absolute;

@@ -8,7 +8,7 @@ const BookConsultation = () => {
 
   return (
     <div className="booking-page">
-      <div className="page-header text-center" style={{ padding: '8rem 0 4rem' }}>
+      <div className="page-header text-center">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="up" delay={0.1}>
             <span className="about-tag" style={{ marginBottom: '1.5rem' }}>Strategic Alignment</span>
@@ -31,7 +31,7 @@ const BookConsultation = () => {
                 <p className="mb-4" style={{ color: 'var(--color-text)' }}>Fill out the form below and we will reach out to schedule a slot.</p>
                 
                 <iframe 
-                  src="https://docs.google.com/forms/d/e/1FAIpQLSc-YOUR-FORM-ID-HERE/viewform?embedded=true" 
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSfnv5i9RUWehD5C_s2t2Ko-D5-zFyp_gwynhMn5bEvyHLlIlw/viewform?embedded=true" 
                   width="100%" 
                   height="550" 
                   frameBorder="0" 

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, Plus, X } from 'lucide-react';
+import { Users, Plus, X, Star } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useShikharStore } from '../../hooks/useShikharStore';
@@ -35,9 +35,11 @@ export default function Session4() {
   // Data
   const stakeholders = (data.stakeholders as Stakeholder[]) || [];
   const villagePeople = (data.villagePeople as Array<{ name: string; role: string; value: string }>) || [];
-  const mentorName = (data.mentorName as string) || '';
-  const mentorWhy = (data.mentorWhy as string) || '';
-  const mentorApproach = (data.mentorApproach as string) || '';
+  const mentors = (data.mentors as Array<{ name: string; why: string; approach: string }>) || (
+    (data.mentorName || data.mentorWhy || data.mentorApproach) 
+      ? [{ name: data.mentorName || '', why: data.mentorWhy || '', approach: data.mentorApproach || '' }]
+      : [{ name: '', why: '', approach: '' }]
+  );
   const relationshipScore = (data.relationshipScore as Record<string, number>) || {};
   const relImprovements = (data.relImprovements as string) || '';
 
@@ -68,6 +70,16 @@ export default function Session4() {
     save('villagePeople', villagePeople.filter((_, i) => i !== index));
   };
 
+  const addMentor = () => {
+    save('mentors', [...mentors, { name: '', why: '', approach: '' }]);
+  };
+
+  const updateMentor = (index: number, field: string, value: string) => {
+    const updated = [...mentors];
+    updated[index] = { ...updated[index], [field]: value };
+    save('mentors', updated);
+  };
+
   const RELATIONSHIP_AREAS = ['Trust Building', 'Active Listening', 'Strategic Networking', 'Giving Value First', 'Follow-through'];
 
   const handleComplete = () => {
@@ -80,7 +92,7 @@ export default function Session4() {
     Math.round(
       ((stakeholders.length >= 4 ? 30 : stakeholders.length >= 2 ? 15 : 0) +
         (villagePeople.length >= 3 ? 25 : villagePeople.length >= 1 ? 10 : 0) +
-        (mentorName ? 20 : 0) +
+        (mentors.filter(m => m.name.trim()).length > 0 ? 20 : 0) +
         (Object.keys(relationshipScore).length >= 3 ? 25 : 0))
     ),
     100
@@ -98,9 +110,9 @@ export default function Session4() {
       completed={sessionData.completed}
     >
       <KeyTakeaways items={[
-        '"If I have seen further, it is by standing on the shoulders of giants" — Isaac Newton',
+        '"If I have seen further, it is by standing on the shoulders of giants" - Isaac Newton',
         'Relationship Banking: Build mutually beneficial connections, not benefit-extracting ones',
-        '"It takes a village to raise a child" — identify your village and its key members',
+        '"It takes a village to raise a child" - identify your village and its key members',
         'Strategic stakeholder analysis is ongoing and continuous',
         'Focus on multi-modal engagement with formal & informal power structures'
       ]} />
@@ -233,29 +245,39 @@ export default function Session4() {
           description="Who can you enlist as a mentor within the organization?"
           icon={<span>🌟</span>}
         >
-          <InteractiveTextArea
-            label="Potential Mentor Name"
-            value={mentorName}
-            onChange={v => save('mentorName', v)}
-            placeholder="Who within your organization could be your mentor?"
-            rows={1}
-          />
+          {mentors.map((mentor, index) => (
+            <div key={index} style={{ marginBottom: '2rem', paddingBottom: index < mentors.length - 1 ? '2rem' : '1rem', borderBottom: index < mentors.length - 1 ? '1px dashed var(--admin-border)' : 'none' }}>
+              <InteractiveTextArea
+                label={`Potential Mentor Name #${index + 1}`}
+                value={mentor.name}
+                onChange={v => updateMentor(index, 'name', v)}
+                placeholder="Who within your organization could be your mentor?"
+                rows={1}
+              />
+              <InteractiveTextArea
+                label="Why This Person?"
+                value={mentor.why}
+                onChange={v => updateMentor(index, 'why', v)}
+                placeholder="What makes them a good mentor? What can you learn from them?"
+                rows={2}
+              />
+              <InteractiveTextArea
+                label="Your Approach"
+                value={mentor.approach}
+                onChange={v => updateMentor(index, 'approach', v)}
+                placeholder="How will you approach them? What will you ask for?"
+                rows={2}
+              />
+            </div>
+          ))}
 
-          <InteractiveTextArea
-            label="Why This Person?"
-            value={mentorWhy}
-            onChange={v => save('mentorWhy', v)}
-            placeholder="What makes them a good mentor? What can you learn from them?"
-            rows={3}
-          />
-
-          <InteractiveTextArea
-            label="Your Approach"
-            value={mentorApproach}
-            onChange={v => save('mentorApproach', v)}
-            placeholder="How will you approach them? What will you ask for?"
-            rows={3}
-          />
+          <button 
+            onClick={addMentor}
+            className="shikhar-btn secondary"
+            style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            <Plus size={16} /> Add Another Mentor
+          </button>
 
           <div className="relationship-scorecard">
             <h4 style={{ color: 'var(--shikhar-olive-dark)', marginBottom: '1rem' }}>💳 Relationship Banking Scorecard</h4>
@@ -272,7 +294,7 @@ export default function Session4() {
                       className={`score-dot ${(relationshipScore[area] || 0) >= n ? 'active' : ''}`}
                       onClick={() => save('relationshipScore', { ...relationshipScore, [area]: n })}
                     >
-                      {n}
+                      <Star size={24} fill={(relationshipScore[area] || 0) >= n ? 'currentColor' : 'none'} strokeWidth={2.5} />
                     </button>
                   ))}
                 </div>

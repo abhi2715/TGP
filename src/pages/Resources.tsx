@@ -153,7 +153,7 @@ const Resources = () => {
       </section>
 
       {/* ══════════════════════════════════
-          FINAL CTA — Dark Green Background
+          FINAL CTA - Dark Green Background
          ══════════════════════════════════ */}
       <section className="section final-cta" id="cta">
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>

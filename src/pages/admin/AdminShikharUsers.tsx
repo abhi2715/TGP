@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Check, X, Trash2, Users, Clock, CheckCircle, XCircle } from 'lucide-react';
-import { fetchShikharUsers, approveShikharUser, denyShikharUser, deleteShikharUser } from '../../lib/api';
+import { fetchShikharUsers, approveShikharUser, denyShikharUser, deleteShikharUser, toggleUserSessionUnlock } from '../../lib/api';
 
 interface ShikharUser {
   _id: string;
@@ -11,6 +11,7 @@ interface ShikharUser {
   notes: string;
   lastLoginAttempt: string;
   createdAt: string;
+  unlockedSessions?: number[];
 }
 
 const AdminShikharUsers = () => {
@@ -56,6 +57,17 @@ const AdminShikharUsers = () => {
     }
   };
 
+  const handleToggleSession = async (id: string, sessionId: number, currentStatus: boolean) => {
+    try {
+      await toggleUserSessionUnlock(id, sessionId, !currentStatus);
+      showToast(`Session ${sessionId} ${!currentStatus ? 'unlocked' : 'locked'} successfully.`);
+      loadUsers();
+    } catch (err) {
+      showToast('Failed to toggle session', 'error');
+      console.error(err);
+    }
+  };
+
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this user record?')) return;
     try {
@@ -77,7 +89,7 @@ const AdminShikharUsers = () => {
   };
 
   const formatDate = (date: string) => {
-    if (!date) return '—';
+    if (!date) return ' - ';
     return new Date(date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   };
 
@@ -137,6 +149,7 @@ const AdminShikharUsers = () => {
                 <th>Requested On</th>
                 <th>Last Attempt</th>
                 <th>Status</th>
+                <th>Sessions</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -145,10 +158,36 @@ const AdminShikharUsers = () => {
                 <tr key={user._id}>
                   <td><div className="table-item-title">{user.name}</div></td>
                   <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{user.email}</td>
-                  <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{user.phone || '—'}</td>
+                  <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{user.phone || ' - '}</td>
                   <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{formatDate(user.createdAt)}</td>
                   <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{formatDate(user.lastLoginAttempt)}</td>
                   <td><span className={`admin-badge ${user.status}`}>{user.status.charAt(0).toUpperCase() + user.status.slice(1)}</span></td>
+                  <td>
+                    {user.status === 'approved' && (
+                      <div style={{ display: 'flex', gap: '4px' }}>
+                        {[1, 2, 3, 4, 5, 6].map(num => {
+                          const isUnlocked = user.unlockedSessions?.includes(num);
+                          return (
+                            <button
+                              key={num}
+                              onClick={() => handleToggleSession(user._id, num, !!isUnlocked)}
+                              title={isUnlocked ? `Lock Session ${num}` : `Unlock Session ${num}`}
+                              style={{
+                                width: '22px', height: '22px', borderRadius: '4px', border: '1px solid',
+                                fontSize: '10px', fontWeight: 'bold', cursor: 'pointer',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                background: isUnlocked ? 'var(--admin-success-bg)' : 'transparent',
+                                borderColor: isUnlocked ? 'var(--admin-success)' : 'var(--admin-border)',
+                                color: isUnlocked ? 'var(--admin-success)' : 'var(--admin-text-muted)'
+                              }}
+                            >
+                              {num}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </td>
                   <td>
                     <div className="admin-actions">
                       {user.status !== 'approved' && (

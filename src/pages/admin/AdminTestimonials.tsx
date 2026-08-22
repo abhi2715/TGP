@@ -162,12 +162,12 @@ const AdminTestimonials = () => {
                     </div>
                   </td>
                   <td style={{ maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>"{t.quote.substring(0, 60)}..."</td>
-                  <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{t.metric || '—'}</td>
+                  <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{t.metric || ' - '}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '4px' }}>
                       {t.image && <span className="admin-badge" style={{ background: 'var(--admin-info-bg)', color: 'var(--admin-info)' }}>Photo</span>}
                       {t.videoUrl && <span className="admin-badge" style={{ background: 'var(--admin-success-bg)', color: 'var(--admin-success)' }}>Video</span>}
-                      {!t.image && !t.videoUrl && <span style={{ color: 'var(--admin-text-dim)', fontSize: '0.8125rem' }}>—</span>}
+                      {!t.image && !t.videoUrl && <span style={{ color: 'var(--admin-text-dim)', fontSize: '0.8125rem' }}> - </span>}
                     </div>
                   </td>
                   <td style={{ color: 'var(--admin-text-muted)', fontSize: '0.8125rem' }}>{formatDate(t.createdAt)}</td>

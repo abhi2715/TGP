@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════
-   HOME PAGE — Rich, Warm, Premium
+   HOME PAGE - Rich, Warm, Premium
    ═══════════════════════════════════════ */
 
-/* ── Hero Section — Warm gradient with decorative accents ── */
+/* ── Hero Section - Warm gradient with decorative accents ── */
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -13,7 +13,7 @@
   background: var(--gradient-hero);
 }
 
-/* Decorative warm circle — top right */
+/* Decorative warm circle - top right */
 .hero-section::before {
   content: '';
   position: absolute;
@@ -28,7 +28,7 @@
   animation: float-slow 12s ease-in-out infinite;
 }
 
-/* Decorative warm circle — bottom left */
+/* Decorative warm circle - bottom left */
 .hero-section::after {
   content: '';
   position: absolute;
@@ -98,7 +98,7 @@
   gap: 1rem;
 }
 
-/* ── Hero Photo — with blend mode ── */
+/* ── Hero Photo - with blend mode ── */
 .hero-photo-wrapper {
   position: relative;
   z-index: 1;
@@ -165,7 +165,7 @@
 
 
 /* ══════════════════════════════════
-   MARQUEE — Deep Dark Green with gold glow
+   MARQUEE - Deep Dark Green with gold glow
    ══════════════════════════════════ */
 .marquee-section {
   position: relative;
@@ -229,7 +229,7 @@
 
 
 /* ══════════════════════════════════
-   FEATURES BAND — Deep Steel with warmth
+   FEATURES BAND - Deep Steel with warmth
    ══════════════════════════════════ */
 .features-band {
   background: var(--gradient-steel);
@@ -331,7 +331,7 @@
 
 
 /* ══════════════════════════════════
-   ABOUT PREVIEW — Warm textured background
+   ABOUT PREVIEW - Warm textured background
    ══════════════════════════════════ */
 .about-preview {
   position: relative;
@@ -430,7 +430,7 @@
 
 
 /* ══════════════════════════════════
-   FIVE PILLARS — Rich Dark Green with texture
+   FIVE PILLARS - Rich Dark Green with texture
    ══════════════════════════════════ */
 .pillars-section {
   position: relative;
@@ -595,7 +595,7 @@
 
 
 /* ══════════════════════════════════
-   MENTOR SECTION — Rich Steel with warmth
+   MENTOR SECTION - Rich Steel with warmth
    ══════════════════════════════════ */
 .mentor-section {
   background: var(--gradient-steel);
@@ -777,7 +777,7 @@
 
 
 /* ══════════════════════════════════
-   FINAL CTA — Premium Dark Steel
+   FINAL CTA - Premium Dark Steel
    ══════════════════════════════════ */
 .final-cta {
   position: relative;

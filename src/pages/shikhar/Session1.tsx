@@ -105,9 +105,9 @@ export default function Session1() {
       completed={sessionData.completed}
     >
       <KeyTakeaways items={[
-        'Leadership is about authenticity — lead with your own style, not someone else\'s',
+        'Leadership is about authenticity - lead with your own style, not someone else\'s',
         'The 5C Framework: Competence, Creativity, Courage, Communication, Compass',
-        'Work-life balance is a myth — it\'s a constant juggling act of radical prioritization',
+        'Work-life balance is a myth - it\'s a constant juggling act of radical prioritization',
         'Direction is more important than speed',
         'Choose consciously where to invest your time and energy'
       ]} />
@@ -145,7 +145,7 @@ export default function Session1() {
             label="Your 10-Year Vision"
             value={vision10yr}
             onChange={v => save('vision10yr', v)}
-            placeholder="Expand your horizons — what does your 10-year vision look like? Dream big."
+            placeholder="Expand your horizons - what does your 10-year vision look like? Dream big."
             rows={4}
             maxLength={800}
           />

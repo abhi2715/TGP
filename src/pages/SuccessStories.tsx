@@ -130,12 +130,12 @@ const SuccessStories = () => {
       </section>
 
       {/* ══════════════════════════════════
-          FINAL CTA — Dark Green Background
+          FINAL CTA - Dark Green Background
          ══════════════════════════════════ */}
       <section className="section final-cta" id="cta">
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal direction="3d-up">
-            <h2>Ready to accelerate your Leadership journey?</h2>
+            <h2>Let's Get Started</h2>
             <p>
               Join hundreds of professionals who have transformed their Professional journey.
             </p>

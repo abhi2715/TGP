@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════
-   ABOUT PAGE — Premium & Warm
+   ABOUT PAGE - Premium & Warm
    ═══════════════════════════════════════ */
 
-/* ── Hero — Warm gradient background ── */
+/* ── Hero - Warm gradient background ── */
 .about-hero {
   padding: clamp(11rem, 14vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
   background: var(--gradient-warm-bg);
@@ -123,7 +123,7 @@
 }
 
 
-/* ── Timeline — Warm off-white with texture ── */
+/* ── Timeline - Warm off-white with texture ── */
 .about-timeline-section {
   background: var(--color-offwhite);
   position: relative;
@@ -337,11 +337,11 @@
 }
 
 
-/* ── Credentials Strip — Rich Dark Green ── */
+/* ── Credentials Strip - Rich Dark Green ── */
 
 
 
-/* ── Approach — Warm Surface ── */
+/* ── Approach - Warm Surface ── */
 .about-approach-section {
   background: var(--color-surface);
   position: relative;
@@ -414,7 +414,7 @@
 }
 
 
-/* ── CTA — Warm off-white ── */
+/* ── CTA - Warm off-white ── */
 .about-cta-section {
   background: var(--color-offwhite);
   position: relative;
@@ -489,7 +489,7 @@
 }
 
 /* ══════════════════════════════════
-   FEATURES BAND — Deep Steel with warmth (from Home)
+   FEATURES BAND - Deep Steel with warmth (from Home)
    ══════════════════════════════════ */
 .features-band {
   background: var(--gradient-dark-green);

@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Award, Download } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import jsPDF from 'jspdf';
 import { motion } from 'framer-motion';
 import { useShikharStore } from '../../hooks/useShikharStore';
 import {
@@ -11,15 +12,15 @@ import {
 import './Sessions.css';
 
 const PRINCIPLES = [
-  'Radical Prioritisation — Boundaries — Visible Leadership',
-  'Allyship — Leaning In',
-  'Heightened Self-Awareness — Strengths, Self-Limiting Beliefs',
+  'Radical Prioritisation - Boundaries - Visible Leadership',
+  'Allyship - Leaning In',
+  'Heightened Self-Awareness - Strengths, Self-Limiting Beliefs',
   'What will you be remembered for?',
-  'People bet on people — have at least 5 people who will bet on you',
+  'People bet on people - have at least 5 people who will bet on you',
   'What\'s your superpower?',
   'Walk, talk & dress as a top leader',
   'Social media counts',
-  'Reflection — Recalibrate — Action',
+  'Reflection - Recalibrate - Action',
 ];
 
 const SESSION_SUMMARIES = [
@@ -70,41 +71,102 @@ export default function Session6() {
   };
 
   const exportCareerCompass = () => {
-    // Gather data from all sessions
-    const allData: string[] = [];
-    allData.push(`SHIKHAR PROGRAM — CAREER COMPASS`);
-    allData.push(`Participant: ${state.userName}`);
-    allData.push(`Date: ${new Date().toLocaleDateString()}`);
-    allData.push(`${'='.repeat(50)}`);
+    const doc = new jsPDF();
+    let yPos = 20;
+    const lineHeight = 7;
+    const margin = 20;
+    const maxLineWidth = 170; // 210 - 2*20
+
+    const addText = (text: string, isHeader = false) => {
+      doc.setFontSize(isHeader ? 14 : 11);
+      doc.setFont("helvetica", isHeader ? "bold" : "normal");
+      
+      const lines = doc.splitTextToSize(text, maxLineWidth);
+      lines.forEach((line: string) => {
+        if (yPos > 280) {
+          doc.addPage();
+          yPos = 20;
+        }
+        doc.text(line, margin, yPos);
+        yPos += isHeader ? lineHeight * 1.5 : lineHeight;
+      });
+    };
+
+    const formatKey = (key: string) => {
+      return key
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, str => str.toUpperCase())
+        .trim();
+    };
+
+    addText("SHIKHAR PROGRAM - CAREER COMPASS", true);
+    addText(`Participant: ${state.userName || 'Guest'}`);
+    addText(`Date: ${new Date().toLocaleDateString()}`);
+    yPos += 5;
 
     for (let i = 1; i <= 6; i++) {
       const sd = state.sessions[i];
-      allData.push(`\n--- Session ${i}: ${SESSION_SUMMARIES[i-1].title} ---`);
-      allData.push(`Status: ${sd.completed ? 'Completed' : 'In Progress'}`);
+      if (!sd) continue;
+      
+      yPos += 5;
+      addText(`Session ${i}: ${SESSION_SUMMARIES[i-1].title}`, true);
+      addText(`Status: ${sd.completed ? 'Completed' : 'In Progress'}`);
+      
       if (sd.exerciseData) {
         const entries = Object.entries(sd.exerciseData);
         entries.forEach(([key, value]) => {
+          const readableKey = formatKey(key);
           if (typeof value === 'string' && value.trim()) {
-            allData.push(`${key}: ${value}`);
+            addText(`${readableKey}: ${value}`);
           } else if (Array.isArray(value)) {
-            allData.push(`${key}: ${value.filter(v => typeof v === 'string' ? v.trim() : v).join(', ')}`);
+            const arrItems = value.map(v => {
+              if (typeof v === 'string') return v.trim();
+              if (v && typeof v === 'object') {
+                return Object.entries(v)
+                  .filter(([_, val]) => val)
+                  .map(([k, val]) => `${formatKey(k)}: ${val}`)
+                  .join(' | ');
+              }
+              return String(v);
+            }).filter(Boolean);
+            
+            if (arrItems.length > 0) {
+              addText(`${readableKey}:`);
+              arrItems.forEach(item => addText(`  • ${item}`));
+            }
+          } else if (typeof value === 'object' && value !== null) {
+            if (key === 'relationshipScore' || key === 'quizAnswers' || key === 'reflections' || key === 'whys') {
+               // Handle objects with sub-answers
+               addText(`${readableKey}:`);
+               Object.entries(value).forEach(([k, val]) => {
+                  const subKey = formatKey(k);
+                  if (typeof val === 'string' || typeof val === 'number') {
+                     addText(`  • ${subKey}: ${val}`);
+                  } else if (Array.isArray(val)) {
+                     const validVals = val.filter(v => v);
+                     if (validVals.length) {
+                        addText(`  • ${subKey}: ${validVals.join(', ')}`);
+                     }
+                  }
+               });
+            } else {
+               addText(`${readableKey}: Completed`);
+            }
           }
         });
       }
     }
 
-    allData.push(`\n${'='.repeat(50)}`);
-    allData.push(`\nCommitments:`);
-    commitments.filter(c => c.trim()).forEach((c, i) => allData.push(`${i+1}. ${c}`));
-    if (signature) allData.push(`\nSigned: ${signature}`);
+    yPos += 10;
+    addText("My Commitments:", true);
+    commitments.filter(c => c.trim()).forEach((c, i) => addText(`${i+1}. ${c}`));
+    
+    if (signature) {
+      yPos += 10;
+      addText(`Signed: ${signature}`);
+    }
 
-    const blob = new Blob([allData.join('\n')], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `Shikhar_Career_Compass_${state.userName}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
+    doc.save(`Shikhar_Career_Compass_${state.userName || 'Guest'}.pdf`);
   };
 
   const handleComplete = () => {
@@ -147,7 +209,7 @@ export default function Session6() {
     >
       <KeyTakeaways items={[
         'Radical prioritisation, boundaries, and visible leadership are essential',
-        'People bet on people — have at least 5 who will bet on you',
+        'People bet on people - have at least 5 who will bet on you',
         'Know your superpower and what you want to be remembered for',
         'Walk, talk & dress as the leader you aspire to be',
         'LIFE LONG: Reflection → Recalibrate → Action'
@@ -195,7 +257,7 @@ export default function Session6() {
 
           <div className="principles-checklist">
             <h4 style={{ color: 'var(--shikhar-olive-dark)', marginBottom: '1rem' }}>
-              📋 Key Principles Checklist — "The Silly Things... Not So Silly"
+              📋 Key Principles Checklist - "The Silly Things... Not So Silly"
             </h4>
             {PRINCIPLES.map((principle, i) => (
               <label key={i} className={`principle-item ${checkedPrinciples.includes(i) ? 'checked' : ''}`}>

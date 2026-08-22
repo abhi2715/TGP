@@ -100,7 +100,7 @@ export default function Session3() {
         '3-Dimensional Leadership: Lead self, influence others, drive innovation',
         'Focus on building horizontal visibility and connections, not just upward movement',
         'Use decision-making frameworks to navigate career crossroads',
-        'Create SMART goals — Specific, Measurable, Achievable, Relevant, Time-bound'
+        'Create SMART goals - Specific, Measurable, Achievable, Relevant, Time-bound'
       ]} />
 
       <SectionDivider title="Interactive Exercise: Career Compass" />

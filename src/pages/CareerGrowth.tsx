@@ -97,7 +97,7 @@ const CareerGrowth = () => {
             <div className="cs-card">
               <div className="cs-metric">$45k</div>
               <span className="cs-metric-label">Salary Increase</span>
-              <p className="cs-quote">"The negotiation frameworks gave me the confidence to ask for—and get—what I was actually worth in the market."</p>
+              <p className="cs-quote">"The negotiation frameworks gave me the confidence to ask for - and get - what I was actually worth in the market."</p>
               <p className="cs-author">Priya S., Marketing Director</p>
             </div>
           </div>

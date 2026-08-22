@@ -45,7 +45,7 @@ function loadState(): ShikharState {
 }
 
 export function useShikharStore() {
-  const { serverShikharState, userEmail } = useAuth();
+  const { serverShikharState, serverUnlockedSessions, userEmail } = useAuth();
 
   const [state, setState] = useState<ShikharState>(() => {
     let baseState = loadState();
@@ -121,9 +121,10 @@ export function useShikharStore() {
   }, [state.sessions]);
 
   const isSessionUnlocked = useCallback((sessionId: number) => {
+    if (serverUnlockedSessions?.includes(sessionId)) return true;
     if (sessionId === 1) return true;
     return state.sessions[sessionId - 1]?.completed || false;
-  }, [state.sessions]);
+  }, [state.sessions, serverUnlockedSessions]);
 
   const getProgress = useCallback(() => {
     const completed = Object.values(state.sessions).filter(s => s.completed).length;
