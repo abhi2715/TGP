@@ -34,12 +34,35 @@ const About = () => {
               </div>
               
               <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
-                Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant - the ability to grow through change.
+                Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant, the ability to grow through change.
               </p>
               
-              <p className="lead-text" style={{ marginBottom: '2rem' }}>
+              <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
                 As an ICF Certified Leadership Coach, an alumna of IIM Bangalore, and a doctoral researcher on Artificial Intelligence and the Future of Work, I bring together the perspectives of a business leader, technologist and coach. My work is grounded not only in leadership theory but in decades of real-world executive experience.
               </p>
+              
+              <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
+                I founded The Growth Project with a simple belief: leadership is no longer about keeping pace with change, it is about growing faster than change itself.
+              </p>
+              
+              <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
+                Through executive and leadership coaching, I help professionals:
+              </p>
+              
+              <ul style={{ listStyleType: 'none', padding: 0, margin: '0 0 2rem 0' }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                  <span style={{ color: 'var(--color-gold)', marginRight: '10px' }}>✦</span>
+                  <span style={{ color: 'var(--color-text)' }}>Unlock their potential and strengthen leadership presence</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                  <span style={{ color: 'var(--color-gold)', marginRight: '10px' }}>✦</span>
+                  <span style={{ color: 'var(--color-text)' }}>Build habits that create exponential growth</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                  <span style={{ color: 'var(--color-gold)', marginRight: '10px' }}>✦</span>
+                  <span style={{ color: 'var(--color-text)' }}>Lead with confidence in an AI-enabled world</span>
+                </li>
+              </ul>
             </ScrollReveal>
           </div>
         </div>

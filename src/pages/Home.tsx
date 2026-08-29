@@ -196,7 +196,7 @@ const Home = () => {
                   As an ICF Certified Leadership Coach, an alumna of IIM Bangalore, and a doctoral researcher on Artificial Intelligence and the Future of Work, I bring together the perspectives of a business leader, technologist, and coach. My work is grounded not only in leadership theory but in decades of real-world executive experience.
                 </p>
                 <p className="lead-text" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
-                  I founded The Growth Project with a simple belief: leadership is no longer about keeping pace with change - it is about growing faster than change itself.
+                  I founded The Growth Project with a simple belief: leadership is no longer about keeping pace with change, it is about growing faster than change itself.
                 </p>
                 <p className="lead-text" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
                   Through executive and leadership coaching, I help professionals:
