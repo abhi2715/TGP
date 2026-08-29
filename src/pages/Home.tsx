@@ -261,7 +261,7 @@ const Home = () => {
               { icon: <Rocket size={36} strokeWidth={1.5} />, title: 'Career', desc: 'Accelerate your trajectory and unlock new opportunities.' },
               { icon: <Brain size={36} strokeWidth={1.5} />, title: 'Mindset', desc: 'Cultivate resilience, clarity, and unstoppable confidence.' },
               { icon: <Handshake size={36} strokeWidth={1.5} />, title: 'Mentorship', desc: 'Learn from industry veterans who have walked the path.' },
-              { icon: <Sprout size={36} strokeWidth={1.5} />, title: 'Personal\nGrowth', desc: 'Align your purpose with your daily actions and habits.' },
+              { icon: <Sprout size={36} strokeWidth={1.5} />, title: 'Personal Growth', desc: 'Align your purpose with your daily actions and habits.' },
             ].map((pillar, idx) => (
               <ScrollReveal key={idx} direction="up" delay={0.1 + (idx * 0.1)}>
                 <div className="pillar-card">
