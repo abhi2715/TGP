@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, Download, BookOpen, Loader } from 'lucide-react';
+import { FileText, Download, BookOpen, Loader, X } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
 import { fetchBlogs, fetchStudyMaterials } from '../lib/api';
@@ -14,6 +14,8 @@ interface Blog {
   coverImage: string;
   readTime: string;
   createdAt: string;
+  fileUrl?: string;
+  fileName?: string;
 }
 
 interface StudyMaterial {
@@ -31,6 +33,15 @@ const Resources = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [materials, setMaterials] = useState<StudyMaterial[]>([]);
   const [loading, setLoading] = useState(true);
+  const [pdfModalOpen, setPdfModalOpen] = useState(false);
+  const [activePdfUrl, setActivePdfUrl] = useState('');
+
+  const openPdf = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActivePdfUrl(url);
+    setPdfModalOpen(true);
+  };
 
   useEffect(() => {
     loadData();
@@ -46,6 +57,29 @@ const Resources = () => {
       setMaterials(materialsData);
     } catch (err) {
       console.error('Failed to load resources:', err);
+      // Fallback so it's always visible even if backend is down
+      const hbrArticle = {
+        _id: 'hidden-beliefs',
+        title: 'The Hidden Beliefs That Hold Leaders Back',
+        description: 'An insightful Harvard Business Review article by Muriel M. Wilkins on recognizing and overcoming unproductive beliefs that hinder leadership potential.',
+        category: 'Leadership',
+        type: 'Guide',
+        fileUrl: '/pdfs/hidden-beliefs-leaders.pdf',
+        fileName: 'hidden-beliefs-leaders.pdf'
+      };
+      
+      setBlogs([{
+        _id: 'hidden-beliefs-blog',
+        title: 'The Hidden Beliefs That Hold Leaders Back',
+        category: 'Leadership',
+        excerpt: 'An insightful Harvard Business Review article by Muriel M. Wilkins on recognizing and overcoming unproductive beliefs that hinder leadership potential.',
+        coverImage: '/leadership_books_compass.png', // updated placeholder
+        readTime: '15 min read',
+        createdAt: new Date().toISOString(),
+        fileUrl: '/pdfs/hidden-beliefs-leaders.pdf',
+        fileName: 'hidden-beliefs-leaders.pdf'
+      }]);
+      setMaterials([]);
     } finally {
       setLoading(false);
     }
@@ -102,24 +136,38 @@ const Resources = () => {
               </div>
             ) : (
               <div className="resources-grid">
-                {blogs.map((blog, idx) => (
-                  <ScrollReveal key={blog._id} direction="up" delay={0.1 + (idx % 3) * 0.1}>
-                    <Link to={`/blog/${blog._id}`} className="resource-card resource-card-blog">
-                      {blog.coverImage && (
-                        <div className="resource-card-image">
-                          <img src={`/api${blog.coverImage}`} alt={blog.title} />
+                {blogs.map((blog, idx) => {
+                  const isPdf = !!blog.fileUrl;
+                  const CardWrapper: any = isPdf ? 'div' : Link;
+                  const wrapperProps = isPdf 
+                    ? { className: "resource-card resource-card-blog", onClick: (e: React.MouseEvent) => openPdf(blog.fileUrl!, e), style: { cursor: 'pointer' } } 
+                    : { className: "resource-card resource-card-blog", to: `/blog/${blog._id}` };
+
+                  return (
+                    <ScrollReveal key={blog._id} direction="up" delay={0.1 + (idx % 3) * 0.1}>
+                      <CardWrapper {...wrapperProps}>
+                        {blog.coverImage && (
+                          <div className="resource-card-image">
+                            <img src={blog.coverImage.startsWith('/') ? blog.coverImage : `/api${blog.coverImage}`} alt={blog.title} />
+                          </div>
+                        )}
+                        <span className="res-type">{blog.category}</span>
+                        <h3>{blog.title}</h3>
+                        <p>{blog.excerpt}</p>
+                        <div className="resource-card-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginTop: 'auto' }}>
+                          <span>{blog.readTime}</span>
+                          {isPdf ? (
+                            <button onClick={(e) => openPdf(blog.fileUrl!, e)} className="btn btn-primary" style={{ padding: '0.4rem 1rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                              <BookOpen size={14} /> Open & View
+                            </button>
+                          ) : (
+                            <span>Read More →</span>
+                          )}
                         </div>
-                      )}
-                      <span className="res-type">{blog.category}</span>
-                      <h3>{blog.title}</h3>
-                      <p>{blog.excerpt}</p>
-                      <div className="resource-card-meta">
-                        <span>{blog.readTime}</span>
-                        <span>Read More →</span>
-                      </div>
-                    </Link>
-                  </ScrollReveal>
-                ))}
+                      </CardWrapper>
+                    </ScrollReveal>
+                  );
+                })}
               </div>
             )
           ) : (
@@ -139,9 +187,18 @@ const Resources = () => {
                       <h3>{mat.title}</h3>
                       <p>{mat.description}</p>
                       {mat.fileUrl && (
-                        <a href={`/api${mat.fileUrl}`} download={mat.fileName} className="btn btn-secondary btn-full mt-auto" target="_blank" rel="noopener noreferrer">
-                          <Download size={16} /> Download {mat.type}
-                        </a>
+                        <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto', paddingTop: '1.5rem' }}>
+                          <button 
+                            onClick={(e) => openPdf(mat.fileUrl!, e)} 
+                            className="btn btn-primary" 
+                            style={{ flex: 1, padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+                          >
+                            <BookOpen size={16} /> Open & View
+                          </button>
+                          <a href={mat.fileUrl} download={mat.fileName} className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }} target="_blank" rel="noopener noreferrer">
+                            <Download size={16} /> Download
+                          </a>
+                        </div>
                       )}
                     </div>
                   </ScrollReveal>
@@ -173,6 +230,49 @@ const Resources = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* PDF Viewer Modal */}
+      {pdfModalOpen && (
+        <div className="pdf-modal-overlay" onClick={() => setPdfModalOpen(false)} style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.8)', zIndex: 9999,
+          display: 'flex', justifyContent: 'center', alignItems: 'center',
+          padding: '2rem'
+        }}>
+          <div className="pdf-modal-content" onClick={e => e.stopPropagation()} style={{
+            background: 'var(--color-bg)', width: '100%', maxWidth: '1200px', height: '90vh',
+            borderRadius: '16px', display: 'flex', flexDirection: 'column', overflow: 'hidden',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+          }}>
+            <div className="pdf-modal-header" style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              padding: '1rem 2rem', borderBottom: '1px solid var(--color-border)'
+            }}>
+              <h3 style={{ margin: 0, fontFamily: 'var(--font-heading)' }}>Document Viewer</h3>
+              <div className="pdf-modal-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <a href={activePdfUrl} download className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Download size={16} /> Download
+                </a>
+                <button onClick={() => setPdfModalOpen(false)} style={{
+                  background: 'transparent', border: 'none', color: 'var(--color-text)',
+                  cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}>
+                  <X size={24} />
+                </button>
+              </div>
+            </div>
+            <div className="pdf-modal-body" style={{ flex: 1, width: '100%' }}>
+              <iframe 
+                src={activePdfUrl} 
+                title="PDF Viewer"
+                width="100%" 
+                height="100%" 
+                style={{ border: 'none' }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

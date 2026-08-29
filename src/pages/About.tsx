@@ -17,7 +17,7 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <img src="/pooja_sharma_updated.jpg" alt="Dr. Pooja Sharma" />
+            <img src="/pooja-sharma-bg-less.png" alt="Dr. Pooja Sharma" />
           </motion.div>
 
           <div className="about-hero-content">
@@ -117,7 +117,7 @@ const About = () => {
                       I believe that true leadership starts with self-awareness. That growth is not a destination but a daily practice. And that every individual who finds their voice makes the world a little brighter.
                     </p>
                     <p>
-                      Through structured coaching, deep reflection, and real-world frameworks, I help my clients unlock the leader within - whether they're navigating their first managerial role or stepping onto the global stage.
+                      Through structured coaching, deep reflection, and real-world frameworks, I help my clients unlock the leader within, whether they're navigating their first managerial role or stepping onto the global stage.
                     </p>
                   </div>
                 </div>

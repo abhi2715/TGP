@@ -127,12 +127,23 @@ export default function Session2() {
   return (
     <SessionLayout
       sessionNumber={2}
-      title="Leading Self"
-      subtitle="Identify your inner strengths and limiting beliefs. Reframe your inner narratives to unlock your potential."
-      icon={<Brain size={18} />}
+      title="Values & Strengths"
+      subtitle="Discover your core values and identify your unique strengths to lead authentically."
+      icon={<Star size={18} />}
       progress={sessionData.completed ? 100 : progress}
       completed={sessionData.completed}
     >
+      <ExerciseCard
+        title="Session Mind Map"
+        description="A visual overview of the concepts covered in this session."
+        icon={<span>🧠</span>}
+      >
+        <img 
+          src="/session-2-mindmap.png" 
+          alt="Session 2 Mind Map" 
+          style={{ width: '100%', height: 'auto', borderRadius: '12px', border: '1px solid var(--color-border)' }}
+        />
+      </ExerciseCard>
       <KeyTakeaways items={[
         'Self-limiting beliefs are false, self-imposed mental barriers rooted in past experiences or fear',
         'Use the 5 Whys technique to trace negative thoughts to their root cause',

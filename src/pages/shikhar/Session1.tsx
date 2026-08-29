@@ -104,6 +104,17 @@ export default function Session1() {
       progress={sessionData.completed ? 100 : progress}
       completed={sessionData.completed}
     >
+      <ExerciseCard
+        title="Session Mind Map"
+        description="A visual overview of the concepts covered in this session."
+        icon={<span>🧠</span>}
+      >
+        <img 
+          src="/session-1-mindmap.png" 
+          alt="Session 1 Mind Map" 
+          style={{ width: '100%', height: 'auto', borderRadius: '12px', border: '1px solid var(--color-border)' }}
+        />
+      </ExerciseCard>
       <KeyTakeaways items={[
         'Leadership is about authenticity - lead with your own style, not someone else\'s',
         'The 5C Framework: Competence, Creativity, Courage, Communication, Compass',

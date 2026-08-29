@@ -142,7 +142,6 @@ const ProgrammeDetail = () => {
               <p className="price-desc">Comprehensive access to all live sessions, course materials, 1-on-1 coaching, and lifetime alumni network access.</p>
               <div className="cta-group">
                 <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
-                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
               </div>
               <p className="finance-note">Payment plans and corporate sponsorship brochures available upon request.</p>
             </div>

@@ -7,7 +7,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import './Programmes.css';
 
 const Programmes = () => {
-  const [isFlyerOpen, setIsFlyerOpen] = useState(false);
+  const [activeFlyer, setActiveFlyer] = useState<string | null>(null);
   return (
     <div className="programmes-page">
       <div className="programmes-hero text-center">
@@ -25,9 +25,6 @@ const Programmes = () => {
             <div className="cta-group center" style={{ marginTop: '2.5rem' }}>
               <MagneticButton>
                 <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
-              </MagneticButton>
-              <MagneticButton>
-                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
               </MagneticButton>
             </div>
           </ScrollReveal>
@@ -75,19 +72,12 @@ const Programmes = () => {
                     Mid-career professional women (30-40years), working for about 10-12 years in services sectors like IT services, Banking & Financial Services, Consulting etc. Should have an ambition for career growth and progression. Should be willing to make the time commitment for the weekly sessions and for taking steps towards achieving her aspiration (since this is a group session there will not be any flexibility in scheduling the weekly sessions).
                   </p>
 
-                  <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', marginTop: '1.5rem' }}>
-                    <div className="cta-group">
-                      <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex' }}>Book a conversation</Link>
-                      <Link to="/programmes" className="btn btn-secondary" style={{ display: 'inline-flex' }}>Explore programmes</Link>
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '1rem', marginTop: '1.5rem', alignItems: 'center', justifyContent: 'center' }}>
+                    <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex' }}>Book a conversation</Link>
                     
-                    <div style={{ marginTop: '1rem' }}>
-                      <MagneticButton>
-                        <button onClick={() => setIsFlyerOpen(true)} className="btn btn-secondary" style={{ display: 'inline-flex', background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>
-                          <ImageIcon size={18} style={{ marginRight: '8px' }} /> View Program Flyer
-                        </button>
-                      </MagneticButton>
-                    </div>
+                    <button onClick={() => setActiveFlyer('shikhar')} className="btn btn-secondary" style={{ display: 'inline-flex', background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>
+                      <ImageIcon size={18} style={{ marginRight: '8px' }} /> View Program Flyer
+                    </button>
                   </div>
               </ScrollReveal>
             </div>
@@ -136,9 +126,12 @@ const Programmes = () => {
                     <li>High-potential executives preparing for enterprise leadership</li>
                   </ul>
 
-                  <div className="cta-group mt-4">
-                    <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Book a conversation</Link>
-                    <Link to="/programmes" className="btn btn-secondary" style={{ display: 'inline-flex', alignSelf: 'flex-start' }}>Explore programmes</Link>
+                  <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '1rem', marginTop: '1.5rem', alignItems: 'center', justifyContent: 'center' }}>
+                    <Link to="/book-consultation" className="btn btn-primary" style={{ display: 'inline-flex' }}>Book a conversation</Link>
+                    
+                    <button onClick={() => setActiveFlyer('aarohan')} className="btn btn-secondary" style={{ display: 'inline-flex', background: 'transparent', color: 'var(--color-gold)', border: '1px solid rgba(200, 151, 62, 0.4)' }}>
+                      <ImageIcon size={18} style={{ marginRight: '8px' }} /> View Program Flyer
+                    </button>
                   </div>
               </ScrollReveal>
             </div>
@@ -161,19 +154,16 @@ const Programmes = () => {
               <MagneticButton>
                 <Link to="/book-consultation" className="btn btn-primary">Book a conversation</Link>
               </MagneticButton>
-              <MagneticButton>
-                <Link to="/programmes" className="btn btn-secondary">Explore programmes</Link>
-              </MagneticButton>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ── Flyer Modal Overlay ── */}
-      {isFlyerOpen && (
-        <div className="flyer-modal-overlay" onClick={() => setIsFlyerOpen(false)}>
+      {activeFlyer && (
+        <div className="flyer-modal-overlay" onClick={() => setActiveFlyer(null)}>
           <div className="flyer-modal-content" onClick={(e) => e.stopPropagation()} style={{ width: '90vw', height: '90vh', display: 'flex', flexDirection: 'column' }}>
-            <button className="flyer-modal-close" onClick={() => setIsFlyerOpen(false)} style={{ zIndex: 100 }}>×</button>
+            <button className="flyer-modal-close" onClick={() => setActiveFlyer(null)} style={{ zIndex: 100 }}>×</button>
             
             <TransformWrapper
               initialScale={1}
@@ -190,7 +180,7 @@ const Programmes = () => {
                     <button onClick={() => zoomIn()} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', color: 'white' }} title="Zoom In"><ZoomIn size={22} /></button>
                   </div>
                   <TransformComponent wrapperStyle={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} contentStyle={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <img src="/shikhar-flyer.png" alt="Shikhar Program Flyer" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                    <img src={activeFlyer === 'shikhar' ? '/shikhar-flyer.png' : '/aarohan-flyer.jpg'} alt={`${activeFlyer} Program Flyer`} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                   </TransformComponent>
                 </div>
               )}

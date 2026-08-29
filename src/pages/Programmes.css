@@ -99,11 +99,11 @@
 }
 
 .shikhar-bg {
-  background-image: url('/mountain_growth.png');
+  background-image: url('/shikhar_vertical.jpg');
 }
 
 .leadership-bg {
-  background-image: url('/zen_stones.png');
+  background-image: url('/aarohan_vertical.jpg');
 }
 
 .advisory-bg {
@@ -174,7 +174,7 @@
 
 .programme-detailed-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   border-radius: 24px;
   overflow: hidden;
   background: var(--color-card);
@@ -307,6 +307,16 @@
 
   .programme-detailed-content {
     padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  
+  .programme-detailed-content ul {
+    text-align: left;
+    display: inline-block;
+  }
+
+  .programme-detailed-image {
+    min-height: 200px;
   }
 }
 

@@ -49,16 +49,13 @@
 
 .about-image-wrap img {
   width: 100%;
-  max-width: 380px; /* Slightly narrower for elegant arch proportions */
-  aspect-ratio: 3 / 4; /* Taller portrait ratio */
-  object-fit: cover;
+  max-width: 420px; 
+  object-fit: contain;
   margin: 0 auto;
   display: block;
   position: relative;
   z-index: 2;
-  border-radius: 16px; /* Uniform rounded corners instead of arch */
-  border: 1px solid rgba(200, 151, 62, 0.4); /* Subtle gold accent border */
-  box-shadow: 0 25px 50px rgba(0,0,0,0.12); /* Rich, floating shadow */
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
 }
 
 /* Removed the clunky offset border for a cleaner, editorial look */
@@ -444,9 +441,14 @@
     text-align: center;
   }
 
+  .about-hero-content {
+    order: 0;
+  }
+
   .about-image-wrap {
     max-width: 400px;
     margin: 0 auto;
+    order: 1;
   }
 
   .creds-grid {
@@ -471,6 +473,16 @@
 @media (max-width: 768px) {
   .about-hero {
     padding: 9rem 0 3rem;
+  }
+  
+  .about-image-wrap {
+    max-width: 280px !important;
+  }
+  
+  .about-divider-top {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .timeline-line { left: 20px; }

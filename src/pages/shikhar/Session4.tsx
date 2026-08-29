@@ -109,6 +109,17 @@ export default function Session4() {
       progress={sessionData.completed ? 100 : progress}
       completed={sessionData.completed}
     >
+      <ExerciseCard
+        title="Session Mind Map"
+        description="A visual overview of the concepts covered in this session."
+        icon={<span>🧠</span>}
+      >
+        <img 
+          src="/session-4-mindmap.png" 
+          alt="Session 4 Mind Map" 
+          style={{ width: '100%', height: 'auto', borderRadius: '12px', border: '1px solid var(--color-border)' }}
+        />
+      </ExerciseCard>
       <KeyTakeaways items={[
         '"If I have seen further, it is by standing on the shoulders of giants" - Isaac Newton',
         'Relationship Banking: Build mutually beneficial connections, not benefit-extracting ones',

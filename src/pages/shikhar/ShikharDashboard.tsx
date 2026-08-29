@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Compass, Brain, Rocket, Users, MessageCircle, Award,
-  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen
+  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen, Leaf, ArrowRight, Download
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useShikharStore } from '../../hooks/useShikharStore';
+import { generateCertificate } from '../../utils/generateCertificate';
 import './ShikharDashboard.css';
 
 const SESSIONS = [
@@ -194,9 +195,21 @@ export default function ShikharDashboard() {
           exit={{ opacity: 0 }}
           className="sessions-grid-wrapper"
         >
-          <div className="dashboard-section-header">
-            <h2>Your Sessions</h2>
-            <p>Complete each session to unlock the next one</p>
+          <div className="dashboard-section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <h2>Your Sessions</h2>
+              <p>{progress === 100 ? 'You have successfully completed all sessions!' : 'Complete each session to unlock the next one'}</p>
+            </div>
+            {progress === 100 && (
+              <button 
+                onClick={() => generateCertificate(displayName, new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }))}
+                className="shikhar-btn primary"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--color-gold)', color: 'var(--color-bg)' }}
+              >
+                <Download size={18} />
+                Download Certificate
+              </button>
+            )}
           </div>
 
           <div className="sessions-grid">
@@ -254,6 +267,55 @@ export default function ShikharDashboard() {
               })}
             </AnimatePresence>
           </div>
+
+          {/* Unfolding App Banner */}
+          <motion.div
+            className="unfolding-banner"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            style={{ 
+              marginTop: '2rem', 
+              background: 'rgba(255, 255, 255, 0.03)', 
+              borderRadius: '24px', 
+              padding: '2.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            }}
+          >
+            <div style={{ background: 'var(--shikhar-olive)', color: 'white', padding: '1rem', borderRadius: '50%', marginBottom: '1rem' }}>
+              <Leaf size={32} />
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '0.25rem', color: '#ffffff' }}>Unfolding</h2>
+            <h3 style={{ fontSize: '1.2rem', color: 'var(--shikhar-gold)', marginBottom: '1rem', fontWeight: 500, letterSpacing: '1px', textTransform: 'uppercase' }}>Self Healing App</h3>
+            <p style={{ maxWidth: '600px', marginBottom: '2rem', color: 'rgba(255, 255, 255, 0.7)', fontSize: '1.05rem', lineHeight: '1.6' }}>
+              Your daily growth companion. Track your habits, reflect on your day, and manage your productivity in one place.
+            </p>
+            <Link 
+              to="/unfolding-app" 
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '0.75rem', 
+                background: 'var(--shikhar-olive)', 
+                color: 'white',
+                padding: '1rem 2rem',
+                borderRadius: '12px',
+                textDecoration: 'none',
+                fontWeight: 600,
+                fontSize: '1.05rem',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'none'}
+            >
+              Launch Unfolding <ArrowRight size={20} />
+            </Link>
+          </motion.div>
         </motion.div>
 
         {/* Program Info */}

@@ -115,7 +115,7 @@ const BlogDetail = () => {
           
           <div className="article-meta-large">
             <div className="author-info">
-              <img src="/pooja_sharma_updated.jpg" alt={blog.author} className="author-avatar" />
+              <img src="/pooja-sharma-bg-less.png" alt={blog.author} className="author-avatar" />
               <div>
                 <span className="author-name">{blog.author}</span>
                 <span className="author-title">The Growth Project</span>

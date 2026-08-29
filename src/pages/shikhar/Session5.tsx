@@ -81,12 +81,23 @@ export default function Session5() {
   return (
     <SessionLayout
       sessionNumber={5}
-      title="Communication for Impact"
-      subtitle="Build executive presence through communication. Develop your inner and outer game."
-      icon={<MessageCircle size={18} />}
+      title="Leading Others"
+      subtitle="Master the art of emotional intelligence, deep listening, and situational leadership."
+      icon={<Users size={18} />}
       progress={sessionData.completed ? 100 : progress}
       completed={sessionData.completed}
     >
+      <ExerciseCard
+        title="Session Mind Map"
+        description="A visual overview of the concepts covered in this session."
+        icon={<span>🧠</span>}
+      >
+        <img 
+          src="/session-5-mindmap.png" 
+          alt="Session 5 Mind Map" 
+          style={{ width: '100%', height: 'auto', borderRadius: '12px', border: '1px solid var(--color-border)' }}
+        />
+      </ExerciseCard>
       <KeyTakeaways items={[
         'Leaders with strong presence inspire, energize, build trust, and influence',
         'Impactful presence comes from inner poise - not just outer performance',

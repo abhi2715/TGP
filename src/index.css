@@ -809,3 +809,13 @@ p, .lead-text, .subtitle, .hero-subtitle, .hero-sub, .pillars-subtitle, .section
     padding: 9rem 0 3rem;
   }
 }
+
+.legal-content p {
+  font-family: var(--font-body) !important;
+  font-size: 1.0625rem !important;
+  font-weight: 400 !important;
+  color: var(--color-text) !important;
+  line-height: 1.8 !important;
+  opacity: 1 !important;
+  -webkit-font-smoothing: antialiased !important;
+}

@@ -190,7 +190,7 @@ const Home = () => {
                   Leadership today demands more than experience. It demands the ability to continually evolve.
                 </p>
                 <p className="lead-text" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
-                  Hi, I'm Pooja Sharma - Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant - the ability to grow through change.
+                  Hi, I'm Pooja Sharma, Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant, the ability to grow through change.
                 </p>
                 <p className="lead-text" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
                   As an ICF Certified Leadership Coach, an alumna of IIM Bangalore, and a doctoral researcher on Artificial Intelligence and the Future of Work, I bring together the perspectives of a business leader, technologist, and coach. My work is grounded not only in leadership theory but in decades of real-world executive experience.
