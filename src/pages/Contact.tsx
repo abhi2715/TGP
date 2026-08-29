@@ -30,11 +30,11 @@ const Contact = () => {
                 
                 <div className="contact-methods">
                   <MagneticButton>
-                    <a href="mailto:contact.thegrowthproject@gmail.com" className="contact-method">
+                    <a href="mailto:contact.thegrowthproject.tgp@gmail.com" className="contact-method">
                       <div className="contact-icon"><Mail size={24} /></div>
                       <div className="contact-text">
                         <span>Email</span>
-                        <strong>contact.thegrowthproject@gmail.com</strong>
+                        <strong>contact.thegrowthproject.tgp@gmail.com</strong>
                       </div>
                     </a>
                   </MagneticButton>
