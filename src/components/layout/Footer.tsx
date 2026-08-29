@@ -51,7 +51,7 @@ const Footer = () => {
             <Link to="/contact" className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', marginTop: '1rem' }}>
               Get in Touch
             </Link>
-            <p className="mt-4" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
+            <p className="mt-4" style={{ color: '#ffffff', fontWeight: 600 }}>
               contact.thegrowthproject.tgp@gmail.com
             </p>
           </div>
