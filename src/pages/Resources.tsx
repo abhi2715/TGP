@@ -58,16 +58,6 @@ const Resources = () => {
     } catch (err) {
       console.error('Failed to load resources:', err);
       // Fallback so it's always visible even if backend is down
-      const hbrArticle = {
-        _id: 'hidden-beliefs',
-        title: 'The Hidden Beliefs That Hold Leaders Back',
-        description: 'An insightful Harvard Business Review article by Muriel M. Wilkins on recognizing and overcoming unproductive beliefs that hinder leadership potential.',
-        category: 'Leadership',
-        type: 'Guide',
-        fileUrl: '/pdfs/hidden-beliefs-leaders.pdf',
-        fileName: 'hidden-beliefs-leaders.pdf'
-      };
-      
       setBlogs([{
         _id: 'hidden-beliefs-blog',
         title: 'The Hidden Beliefs That Hold Leaders Back',
