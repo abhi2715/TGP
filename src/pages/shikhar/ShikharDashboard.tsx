@@ -312,9 +312,9 @@ export default function ShikharDashboard() {
             <div style={{ background: 'var(--shikhar-olive)', color: 'white', padding: '1rem', borderRadius: '50%', marginBottom: '1rem' }}>
               <Leaf size={32} />
             </div>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '0.25rem', color: '#ffffff' }}>Unfolding</h2>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '0.25rem', color: 'var(--shikhar-olive)' }}>Unfolding</h2>
             <h3 style={{ fontSize: '1.2rem', color: 'var(--shikhar-gold)', marginBottom: '1rem', fontWeight: 500, letterSpacing: '1px', textTransform: 'uppercase' }}>Self Healing App</h3>
-            <p style={{ maxWidth: '600px', marginBottom: '2rem', color: 'rgba(255, 255, 255, 0.7)', fontSize: '1.05rem', lineHeight: '1.6' }}>
+            <p style={{ maxWidth: '600px', marginBottom: '2rem', color: '#4a4a4a', fontSize: '1.05rem', lineHeight: '1.6' }}>
               Your daily growth companion. Track your habits, reflect on your day, and manage your productivity in one place.
             </p>
             <Link 
