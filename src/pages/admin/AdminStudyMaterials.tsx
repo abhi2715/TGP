@@ -74,10 +74,10 @@ const AdminStudyMaterials = () => {
 
       if (editId) {
         await updateStudyMaterial(editId, formData);
-        showToast('Study material updated');
+        showToast('Article updated');
       } else {
         await createStudyMaterial(formData);
-        showToast('Study material created');
+        showToast('Article created');
       }
       setShowModal(false);
       loadMaterials();
@@ -87,10 +87,10 @@ const AdminStudyMaterials = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Delete this study material?')) return;
+    if (!confirm('Delete this article?')) return;
     try {
       await deleteStudyMaterial(id);
-      showToast('Study material deleted');
+      showToast('Article deleted');
       loadMaterials();
     } catch (err) {
       showToast('Failed to delete', 'error');
@@ -106,7 +106,7 @@ const AdminStudyMaterials = () => {
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
         <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}>Study Materials</h1>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}>Articles</h1>
           <p style={{ color: 'var(--admin-text-muted)', fontSize: '0.875rem', margin: 0 }}>Manage downloadable resources</p>
         </div>
         <button className="admin-btn admin-btn-primary" onClick={openCreate}><Plus size={16} /> Add Material</button>
@@ -116,8 +116,8 @@ const AdminStudyMaterials = () => {
         <div className="admin-table-container">
           <div className="admin-empty-state">
             <div className="admin-empty-icon"><BookOpen size={28} /></div>
-            <h3>No study materials yet</h3>
-            <p>Upload your first study material to get started.</p>
+            <h3>No articles yet</h3>
+            <p>Upload your first article to get started.</p>
             <button className="admin-btn admin-btn-primary" onClick={openCreate}><Plus size={16} /> Add Material</button>
           </div>
         </div>
@@ -164,7 +164,7 @@ const AdminStudyMaterials = () => {
         <div className="admin-modal-overlay" onClick={() => setShowModal(false)}>
           <div className="admin-modal" onClick={e => e.stopPropagation()}>
             <div className="admin-modal-header">
-              <h2>{editId ? 'Edit Study Material' : 'New Study Material'}</h2>
+              <h2>{editId ? 'Edit Article' : 'New Article'}</h2>
               <button className="admin-modal-close" onClick={() => setShowModal(false)}><X size={16} /></button>
             </div>
             <form onSubmit={handleSubmit}>

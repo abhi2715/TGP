@@ -26,6 +26,8 @@ interface StudyMaterial {
   type: string;
   fileUrl: string;
   fileName: string;
+  coverImage?: string;
+  readTime?: string;
 }
 
 const Resources = () => {
@@ -58,17 +60,7 @@ const Resources = () => {
     } catch (err) {
       console.error('Failed to load resources:', err);
       // Fallback so it's always visible even if backend is down
-      setBlogs([{
-        _id: 'hidden-beliefs-blog',
-        title: 'The Hidden Beliefs That Hold Leaders Back',
-        category: 'Leadership',
-        excerpt: 'An insightful Harvard Business Review article by Muriel M. Wilkins on recognizing and overcoming unproductive beliefs that hinder leadership potential.',
-        coverImage: '/leadership_books_compass.png', // updated placeholder
-        readTime: '15 min read',
-        createdAt: new Date().toISOString(),
-        fileUrl: '/pdfs/hidden-beliefs-leaders.pdf',
-        fileName: 'hidden-beliefs-leaders.pdf'
-      }]);
+      setBlogs([]);
       setMaterials([]);
     } finally {
       setLoading(false);
@@ -85,7 +77,7 @@ const Resources = () => {
         <div className="container">
           <h1>Resources</h1>
           <p className="hero-sub">
-            Explore our collection of blogs, frameworks, templates, and study materials designed to accelerate your growth.
+            Explore our collection of blogs, frameworks, templates, and articles designed to accelerate your growth.
           </p>
         </div>
       </section>
@@ -106,7 +98,7 @@ const Resources = () => {
                 className={`resources-tab ${activeTab === 'study-material' ? 'active' : ''}`}
                 onClick={() => setActiveTab('study-material')}
               >
-                <BookOpen size={18} /> Study Material
+                <BookOpen size={18} /> Articles
                 {materials.length > 0 && <span className="tab-count">{materials.length}</span>}
               </button>
             </div>
@@ -164,7 +156,7 @@ const Resources = () => {
             materials.length === 0 ? (
               <div className="resources-empty">
                 <BookOpen size={48} strokeWidth={1} />
-                <h3>No study materials available yet</h3>
+                <h3>No articles available yet</h3>
                 <p>Premium frameworks, worksheets, and templates will be available here soon.</p>
               </div>
             ) : (
@@ -172,22 +164,27 @@ const Resources = () => {
                 {materials.map((mat, idx) => (
                   <ScrollReveal key={mat._id} direction="up" delay={0.1 + (idx % 3) * 0.1}>
                     <div className="resource-card">
-                      <div className="res-icon">{typeIcons[mat.type] || '📄'}</div>
+                      {mat.coverImage && (
+                        <div className="resource-card-image">
+                          <img src={mat.coverImage.startsWith('/') ? mat.coverImage : `/api${mat.coverImage}`} alt={mat.title} />
+                        </div>
+                      )}
+                      {!mat.coverImage && <div className="res-icon">{typeIcons[mat.type] || '📄'}</div>}
                       <span className="res-type">{mat.type}</span>
                       <h3>{mat.title}</h3>
                       <p>{mat.description}</p>
                       {mat.fileUrl && (
-                        <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto', paddingTop: '1.5rem' }}>
-                          <button 
-                            onClick={(e) => openPdf(mat.fileUrl!, e)} 
-                            className="btn btn-primary" 
-                            style={{ flex: 1, padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
-                          >
-                            <BookOpen size={16} /> Open & View
-                          </button>
-                          <a href={mat.fileUrl} download={mat.fileName} className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }} target="_blank" rel="noopener noreferrer">
-                            <Download size={16} /> Download
-                          </a>
+                        <div className="resource-card-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginTop: 'auto', paddingTop: '1.5rem', gap: '0.5rem' }}>
+                          {mat.readTime && <span>{mat.readTime}</span>}
+                          <div style={{ display: 'flex', gap: '0.5rem', flex: 1, justifyContent: 'flex-end' }}>
+                            <button 
+                              onClick={(e) => openPdf(mat.fileUrl!, e)} 
+                              className="btn btn-primary" 
+                              style={{ flex: 1, padding: '0.4rem 1rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}
+                            >
+                              <BookOpen size={14} /> Open & View
+                            </button>
+                          </div>
                         </div>
                       )}
                     </div>

@@ -68,7 +68,7 @@ const AdminDashboard = () => {
             <div className="stat-card-icon blue"><BookOpen size={20} /></div>
           </div>
           <div className="stat-card-value">{stats.materials}</div>
-          <div className="stat-card-label">Study Materials</div>
+          <div className="stat-card-label">Articles</div>
         </div>
         <div className="admin-stat-card">
           <div className="stat-card-header">

@@ -50,7 +50,7 @@ const AdminLayout = () => {
   const navItems = [
     { path: '/admin', icon: <LayoutDashboard size={18} />, label: 'Dashboard', exact: true },
     { path: '/admin/blogs', icon: <FileText size={18} />, label: 'Blogs' },
-    { path: '/admin/study-materials', icon: <BookOpen size={18} />, label: 'Study Material' },
+    { path: '/admin/study-materials', icon: <BookOpen size={18} />, label: 'Articles' },
     { path: '/admin/testimonials', icon: <MessageSquareQuote size={18} />, label: 'Testimonials' },
     { path: '/admin/shikhar-users', icon: <Users size={18} />, label: 'Shikhar Users', badge: pendingCount },
   ];
