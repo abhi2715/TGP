@@ -34,7 +34,7 @@ const About = () => {
               </div>
               
               <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
-                Over the past 25 years, I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant, the ability to grow through change.
+                Over the past 25 years I have led businesses, built high-performing teams, and driven large-scale transformation across global banking and technology organizations. From scaling multi-million-dollar businesses to navigating digital disruption and Artificial Intelligence, my career has been shaped by one constant, the ability to grow through change.
               </p>
               
               <p className="lead-text" style={{ marginBottom: '1.25rem' }}>
