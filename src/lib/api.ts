@@ -32,9 +32,13 @@ function getAuthHeaders() {
 // ── Blogs ──
 
 export async function fetchBlogs(all = false) {
-  const res = await fetch(`${API_BASE}/blogs${all ? '?all=true' : ''}`);
-  if (!res.ok) throw new Error('Failed to fetch blogs');
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE}/blogs${all ? '?all=true' : ''}`);
+    if (!res.ok) return [];
+    return await res.json();
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function fetchBlog(id: string) {
@@ -81,9 +85,13 @@ export async function deleteBlog(id: string) {
 // ── Study Materials ──
 
 export async function fetchStudyMaterials(all = false) {
-  const res = await fetch(`${API_BASE}/study-materials${all ? '?all=true' : ''}`);
-  if (!res.ok) throw new Error('Failed to fetch study materials');
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE}/study-materials${all ? '?all=true' : ''}`);
+    if (!res.ok) return [];
+    return await res.json();
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function createStudyMaterial(formData: FormData) {
@@ -124,9 +132,13 @@ export async function deleteStudyMaterial(id: string) {
 // ── Testimonials ──
 
 export async function fetchTestimonials(all = false) {
-  const res = await fetch(`${API_BASE}/testimonials${all ? '?all=true' : ''}`);
-  if (!res.ok) throw new Error('Failed to fetch testimonials');
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE}/testimonials${all ? '?all=true' : ''}`);
+    if (!res.ok) return [];
+    return await res.json();
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function createTestimonial(formData: FormData) {
