@@ -70,8 +70,8 @@ startDatabase();
 
 // If not running in Vercel, start the listener
 if (!process.env.VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  app.listen(PORT, '127.0.0.1', () => {
+    console.log(`🚀 Server running on http://127.0.0.1:${PORT}`);
     console.log(`📁 Uploads served from ${uploadsDir}`);
   });
 }
