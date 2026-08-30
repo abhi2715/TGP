@@ -4,12 +4,12 @@ import { Menu, X } from 'lucide-react';
 import MagneticButton from '../ui/MagneticButton';
 import './Navbar.css';
 
-const SECTIONS = ['home', 'about', 'pillars', 'mentor', 'cta'];
+
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+
   const location = useLocation();
 
   useEffect(() => {
