@@ -196,9 +196,9 @@ const About = () => {
 
           <div className="approach-steps">
             {[
-              { num: '01', title: 'Listen & Understand', desc: "We start with a deep conversation about where you are, what's holding you back, and where you want to go." },
-              { num: '02', title: 'Reflect & Reframe', desc: 'Together, we challenge old narratives, uncover blind spots, and reframe your relationship with success.' },
-              { num: '03', title: 'Act & Grow', desc: 'With clear frameworks and ongoing support, you take deliberate steps toward your goals - and watch real transformation happen.' },
+              { num: '01', title: <>Listen &<br />Understand</>, desc: "We start with a deep conversation about where you are, what's holding you back, and where you want to go." },
+              { num: '02', title: <>Reflect &<br />Reframe</>, desc: 'Together, we challenge old narratives, uncover blind spots, and reframe your relationship with success.' },
+              { num: '03', title: <>Act &<br />Grow</>, desc: 'With clear frameworks and ongoing support, you take deliberate steps toward your goals, and watch real transformation happen.' },
             ].map((step, i) => (
               <ScrollReveal key={i} direction="3d-up" delay={i * 0.15}>
                 <div className="approach-step glass-card">
