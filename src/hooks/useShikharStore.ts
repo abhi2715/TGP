@@ -121,7 +121,12 @@ export function useShikharStore() {
   }, [state.sessions]);
 
   const isSessionUnlocked = useCallback((sessionId: number) => {
-    if (serverUnlockedSessions?.includes(sessionId)) return true;
+    // If we have data from the server, rely STRICTLY on it for unlocking
+    if (serverUnlockedSessions && serverUnlockedSessions.length > 0) {
+      return serverUnlockedSessions.includes(sessionId);
+    }
+    
+    // Legacy fallback for users without server connection
     if (sessionId === 1) return true;
     return state.sessions[sessionId - 1]?.completed || false;
   }, [state.sessions, serverUnlockedSessions]);
