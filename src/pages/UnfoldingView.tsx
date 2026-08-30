@@ -8,12 +8,13 @@ export default function UnfoldingView() {
 
   return (
     <div className="unfolding-view-page" style={{ 
-      minHeight: '100vh', 
+      height: '100vh', 
       background: 'var(--color-surface)',
       padding: isFullscreen ? '0' : '11rem 0 0',
       display: 'flex',
       flexDirection: 'column',
-      transition: 'padding 0.3s ease'
+      transition: 'padding 0.3s ease',
+      boxSizing: 'border-box'
     }}>
       {/* Top Bar - Hidden when fullscreen */}
       {!isFullscreen && (
