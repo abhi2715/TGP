@@ -195,7 +195,7 @@ export async function fetchShikharStats() {
 }
 
 export async function requestShikharAccess(data: { name: string; email: string; phone?: string; password?: string }) {
-  const res = await fetch(`${API_BASE}/shikhar-users/request-access`, {
+  const res = await fetch(`${API_BASE}/shikhar-users/request`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
