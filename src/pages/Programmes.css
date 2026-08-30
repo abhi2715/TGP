@@ -211,7 +211,7 @@
 }
 
 .programme-detailed-card.reverse .programme-detailed-image {
-  background-position: 75% center; /* Right column */
+  background-position: center; /* Center to show pebbles */
 }
 
 @media (max-width: 992px) {
