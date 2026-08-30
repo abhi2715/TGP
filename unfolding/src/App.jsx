@@ -33,14 +33,14 @@ export default function App() {
   const PageComponent = pages[page]
 
   return (
-    <div style={{ maxWidth: '430px', margin: '0 auto', minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ maxWidth: '430px', margin: '0 auto', height: '100vh', overflow: 'hidden', background: 'var(--bg)', display: 'flex', flexDirection: 'column' }}>
 
       {/* Header */}
       <header style={{
         padding: '16px 20px',
         background: 'var(--card)',
         borderBottom: '0.5px solid var(--border)',
-        position: 'sticky', top: 0, zIndex: 50,
+        zIndex: 50,
         display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
       }}>
         <div style={{ flex: 1 }}>
