@@ -15,29 +15,12 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      // Section tracking on homepage
-      if (location.pathname === '/') {
-        let current = '';
-        for (const id of SECTIONS) {
-          const el = document.getElementById(id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 200) {
-              current = id;
-            }
-          }
-        }
-        setActiveSection(current);
-      } else {
-        setActiveSection('');
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
+  }, []);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -55,8 +38,8 @@ const Navbar = () => {
         </Link>
 
         <nav className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
-          <Link to="/" className={`nav-link ${isActive('/') && (activeSection === 'home' || !activeSection) ? 'active' : ''}`}>Home</Link>
-          <Link to="/about" className={`nav-link ${isActive('/about') || activeSection === 'about' ? 'active' : ''}`}>My Story</Link>
+          <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
+          <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>My Story</Link>
           <Link to="/programmes" className={`nav-link ${isActive('/programmes') ? 'active' : ''}`}>Programmes</Link>
           <Link to="/resources" className={`nav-link ${isActive('/resources') ? 'active' : ''}`}>Resources</Link>
           <Link to="/success-stories" className={`nav-link ${isActive('/success-stories') ? 'active' : ''}`}>Success Stories</Link>
