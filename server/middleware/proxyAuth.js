@@ -74,12 +74,11 @@ const proxyAdminAuth = async (req, res, next) => {
         req.admin = { email: result.data.email, isAdmin: true };
         return next();
       }
+      return res.status(401).json({ error: `Khaki Backend rejected token: HTTP ${result.status} - ${JSON.stringify(result.data)}` });
     } catch (proxyErr) {
       console.log('ProxyAuth: Strategy 2 (Proxy) FAILED -', proxyErr.message);
+      return res.status(401).json({ error: `Proxy Error: ${proxyErr.message}` });
     }
-
-    console.log('ProxyAuth: Both strategies failed, returning 401');
-    return res.status(401).json({ error: 'Invalid or expired token.' });
   } catch (err) {
     console.error('Auth middleware error:', err.message);
     return res.status(500).json({ error: 'Authentication error: ' + err.message });
