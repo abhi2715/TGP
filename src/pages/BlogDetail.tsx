@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Clock, Share2 } from 'lucide-react';
+import { ArrowLeft, Clock } from 'lucide-react';
 import { fetchBlog, getImageUrl } from '../lib/api';
 import './Blog.css';
 
@@ -16,19 +16,27 @@ interface BlogData {
   createdAt: string;
 }
 
-const BlogDetail = () => {
+interface BlogDetailProps {
+  blogId?: string;
+  isModal?: boolean;
+  onClose?: () => void;
+}
+
+const BlogDetail: React.FC<BlogDetailProps> = ({ blogId, isModal, onClose }) => {
   const { id } = useParams<{ id: string }>();
+  const activeId = blogId || id;
   const [blog, setBlog] = useState<BlogData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (id) loadBlog(id);
-  }, [id]);
+    if (activeId) loadBlog(activeId);
+  }, [activeId]);
 
-  const loadBlog = async (blogId: string) => {
+  const loadBlog = async (fetchId: string) => {
     try {
-      const data = await fetchBlog(blogId);
+      setLoading(true);
+      const data = await fetchBlog(fetchId);
       setBlog(data);
     } catch (err) {
       setError('Blog not found');
@@ -88,7 +96,7 @@ const BlogDetail = () => {
 
   if (loading) {
     return (
-      <div className="blog-detail-page" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className={isModal ? "blog-modal-inner" : "blog-detail-page"} style={{ minHeight: isModal ? '300px' : '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: 32, height: 32, border: '3px solid var(--color-border)', borderTopColor: 'var(--color-secondary)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
       </div>
     );
@@ -96,21 +104,32 @@ const BlogDetail = () => {
 
   if (error || !blog) {
     return (
-      <div className="blog-detail-page" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
+      <div className={isModal ? "blog-modal-inner" : "blog-detail-page"} style={{ minHeight: isModal ? '300px' : '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
         <h2>Blog not found</h2>
-        <Link to="/blog" className="btn btn-secondary">Back to blogs</Link>
+        {!isModal && <Link to="/blog" className="btn btn-secondary">Back to blogs</Link>}
+        {isModal && onClose && <button onClick={onClose} className="btn btn-secondary">Close</button>}
       </div>
     );
   }
 
   return (
-    <div className="blog-detail-page">
-      <div className="container blog-article-container">
-        <Link to="/blog" className="back-link"><ArrowLeft size={16} /> Back to all articles</Link>
+    <div className={isModal ? "blog-modal-inner" : "blog-detail-page"}>
+      <div className="container blog-article-container" style={isModal ? { padding: '2rem' } : undefined}>
+        {!isModal && <Link to="/blog" className="back-link"><ArrowLeft size={16} /> Back to all articles</Link>}
         
+        {blog.coverImage && (
+          <figure className="article-hero-image" style={{ marginBottom: '2rem' }}>
+            <img 
+              src={getImageUrl(blog.coverImage)} 
+              alt={blog.title} 
+              style={{ maxHeight: '300px', width: '100%', objectFit: 'contain', backgroundColor: 'var(--color-surface)', borderRadius: '12px' }} 
+            />
+          </figure>
+        )}
+
         <header className="article-header">
           <span className="blog-category-tag">{blog.category}</span>
-          <h1>{blog.title}</h1>
+          <h1 style={isModal ? { fontSize: 'clamp(2rem, 4vw, 2.75rem)' } : undefined}>{blog.title}</h1>
           <p className="article-subtitle">{blog.excerpt}</p>
           
           <div className="article-meta-large">
@@ -129,24 +148,9 @@ const BlogDetail = () => {
           </div>
         </header>
 
-        {blog.coverImage && (
-          <figure className="article-hero-image">
-            <img src={getImageUrl(blog.coverImage)} alt={blog.title} />
-          </figure>
-        )}
-
-        <article className="article-content">
+        <article className="article-content" style={{ marginTop: '3rem' }}>
           {renderContent(blog.content)}
         </article>
-
-        <div className="article-share">
-          <span><Share2 size={18}/> Share this article:</span>
-          <div className="share-buttons">
-            <button aria-label="Share on LinkedIn">IN</button>
-            <button aria-label="Share on Twitter">TW</button>
-            <button aria-label="Share on Facebook">FB</button>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Clock, ArrowRight, BookOpen, FileText } from 'lucide-react';
-import { motion } from 'framer-motion';
+
+import { Clock, ArrowRight, BookOpen, FileText, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
 import { fetchBlogs, getImageUrl } from '../lib/api';
+import BlogDetail from './BlogDetail';
 import './Blog.css';
 
 interface Blog {
@@ -22,12 +23,25 @@ const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [articles, setArticles] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null);
 
   const categories = ["All", "Leadership", "Career", "Growth", "Mindset", "Productivity", "Communication"];
 
   useEffect(() => {
     loadBlogs();
   }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedBlogId) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedBlogId]);
 
   const loadBlogs = async () => {
     try {
@@ -44,6 +58,11 @@ const Blog = () => {
     return new Date(date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
   };
 
+  const handleBlogClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    setSelectedBlogId(id);
+  };
+
   const filteredArticles = activeCategory === 'All' 
     ? articles 
     : articles.filter(a => a.category === activeCategory);
@@ -53,6 +72,20 @@ const Blog = () => {
 
   return (
     <div className="blog-page">
+      {/* ── Blog Modal ── */}
+      <AnimatePresence>
+        {selectedBlogId && (
+          <div className="blog-modal-overlay" onClick={() => setSelectedBlogId(null)}>
+            <div className="blog-modal-content" onClick={e => e.stopPropagation()}>
+              <button className="blog-modal-close" onClick={() => setSelectedBlogId(null)}>
+                <X size={20} />
+              </button>
+              <BlogDetail blogId={selectedBlogId} isModal={true} onClose={() => setSelectedBlogId(null)} />
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* ── Immersive Hero ── */}
       <section className="blog-hero bg-surface">
         <div className="container">
@@ -109,7 +142,7 @@ const Blog = () => {
             <section className="section featured-section">
               <div className="container">
                 <ScrollReveal direction="up">
-                  <Link to={`/blog/${featured._id}`} className="featured-editorial-card">
+                  <a href={`/blog/${featured._id}`} onClick={(e) => handleBlogClick(e, featured._id)} className="featured-editorial-card">
                     <div className="fe-image">
                       <img src={featured.coverImage ? getImageUrl(featured.coverImage) : '/hero.png'} alt={featured.title} />
                       <div className="fe-overlay"></div>
@@ -128,7 +161,7 @@ const Blog = () => {
                         <span className="fe-read-more">Read Article <ArrowRight size={16}/></span>
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 </ScrollReveal>
               </div>
             </section>
@@ -147,7 +180,7 @@ const Blog = () => {
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.6, delay: index * 0.05 }}
                     >
-                      <Link to={`/blog/${article._id}`} className="editorial-card">
+                      <a href={`/blog/${article._id}`} onClick={(e) => handleBlogClick(e, article._id)} className="editorial-card">
                         <div className="ec-image-wrapper">
                           <img src={article.coverImage ? getImageUrl(article.coverImage) : '/hero.png'} alt={article.title} />
                           <span className="ec-category-badge">{article.category}</span>
@@ -160,7 +193,7 @@ const Blog = () => {
                             <span><Clock size={14}/> {article.readTime}</span>
                           </div>
                         </div>
-                      </Link>
+                      </a>
                     </motion.div>
                   ))}
                 </div>
