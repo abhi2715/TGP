@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X, MessageSquareQuote } from 'lucide-react';
-import { fetchTestimonials, createTestimonial, updateTestimonial, deleteTestimonial } from '../../lib/api';
+import { fetchTestimonials, createTestimonial, updateTestimonial, deleteTestimonial, getImageUrl } from '../../lib/api';
 
 interface Testimonial {
   _id: string;
@@ -59,7 +59,7 @@ const AdminTestimonials = () => {
       name: t.name, role: t.role, company: t.company, quote: t.quote,
       metric: t.metric, videoUrl: t.videoUrl, published: t.published,
     });
-    setImagePreview(t.image ? `/api${t.image}` : '');
+    setImagePreview(getImageUrl(t.image));
     setImageFile(null);
     setShowModal(true);
   };
@@ -154,7 +154,7 @@ const AdminTestimonials = () => {
                 <tr key={t._id}>
                   <td>
                     <div className="table-cell-thumb">
-                      {t.image ? <img src={`/api${t.image}`} alt="" className="table-thumb" style={{ borderRadius: '50%' }} /> : <div className="table-thumb" style={{ borderRadius: '50%', background: 'var(--admin-gold-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, color: 'var(--admin-gold)' }}>{t.name.charAt(0)}</div>}
+                      {t.image ? <img src={getImageUrl(t.image)} alt="" className="table-thumb" style={{ borderRadius: '50%' }} /> : <div className="table-thumb" style={{ borderRadius: '50%', background: 'var(--admin-gold-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, color: 'var(--admin-gold)' }}>{t.name.charAt(0)}</div>}
                       <div>
                         <div className="table-item-title">{t.name}</div>
                         <div className="table-item-subtitle">{t.role}{t.company ? ` at ${t.company}` : ''}</div>
