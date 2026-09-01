@@ -24,8 +24,6 @@ router.get('/', async (req, res) => {
   try {
     const filter = req.query.all === 'true' ? {} : { published: true };
     const testimonials = await Testimonial.find(filter).select('-imageData').sort({ createdAt: -1 });
-    // Cache on Vercel CDN for 60 seconds, serve stale while revalidating for 24h
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=86400');
     res.json(testimonials);
   } catch (err) {
     res.status(500).json({ error: err.message });
