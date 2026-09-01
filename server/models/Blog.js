@@ -17,10 +17,16 @@ const blogSchema = new mongoose.Schema({
 // Auto-generate slug from title
 blogSchema.pre('validate', function(next) {
   if (this.title && !this.slug) {
-    this.slug = this.title
+    let generatedSlug = this.title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
+      
+    // Fallback if title contains no English alphanumeric characters (e.g., Hindi, Emojis)
+    if (!generatedSlug) {
+      generatedSlug = 'blog-' + Date.now();
+    }
+    this.slug = generatedSlug;
   }
   next();
 });
