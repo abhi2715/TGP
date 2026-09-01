@@ -52,7 +52,18 @@ export function useShikharStore() {
   const [state, setState] = useState<ShikharState>(() => {
     let baseState = loadState();
     if (serverShikharState && Object.keys(serverShikharState).length > 0) {
-      baseState = { ...DEFAULT_STATE, ...serverShikharState };
+      const mergedSessions = { ...DEFAULT_STATE.sessions };
+      if (serverShikharState.sessions) {
+        Object.keys(serverShikharState.sessions).forEach(key => {
+          const k = Number(key);
+          mergedSessions[k] = {
+            ...mergedSessions[k],
+            ...serverShikharState.sessions[k],
+            exerciseData: serverShikharState.sessions[k]?.exerciseData || mergedSessions[k]?.exerciseData || {}
+          };
+        });
+      }
+      baseState = { ...DEFAULT_STATE, ...serverShikharState, sessions: mergedSessions };
     }
     return baseState;
   });
@@ -60,7 +71,21 @@ export function useShikharStore() {
   useEffect(() => {
     if (serverShikharState) {
       if (Object.keys(serverShikharState).length > 0) {
-        setState(prev => ({ ...prev, ...serverShikharState }));
+        setState(prev => {
+          // Deep merge sessions so we don't lose exerciseData if the server payload is incomplete
+          const mergedSessions = { ...DEFAULT_STATE.sessions };
+          if (serverShikharState.sessions) {
+            Object.keys(serverShikharState.sessions).forEach(key => {
+              const k = Number(key);
+              mergedSessions[k] = {
+                ...mergedSessions[k],
+                ...serverShikharState.sessions[k],
+                exerciseData: serverShikharState.sessions[k]?.exerciseData || mergedSessions[k]?.exerciseData || {}
+              };
+            });
+          }
+          return { ...prev, ...serverShikharState, sessions: mergedSessions };
+        });
       } else {
         setState({ ...DEFAULT_STATE });
       }
@@ -127,7 +152,8 @@ export function useShikharStore() {
   }, []);
 
   const getSessionData = useCallback((sessionId: number) => {
-    return state.sessions[sessionId] || DEFAULT_STATE.sessions[1];
+    const sd = state.sessions[sessionId] || DEFAULT_STATE.sessions[1];
+    return { ...sd, exerciseData: sd.exerciseData || {} };
   }, [state.sessions]);
 
   const isSessionUnlocked = useCallback((sessionId: number) => {
