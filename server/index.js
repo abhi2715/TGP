@@ -23,7 +23,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(uploadsDir));
 
 // Connect to MongoDB
-let cachedConnection = null;
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
 
 async function startDatabase() {
   const mongoUri = process.env.MONGODB_URI;
@@ -32,35 +36,36 @@ async function startDatabase() {
     throw new Error('MONGODB_URI is missing');
   }
 
-  // If already connected, return
-  if (mongoose.connection.readyState === 1) {
-    return mongoose.connection;
+  if (cached.conn) {
+    return cached.conn;
   }
 
-  // If a connection is already in progress, wait for it
-  if (mongoose.connection.readyState === 2) {
-    return new Promise(resolve => {
-      mongoose.connection.once('connected', () => resolve(mongoose.connection));
+  if (!cached.promise) {
+    console.log('⏳ Connecting to MongoDB...');
+    mongoose.set('bufferCommands', false); // Globally disable buffering
+    
+    cached.promise = mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+      bufferCommands: false, // Disable mongoose buffering to fail fast
+      maxPoolSize: 10, // Serverless best practice
+    }).then((mongoose) => {
+      console.log('✅ Connected to MongoDB Atlas');
+      return mongoose;
+    }).catch(err => {
+      console.error('❌ Failed to connect to MongoDB:', err.message);
+      cached.promise = null;
+      throw err;
     });
-  }
-
-  if (cachedConnection) {
-    return cachedConnection;
   }
 
   try {
-    console.log('⏳ Connecting to MongoDB...');
-    cachedConnection = await mongoose.connect(mongoUri, {
-      serverSelectionTimeoutMS: 5000,
-      bufferCommands: false // Disable mongoose buffering to fail fast instead of hanging
-    });
-    console.log('✅ Connected to MongoDB');
-    return cachedConnection;
-  } catch (err) {
-    console.error('❌ Failed to connect to MongoDB:', err.message);
-    cachedConnection = null;
-    throw err;
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
   }
+
+  return cached.conn;
 }
 
 // Database Connection Middleware
