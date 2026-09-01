@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FileText, Download, BookOpen, Loader, X } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
-import { fetchBlogs, fetchStudyMaterials } from '../lib/api';
+import { fetchBlogs, fetchStudyMaterials, getImageUrl } from '../lib/api';
 import './Resources.css';
 
 interface Blog {
@@ -130,7 +130,7 @@ const Resources = () => {
                       <CardWrapper {...wrapperProps}>
                         {blog.coverImage && (
                           <div className="resource-card-image">
-                            <img src={blog.coverImage.startsWith('/') ? blog.coverImage : `/api${blog.coverImage}`} alt={blog.title} />
+                            <img src={getImageUrl(blog.coverImage)} alt={blog.title} />
                           </div>
                         )}
                         <span className="res-type">{blog.category}</span>
@@ -166,7 +166,7 @@ const Resources = () => {
                     <div className="resource-card">
                       {mat.coverImage && (
                         <div className="resource-card-image">
-                          <img src={mat.coverImage.startsWith('/') ? mat.coverImage : `/api${mat.coverImage}`} alt={mat.title} />
+                          <img src={getImageUrl(mat.coverImage)} alt={mat.title} />
                         </div>
                       )}
                       {!mat.coverImage && <div className="res-icon">{typeIcons[mat.type] || '📄'}</div>}

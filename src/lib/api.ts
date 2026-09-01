@@ -92,7 +92,7 @@ export async function deleteBlog(id: string) {
 
 export async function fetchStudyMaterials(all = false) {
   try {
-    const res = await fetch(`/api/study-materials${all ? '?all=true' : ''}`);
+    const res = await fetch(`${API_BASE}/study-materials${all ? '?all=true' : ''}`);
     if (!res.ok) return [];
     return await res.json();
   } catch (e) {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PlayCircle, Quote, MessageSquareQuote } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
-import { fetchTestimonials } from '../lib/api';
+import { fetchTestimonials, getImageUrl } from '../lib/api';
 import './SuccessStories.css';
 
 interface Testimonial {
@@ -89,7 +89,7 @@ const SuccessStories = () => {
                     <div className="ss-card-header">
                       <div className="ss-avatar-wrapper">
                         {story.image ? (
-                          <img src={`/api${story.image}`} alt={story.name} className="ss-avatar" />
+                          <img src={getImageUrl(story.image)} alt={story.name} className="ss-avatar" />
                         ) : (
                           <div className="ss-avatar ss-avatar-placeholder">
                             {story.name.charAt(0)}
