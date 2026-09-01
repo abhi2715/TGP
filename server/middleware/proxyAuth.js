@@ -1,15 +1,12 @@
 /**
- * Proxy Auth Middleware
+ * Hybrid Auth Middleware
  * 
- * This middleware verifies admin tokens by calling the primary backend
- * (tgp-backend-khaki) instead of decoding them locally.
- * 
- * Why: The admin login happens on tgp-backend-khaki which signs tokens
- * with its own JWT_SECRET. This backend (tgp-frontend-eight) doesn't
- * share that secret, so it can't verify tokens locally. Instead, we
- * forward the token to the primary backend's /api/admin/verify endpoint.
+ * Works in BOTH environments:
+ * - LOCAL: Verifies JWT directly using the local JWT_SECRET (from server/.env)
+ * - VERCEL: Proxies verification to tgp-backend-khaki (which issued the token)
  */
 
+const jwt = require('jsonwebtoken');
 const https = require('https');
 
 const BACKEND_URL = 'https://tgp-backend-khaki.vercel.app/api';
@@ -21,9 +18,7 @@ function verifyTokenViaBackend(authHeader) {
       hostname: url.hostname,
       path: url.pathname,
       method: 'GET',
-      headers: {
-        'Authorization': authHeader,
-      },
+      headers: { 'Authorization': authHeader },
     };
 
     const req = https.request(options, (res) => {
@@ -55,17 +50,35 @@ const proxyAdminAuth = async (req, res, next) => {
       return res.status(401).json({ error: 'Access denied. No token provided.' });
     }
 
-    const result = await verifyTokenViaBackend(authHeader);
+    const token = authHeader.split(' ')[1];
 
-    if (result.status !== 200 || !result.data.valid) {
-      return res.status(401).json({ error: 'Invalid or expired token.' });
+    // Strategy 1: Try local JWT verification first (works in local dev)
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      if (decoded.isAdmin) {
+        req.admin = decoded;
+        return next();
+      }
+    } catch (_localErr) {
+      // Local verification failed — token was signed by a different backend
     }
 
-    req.admin = { email: result.data.email, isAdmin: true };
-    next();
+    // Strategy 2: Proxy to khaki backend (works on Vercel production)
+    try {
+      const result = await verifyTokenViaBackend(authHeader);
+      if (result.status === 200 && result.data.valid) {
+        req.admin = { email: result.data.email, isAdmin: true };
+        return next();
+      }
+    } catch (proxyErr) {
+      console.error('Proxy auth fallback failed:', proxyErr.message);
+    }
+
+    // Both strategies failed
+    return res.status(401).json({ error: 'Invalid or expired token.' });
   } catch (err) {
-    console.error('Proxy auth error:', err.message);
-    return res.status(500).json({ error: 'Authentication service unavailable: ' + err.message });
+    console.error('Auth middleware error:', err.message);
+    return res.status(500).json({ error: 'Authentication error: ' + err.message });
   }
 };
 
