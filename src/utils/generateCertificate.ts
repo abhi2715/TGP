@@ -30,8 +30,8 @@ export async function generateCertificate(userName: string, date: string): Promi
   // Center horizontally (A4 width is 297)
   const xName = (297 - nameWidth) / 2;
   // Position it below "THIS IS TO CERTIFY THAT"
-  // Assuming that line is roughly at 45% down the page based on the template
-  doc.text(userName, xName, 130);
+  // Moved up to Y=110 to sit above the gold line and prevent overlap
+  doc.text(userName, xName, 110);
 
   // 2. Program Director (Pooja Sharma)
   doc.setFontSize(14);
