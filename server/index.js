@@ -22,6 +22,59 @@ app.use(express.urlencoded({ extended: true }));
 // Serve uploaded files statically
 app.use('/uploads', express.static(uploadsDir));
 
+// Connect to MongoDB
+let cachedConnection = null;
+
+async function startDatabase() {
+  const mongoUri = process.env.MONGODB_URI;
+  if (!mongoUri) {
+    console.error('❌ MONGODB_URI environment variable is missing.');
+    throw new Error('MONGODB_URI is missing');
+  }
+
+  // If already connected, return
+  if (mongoose.connection.readyState === 1) {
+    return mongoose.connection;
+  }
+
+  // If a connection is already in progress, wait for it
+  if (mongoose.connection.readyState === 2) {
+    return new Promise(resolve => {
+      mongoose.connection.once('connected', () => resolve(mongoose.connection));
+    });
+  }
+
+  if (cachedConnection) {
+    return cachedConnection;
+  }
+
+  try {
+    console.log('⏳ Connecting to MongoDB...');
+    cachedConnection = await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+      bufferCommands: false // Disable mongoose buffering to fail fast instead of hanging
+    });
+    console.log('✅ Connected to MongoDB');
+    return cachedConnection;
+  } catch (err) {
+    console.error('❌ Failed to connect to MongoDB:', err.message);
+    cachedConnection = null;
+    throw err;
+  }
+}
+
+// Database Connection Middleware
+// This ensures that serverless functions await the DB connection before handling the route
+app.use(async (req, res, next) => {
+  try {
+    await startDatabase();
+    next();
+  } catch (error) {
+    console.error('Database connection error in middleware:', error);
+    res.status(503).json({ error: 'Service Unavailable: Database connection failed' });
+  }
+});
+
 // Routes
 const adminRoutes = require('./routes/admin');
 const blogRoutes = require('./routes/blogs');
@@ -40,39 +93,16 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Connect to MongoDB
-async function startDatabase() {
-  const mongoUri = process.env.MONGODB_URI;
-  if (!mongoUri) {
-    console.error('❌ MONGODB_URI environment variable is missing.');
-    console.error('💡 Please configure it in your Vercel Dashboard (Settings > Environment Variables) or local .env file.');
-    if (!process.env.VERCEL) {
-      process.exit(1);
-    }
-    return;
-  }
-
-  try {
-    if (mongoose.connection.readyState === 0) {
-      await mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 5000 });
-      console.log('✅ Connected to MongoDB Atlas');
-    }
-  } catch (err) {
-    console.error('❌ Failed to connect to MongoDB:', err.message);
-    if (!process.env.VERCEL) {
-      process.exit(1);
-    }
-  }
-}
-
-// Ensure database connects (for Vercel it connects lazily or on boot)
-startDatabase();
-
 // If not running in Vercel, start the listener
 if (!process.env.VERCEL) {
-  app.listen(PORT, '127.0.0.1', () => {
-    console.log(`🚀 Server running on http://127.0.0.1:${PORT}`);
-    console.log(`📁 Uploads served from ${uploadsDir}`);
+  startDatabase().then(() => {
+    app.listen(PORT, '127.0.0.1', () => {
+      console.log(`🚀 Server running on http://127.0.0.1:${PORT}`);
+      console.log(`📁 Uploads served from ${uploadsDir}`);
+    });
+  }).catch(err => {
+    console.error('Failed to start server due to DB error', err);
+    process.exit(1);
   });
 }
 
