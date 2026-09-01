@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const StudyMaterial = require('../models/StudyMaterial');
-const adminAuth = require('../middleware/auth');
+const adminAuth = require('../middleware/proxyAuth');
 
 const router = express.Router();
 
