@@ -92,6 +92,16 @@ export default function Session6() {
       });
     };
 
+    const addSection = (title: string, content: string | string[]) => {
+        addText(title, true);
+        if (Array.isArray(content)) {
+            content.forEach(line => addText(line));
+        } else {
+            addText(content);
+        }
+        yPos += 5;
+    };
+
     const formatKey = (key: string) => {
       return key
         .replace(/([A-Z])/g, ' $1')
@@ -102,64 +112,47 @@ export default function Session6() {
     addText("SHIKHAR PROGRAM - CAREER COMPASS", true);
     addText(`Participant: ${state.userName || 'Guest'}`);
     addText(`Date: ${new Date().toLocaleDateString()}`);
-    yPos += 5;
+    yPos += 10;
+
+    let hasContent = false;
 
     for (let i = 1; i <= 6; i++) {
       const sd = state.sessions[i];
       if (!sd) continue;
       
-      yPos += 5;
-      addText(`Session ${i}: ${SESSION_SUMMARIES[i-1].title}`, true);
-      addText(`Status: ${sd.completed ? 'Completed' : 'In Progress'}`);
-      
-      if (sd.exerciseData) {
-        const entries = Object.entries(sd.exerciseData);
-        entries.forEach(([key, value]) => {
+      const exData = (sd.exerciseData as Record<string, unknown>) || {};
+      if (Object.keys(exData).length > 0) {
+        let sessionContent: string[] = [];
+        
+        Object.entries(exData).forEach(([key, value]) => {
           const readableKey = formatKey(key);
           if (typeof value === 'string' && value.trim()) {
-            addText(`${readableKey}: ${value}`);
+            sessionContent.push(`${readableKey}: ${value}`);
           } else if (Array.isArray(value)) {
-            const arrItems = value.map(v => {
-              if (typeof v === 'string') return v.trim();
-              if (v && typeof v === 'object') {
-                return Object.entries(v)
-                  .filter(([_, val]) => val)
-                  .map(([k, val]) => `${formatKey(k)}: ${val}`)
-                  .join(' | ');
-              }
-              return String(v);
-            }).filter(Boolean);
-            
+            const arrItems = value.filter(v => typeof v === 'string' && v.trim());
             if (arrItems.length > 0) {
-              addText(`${readableKey}:`);
-              arrItems.forEach(item => addText(`  • ${item}`));
+              sessionContent.push(`${readableKey}: ${arrItems.join(', ')}`);
             }
           } else if (typeof value === 'object' && value !== null) {
-            if (key === 'relationshipScore' || key === 'quizAnswers' || key === 'reflections' || key === 'whys') {
-               // Handle objects with sub-answers
-               addText(`${readableKey}:`);
-               Object.entries(value).forEach(([k, val]) => {
-                  const subKey = formatKey(k);
-                  if (typeof val === 'string' || typeof val === 'number') {
-                     addText(`  • ${subKey}: ${val}`);
-                  } else if (Array.isArray(val)) {
-                     const validVals = val.filter(v => v);
-                     if (validVals.length) {
-                        addText(`  • ${subKey}: ${validVals.join(', ')}`);
-                     }
-                  }
-               });
-            } else {
-               addText(`${readableKey}: Completed`);
-            }
+            sessionContent.push(`${readableKey}: Completed`);
           }
         });
+        
+        if (sessionContent.length > 0) {
+            addSection(`Session ${i}: ${SESSION_SUMMARIES[i-1].title}`, sessionContent);
+            hasContent = true;
+        }
       }
     }
 
-    yPos += 10;
-    addText("My Commitments:", true);
-    commitments.filter(c => c.trim()).forEach((c, i) => addText(`${i+1}. ${c}`));
+    if (commitments.filter(c => c.trim()).length > 0) {
+        addSection("My Commitments", commitments.filter(c => c.trim()).map((c, i) => `${i+1}. ${c}`));
+        hasContent = true;
+    }
+    
+    if (!hasContent) {
+        addSection("Note", "No career compass data has been recorded yet. Complete the interactive exercises in the Shikhar sessions to populate your compass!");
+    }
     
     if (signature) {
       yPos += 10;

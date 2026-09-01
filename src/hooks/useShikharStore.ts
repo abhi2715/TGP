@@ -36,7 +36,9 @@ function loadState(): ShikharState {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      return { ...DEFAULT_STATE, ...parsed };
+      // Remove the _userEmail tag from the returned state so it doesn't pollute ShikharState
+      const { _userEmail, ...stateData } = parsed;
+      return { ...DEFAULT_STATE, ...stateData };
     }
   } catch {
     // ignore
@@ -66,18 +68,22 @@ export function useShikharStore() {
   }, [serverShikharState]);
 
   const saveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const token = localStorage.getItem('tgp_session_token');
-
   useEffect(() => {
+    // Don't save if no user is logged in
+    if (!userEmail) return;
+
+    const currentToken = localStorage.getItem('tgp_session_token');
     clearTimeout(saveTimer.current);
     saveTimer.current = setTimeout(() => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      if (userEmail && token) {
-        syncShikharState(userEmail, token, state).catch(() => {});
+      // Tag the cached data with the user's email so we can detect stale data
+      const dataToSave = { ...state, _userEmail: userEmail };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+      if (userEmail && currentToken) {
+        syncShikharState(userEmail, currentToken, state).catch(() => {});
       }
     }, 500);
     return () => clearTimeout(saveTimer.current);
-  }, [state, userEmail, token]);
+  }, [state, userEmail]);
 
   const updateSession = useCallback((sessionId: number, data: Partial<SessionData>) => {
     setState(prev => ({

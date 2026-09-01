@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Compass, Brain, Rocket, Users, MessageCircle, Award,
-  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen, Leaf, ArrowRight, Download, LogOut
+  ChevronRight, Lock, CheckCircle2, Mountain, Star, BookOpen, Leaf, ArrowRight, Download, LogOut, Trash2
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useShikharStore } from '../../hooks/useShikharStore';
@@ -69,7 +69,7 @@ const SESSIONS = [
 
 export default function ShikharDashboard() {
   const { userName, logout } = useAuth();
-  const { state, isSessionUnlocked, getProgress, setUserName } = useShikharStore();
+  const { state, isSessionUnlocked, getProgress, setUserName, resetAll } = useShikharStore();
   const [nameInput, setNameInput] = useState('');
   const progress = getProgress();
 
@@ -149,28 +149,56 @@ export default function ShikharDashboard() {
                 <Mountain size={24} />
                 <span>SHIKHAR PROGRAM</span>
               </div>
-              <button 
-                onClick={() => logout()}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '8px',
-                  padding: '0.5rem 1rem',
-                  color: '#fff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  backdropFilter: 'blur(10px)',
-                  transition: 'background 0.2s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
-              >
-                <LogOut size={16} /> Logout
-              </button>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button 
+                  onClick={() => {
+                    if(window.confirm('Are you sure you want to reset all your progress? This will wipe your account data permanently.')) {
+                      resetAll();
+                    }
+                  }}
+                  style={{
+                    background: 'rgba(255, 59, 48, 0.1)',
+                    border: '1px solid rgba(255, 59, 48, 0.2)',
+                    borderRadius: '8px',
+                    padding: '0.5rem 1rem',
+                    color: '#d32f2f',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    fontWeight: 600,
+                    transition: 'background 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 59, 48, 0.2)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 59, 48, 0.1)'}
+                >
+                  <Trash2 size={16} />
+                  Reset
+                </button>
+                <button 
+                  onClick={() => logout()}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '8px',
+                    padding: '0.5rem 1rem',
+                    color: '#fff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    backdropFilter: 'blur(10px)',
+                    transition: 'background 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+                >
+                  <LogOut size={16} /> Logout
+                </button>
+              </div>
             </div>
             <h1>Welcome back, {displayName} 👋</h1>
             <p className="dashboard-tagline">Continue your leadership journey. Each session builds on the last.</p>
