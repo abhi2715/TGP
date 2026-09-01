@@ -2,7 +2,32 @@
    SHIKHAR DASHBOARD STYLES
    ═══════════════════════════════════════ */
 
-/* ── Welcome Page ── */
+/* ── Background Image ── */
+.shikhar-dashboard.paripakv-bg-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.shikhar-dashboard .paripakv-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.shikhar-dashboard .paripakv-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(250,247,240,0.92) 0%, rgba(250,247,240,0.85) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+
 .shikhar-welcome-page {
   min-height: 100vh;
   display: flex;

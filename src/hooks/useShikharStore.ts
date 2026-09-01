@@ -206,9 +206,15 @@ export function useShikharStore() {
   }, []);
 
   const resetAll = useCallback(() => {
-    setState({ ...DEFAULT_STATE });
+    const freshState = { ...DEFAULT_STATE };
+    setState(freshState);
     localStorage.removeItem(STORAGE_KEY);
-  }, []);
+    // Also sync the reset to the server so it persists
+    const currentToken = localStorage.getItem('tgp_session_token');
+    if (userEmail && currentToken) {
+      syncShikharState(userEmail, currentToken, freshState).catch(() => {});
+    }
+  }, [userEmail]);
 
   return {
     state,

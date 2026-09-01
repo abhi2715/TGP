@@ -75,14 +75,13 @@ export default function ShikharDashboard() {
 
   // Auto-start the program if user already has a name from login/registration
   // This prevents the Welcome screen from showing up repeatedly
-  const hasKnownName = authUserName && authUserName.trim() && authUserName !== 'Leader';
+  const hasKnownName = !!(authUserName && authUserName.trim() && authUserName !== 'Leader');
   
   useEffect(() => {
     if (!state.programStarted && hasKnownName) {
-      // User registered with a name — skip Welcome screen and auto-start
       setUserName(authUserName!.trim());
     }
-  }, [state.programStarted, hasKnownName, authUserName, setUserName]);
+  }, []);  // Only run once on mount — not on every state change
 
   const getDisplayName = () => {
     if (state.userName) return state.userName;
@@ -164,8 +163,9 @@ export default function ShikharDashboard() {
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <button 
                   onClick={() => {
-                    if(window.confirm('Are you sure you want to reset all your progress? This will wipe your account data permanently.')) {
+                    if(window.confirm('Are you sure you want to reset all your progress? This will wipe your account data permanently and log you out.')) {
                       resetAll();
+                      logout();
                     }
                   }}
                   style={{
@@ -191,22 +191,21 @@ export default function ShikharDashboard() {
                 <button 
                   onClick={() => logout()}
                   style={{
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    background: 'rgba(0, 0, 0, 0.06)',
+                    border: '1px solid rgba(0, 0, 0, 0.12)',
                     borderRadius: '8px',
                     padding: '0.5rem 1rem',
-                    color: '#fff',
+                    color: 'var(--shikhar-olive-dark, #3d4f27)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem',
                     cursor: 'pointer',
                     fontSize: '0.9rem',
                     fontWeight: 500,
-                    backdropFilter: 'blur(10px)',
                     transition: 'background 0.2s ease'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.1)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.06)'}
                 >
                   <LogOut size={16} /> Logout
                 </button>
