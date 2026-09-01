@@ -56,25 +56,29 @@ const proxyAdminAuth = async (req, res, next) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       if (decoded.isAdmin) {
+        console.log('ProxyAuth: Strategy 1 (Local) SUCCEEDED');
         req.admin = decoded;
         return next();
       }
-    } catch (_localErr) {
-      // Local verification failed — token was signed by a different backend
+    } catch (localErr) {
+      console.log('ProxyAuth: Strategy 1 (Local) FAILED -', localErr.message);
     }
 
     // Strategy 2: Proxy to khaki backend (works on Vercel production)
     try {
+      console.log(`ProxyAuth: Proxying verification to ${BACKEND_URL}/admin/verify`);
       const result = await verifyTokenViaBackend(authHeader);
-      if (result.status === 200 && result.data.valid) {
+      console.log(`ProxyAuth: Strategy 2 (Proxy) Result: Status=${result.status}, Valid=${result.data?.valid}`);
+      if (result.status === 200 && result.data && result.data.valid) {
+        console.log('ProxyAuth: Strategy 2 (Proxy) SUCCEEDED');
         req.admin = { email: result.data.email, isAdmin: true };
         return next();
       }
     } catch (proxyErr) {
-      console.error('Proxy auth fallback failed:', proxyErr.message);
+      console.log('ProxyAuth: Strategy 2 (Proxy) FAILED -', proxyErr.message);
     }
 
-    // Both strategies failed
+    console.log('ProxyAuth: Both strategies failed, returning 401');
     return res.status(401).json({ error: 'Invalid or expired token.' });
   } catch (err) {
     console.error('Auth middleware error:', err.message);
