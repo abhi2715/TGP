@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Clock, Share2 } from 'lucide-react';
-import { fetchBlog } from '../lib/api';
+import { fetchBlog, getImageUrl } from '../lib/api';
 import './Blog.css';
 
 interface BlogData {
@@ -131,7 +131,7 @@ const BlogDetail = () => {
 
         {blog.coverImage && (
           <figure className="article-hero-image">
-            <img src={`/api${blog.coverImage}`} alt={blog.title} />
+            <img src={getImageUrl(blog.coverImage)} alt={blog.title} />
           </figure>
         )}
 
