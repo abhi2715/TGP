@@ -421,7 +421,7 @@
 
 /* ── Blog Detail Page ── */
 .blog-detail-page {
-  padding-top: 8rem;
+  padding-top: 12rem;
   padding-bottom: 5rem;
   background-color: var(--color-bg);
 }
