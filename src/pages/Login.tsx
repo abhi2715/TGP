@@ -65,7 +65,7 @@ const Login = () => {
     <div className="login-page">
       <div className="login-bg" />
       <div className="container login-container">
-        <div className="login-card glass-card-dark">
+        <div className="login-card">
           <div className="login-header">
             <div className="login-icon-wrapper">
               <Lock size={28} className="text-gold" />
