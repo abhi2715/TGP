@@ -231,7 +231,7 @@ const AdminBlogs = () => {
                 </div>
                 <div className="admin-form-group">
                   <label>Content * (Markdown supported)</label>
-                  <textarea className="admin-textarea" value={form.content} onChange={e => setForm({ ...form, content: e.target.value })} required placeholder="Write your blog content here... You can use Markdown formatting." rows={10} style={{ minHeight: '200px' }} />
+                  <textarea className="admin-textarea" value={form.content} onChange={e => setForm({ ...form, content: e.target.value })} required placeholder="Write your article content here... (Tip: You can paste YouTube links directly in the text)" rows={12} style={{ fontFamily: 'monospace', lineHeight: '1.6' }} />
                 </div>
                 <div className="admin-form-group">
                   <label>Cover Image</label>

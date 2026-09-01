@@ -189,7 +189,7 @@ const AdminStudyMaterials = () => {
                 </div>
                 <div className="admin-form-group">
                   <label>Description *</label>
-                  <textarea className="admin-textarea" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} required placeholder="Describe what this material covers..." rows={4} />
+                  <textarea className="admin-textarea" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} required placeholder="Describe what this material covers... (Tip: You can paste YouTube links directly in the text)" rows={4} />
                 </div>
                 <div className="admin-form-group">
                   <label>File (PDF, DOC, etc.)</label>
