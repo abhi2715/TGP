@@ -16,13 +16,13 @@
   background-position: center;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.7; /* Increased for more visibility */
 }
 
 .shikhar-dashboard .paripakv-overlay {
   position: fixed;
   inset: 0;
-  background: linear-gradient(180deg, rgba(250,247,240,0.85) 0%, rgba(250,247,240,0.7) 100%);
+  background: linear-gradient(180deg, rgba(250,247,240,0.7) 0%, rgba(250,247,240,0.5) 100%); /* Reduced opacity to reveal background */
   pointer-events: none;
   z-index: 0;
 }

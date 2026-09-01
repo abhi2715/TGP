@@ -249,7 +249,7 @@ export default function ShikharDashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="container dashboard-main-content">
+      <div className="container dashboard-main-content" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div 
           initial={{ opacity: 0, y: 10 }} 
           animate={{ opacity: 1, y: 0 }}
