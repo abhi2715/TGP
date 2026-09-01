@@ -73,6 +73,16 @@ async function startDatabase() {
   return cached.conn;
 }
 
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    hasMongoUri: !!process.env.MONGODB_URI,
+    envKeys: Object.keys(process.env).filter(k => k.includes('MONGO'))
+  });
+});
+
 // Database Connection Middleware
 // This ensures that serverless functions await the DB connection before handling the route
 app.use(async (req, res, next) => {
@@ -97,11 +107,6 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/study-materials', studyMaterialRoutes);
 app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/shikhar-users', shikharUserRoutes);
-
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
-});
 
 // Global Error Handler for Vercel (prevents returning HTML stack traces)
 app.use((err, req, res, next) => {
