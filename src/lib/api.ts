@@ -1,5 +1,11 @@
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
+export function getImageUrl(path: string | undefined): string {
+  if (!path) return '';
+  const cleanPath = path.startsWith('/api') ? path.substring(4) : path;
+  return `${API_BASE}${cleanPath}`;
+}
+
 export async function adminLogin(email: string, password: string) {
   const res = await fetch(`${API_BASE}/admin/login`, {
     method: 'POST',

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X, FileText } from 'lucide-react';
-import { fetchBlogs, createBlog, updateBlog, deleteBlog } from '../../lib/api';
+import { fetchBlogs, createBlog, updateBlog, deleteBlog, getImageUrl } from '../../lib/api';
 
 interface Blog {
   _id: string;
@@ -71,7 +71,7 @@ const AdminBlogs = () => {
       readTime: blog.readTime,
       published: blog.published,
     });
-    setImagePreview(blog.coverImage ? `/api${blog.coverImage}` : '');
+    setImagePreview(blog.coverImage ? getImageUrl(blog.coverImage) : '');
     setImageFile(null);
     setShowModal(true);
   };
@@ -171,7 +171,7 @@ const AdminBlogs = () => {
                 <tr key={blog._id}>
                   <td>
                     <div className="table-cell-thumb">
-                      {blog.coverImage && <img src={`/api${blog.coverImage}`} alt="" className="table-thumb" />}
+                      {blog.coverImage && <img src={getImageUrl(blog.coverImage)} alt="" className="table-thumb" />}
                       <div>
                         <div className="table-item-title">{blog.title}</div>
                         <div className="table-item-subtitle">{blog.readTime}</div>

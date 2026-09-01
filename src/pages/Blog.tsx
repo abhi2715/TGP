@@ -4,7 +4,7 @@ import { Clock, ArrowRight, BookOpen, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import MagneticButton from '../components/ui/MagneticButton';
-import { fetchBlogs } from '../lib/api';
+import { fetchBlogs, getImageUrl } from '../lib/api';
 import './Blog.css';
 
 interface Blog {
@@ -111,7 +111,7 @@ const Blog = () => {
                 <ScrollReveal direction="up">
                   <Link to={`/blog/${featured._id}`} className="featured-editorial-card">
                     <div className="fe-image">
-                      <img src={featured.coverImage ? `/api${featured.coverImage}` : '/hero.png'} alt={featured.title} />
+                      <img src={featured.coverImage ? getImageUrl(featured.coverImage) : '/hero.png'} alt={featured.title} />
                       <div className="fe-overlay"></div>
                     </div>
                     <div className="fe-content-box">
@@ -149,7 +149,7 @@ const Blog = () => {
                     >
                       <Link to={`/blog/${article._id}`} className="editorial-card">
                         <div className="ec-image-wrapper">
-                          <img src={article.coverImage ? `/api${article.coverImage}` : '/hero.png'} alt={article.title} />
+                          <img src={article.coverImage ? getImageUrl(article.coverImage) : '/hero.png'} alt={article.title} />
                           <span className="ec-category-badge">{article.category}</span>
                         </div>
                         <div className="ec-content">
