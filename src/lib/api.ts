@@ -142,8 +142,13 @@ export async function deleteStudyMaterial(id: string) {
     headers: getAuthHeaders(),
   });
   if (!res.ok) {
-    const data = await res.json();
-    throw new Error(data.error || 'Failed to delete study material');
+    const contentType = res.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
+      const data = await res.json();
+      throw new Error(data.error || 'Failed to delete study material');
+    } else {
+      throw new Error(`Server returned HTTP ${res.status}: ${res.statusText}`);
+    }
   }
   return res.json();
 }
