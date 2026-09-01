@@ -101,8 +101,17 @@ export async function createStudyMaterial(formData: FormData) {
     body: formData,
   });
   if (!res.ok) {
-    const data = await res.json();
-    throw new Error(data.error || 'Failed to create study material');
+    const contentType = res.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
+      const data = await res.json();
+      throw new Error(data.error || 'Failed to create study material');
+    } else {
+      const text = await res.text();
+      console.error("Non-JSON error response:", text);
+      if (res.status === 413) throw new Error("File is too large for Vercel (4.5MB limit).");
+      if (res.status === 504) throw new Error("Upload timed out. Vercel allows max 10 seconds for uploads.");
+      throw new Error(`Server returned HTTP ${res.status}: ${res.statusText}`);
+    }
   }
   return res.json();
 }
