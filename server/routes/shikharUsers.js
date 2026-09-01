@@ -127,8 +127,8 @@ router.post('/logout', async (req, res) => {
   }
 });
 
-// PUT /api/shikhar-users/state — sync shikhar state
-router.put('/state', async (req, res) => {
+// POST /api/shikhar-users/sync-state — sync shikhar state
+router.post('/sync-state', async (req, res) => {
   try {
     const { email, sessionToken, state } = req.body;
     if (!email || !sessionToken || !state) return res.status(400).json({ success: false });

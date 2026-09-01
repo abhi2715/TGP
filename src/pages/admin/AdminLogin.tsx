@@ -43,9 +43,9 @@ const AdminLogin = () => {
           <div className="admin-form-group">
             <label>Email</label>
             <input
-              type="email"
+              type="text"
               className="admin-input"
-              placeholder="admin@thegrowthproject.com"
+              placeholder="Admin Username or Email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required

@@ -31,7 +31,7 @@ export async function generateCertificate(userName: string, date: string): Promi
   const xName = (297 - nameWidth) / 2;
   // Position it below "THIS IS TO CERTIFY THAT"
   // Assuming that line is roughly at 45% down the page based on the template
-  doc.text(userName, xName, 105);
+  doc.text(userName, xName, 92);
 
   // 2. Program Director (Pooja Sharma)
   doc.setFontSize(14);

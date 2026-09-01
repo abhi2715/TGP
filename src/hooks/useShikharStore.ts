@@ -56,8 +56,12 @@ export function useShikharStore() {
   });
 
   useEffect(() => {
-    if (serverShikharState && Object.keys(serverShikharState).length > 0) {
-      setState(prev => ({ ...prev, ...serverShikharState }));
+    if (serverShikharState) {
+      if (Object.keys(serverShikharState).length > 0) {
+        setState(prev => ({ ...prev, ...serverShikharState }));
+      } else {
+        setState({ ...DEFAULT_STATE });
+      }
     }
   }, [serverShikharState]);
 

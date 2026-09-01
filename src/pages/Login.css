@@ -2,11 +2,11 @@
    LOGIN PAGE - Premium Shikhar Layout
    ═══════════════════════════════════════ */
 .login-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   padding: 11rem 2rem 2rem;
 }
 

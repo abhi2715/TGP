@@ -94,6 +94,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('tgp_user_email');
     localStorage.removeItem('tgp_user_name');
     localStorage.removeItem('tgp_session_token');
+    localStorage.removeItem('shikhar-program-data');
   };
 
   return (
