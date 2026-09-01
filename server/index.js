@@ -81,7 +81,7 @@ app.use(async (req, res, next) => {
     next();
   } catch (error) {
     console.error('Database connection error in middleware:', error);
-    res.status(503).json({ error: 'Service Unavailable: Database connection failed' });
+    res.status(503).json({ error: `Service Unavailable: Database connection failed. Details: ${error.message}` });
   }
 });
 
