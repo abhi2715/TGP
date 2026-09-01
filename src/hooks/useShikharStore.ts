@@ -31,28 +31,36 @@ const DEFAULT_STATE: ShikharState = {
 
 const STORAGE_KEY = 'shikhar-program-data';
 
-function loadState(): ShikharState {
+function loadState(currentUserEmail: string | null): ShikharState | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      // Remove the _userEmail tag from the returned state so it doesn't pollute ShikharState
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { _userEmail, ...stateData } = parsed;
+      // If cached data belongs to another user, discard it
+      if (_userEmail && currentUserEmail && _userEmail !== currentUserEmail) {
+        localStorage.removeItem(STORAGE_KEY);
+        return null;
+      }
       return { ...DEFAULT_STATE, ...stateData };
     }
   } catch {
     // ignore
   }
-  return { ...DEFAULT_STATE };
+  return null;
 }
 
 export function useShikharStore() {
   const { serverShikharState, serverUnlockedSessions, userEmail } = useAuth();
 
   const [state, setState] = useState<ShikharState>(() => {
-    let baseState = loadState();
+    const local = loadState(userEmail);
+    let baseState = { ...DEFAULT_STATE };
+
+    // 1. Merge server state if exists
     if (serverShikharState && Object.keys(serverShikharState).length > 0) {
+      baseState = { ...baseState, ...serverShikharState };
       const mergedSessions = { ...DEFAULT_STATE.sessions };
       if (serverShikharState.sessions) {
         Object.keys(serverShikharState.sessions).forEach(key => {
@@ -64,32 +72,52 @@ export function useShikharStore() {
           };
         });
       }
-      baseState = { ...DEFAULT_STATE, ...serverShikharState, sessions: mergedSessions };
+      baseState.sessions = mergedSessions;
     }
+
+    // 2. Merge local state ON TOP of server state
+    if (local) {
+      baseState = { ...baseState, ...local };
+      const mergedSessions = { ...baseState.sessions };
+      if (local.sessions) {
+        Object.keys(local.sessions).forEach(key => {
+          const k = Number(key);
+          mergedSessions[k] = {
+            ...mergedSessions[k],
+            ...local.sessions[k],
+            exerciseData: local.sessions[k]?.exerciseData || mergedSessions[k]?.exerciseData || {}
+          };
+        });
+      }
+      baseState.sessions = mergedSessions;
+    }
+
     return baseState;
   });
 
   useEffect(() => {
-    if (serverShikharState) {
-      if (Object.keys(serverShikharState).length > 0) {
-        setState(prev => {
-          // Deep merge sessions so we don't lose exerciseData if the server payload is incomplete
-          const mergedSessions = { ...DEFAULT_STATE.sessions };
-          if (serverShikharState.sessions) {
-            Object.keys(serverShikharState.sessions).forEach(key => {
-              const k = Number(key);
-              mergedSessions[k] = {
-                ...mergedSessions[k],
-                ...serverShikharState.sessions[k],
-                exerciseData: serverShikharState.sessions[k]?.exerciseData || mergedSessions[k]?.exerciseData || {}
-              };
-            });
-          }
-          return { ...prev, ...serverShikharState, sessions: mergedSessions };
-        });
-      } else {
-        setState({ ...DEFAULT_STATE });
-      }
+    if (serverShikharState && Object.keys(serverShikharState).length > 0) {
+      setState(prev => {
+        // Deep merge sessions so we don't lose exerciseData if the server payload is incomplete
+        const mergedSessions = { ...prev.sessions };
+        if (serverShikharState.sessions) {
+          Object.keys(serverShikharState.sessions).forEach(key => {
+            const k = Number(key);
+            mergedSessions[k] = {
+              ...mergedSessions[k],
+              ...serverShikharState.sessions[k],
+              exerciseData: serverShikharState.sessions[k]?.exerciseData || mergedSessions[k]?.exerciseData || {}
+            };
+          });
+        }
+        return { 
+          ...prev, 
+          // Protect local progress from being overwritten by a stale server fetch
+          programStarted: prev.programStarted || serverShikharState.programStarted || false,
+          userName: prev.userName || serverShikharState.userName || '',
+          sessions: mergedSessions 
+        };
+      });
     }
   }, [serverShikharState]);
 
