@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { verifyShikharSession, logoutShikhar } from '../lib/api';
@@ -24,6 +26,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [serverShikharState, setServerShikharState] = useState<any | null>(null);
   const [serverUnlockedSessions, setServerUnlockedSessions] = useState<number[] | null>(null);
 
+  const logout = () => {
+    const email = localStorage.getItem('tgp_user_email');
+    const token = localStorage.getItem('tgp_session_token');
+    if (email && token) {
+      logoutShikhar(email, token).catch(() => {});
+    }
+    
+    setIsAuthenticated(false);
+    setIsShikharUnlocked(false);
+    setUserEmail(null);
+    setUserName(null);
+    setServerShikharState(null);
+    setServerUnlockedSessions(null);
+    localStorage.removeItem('tgp_auth');
+    localStorage.removeItem('tgp_user_email');
+    localStorage.removeItem('tgp_user_name');
+    localStorage.removeItem('tgp_session_token');
+    // We NO LONGER clear shikhar-program-data here, so a user logging back in doesn't lose their un-synced progress.
+    // useShikharStore automatically clears it if a DIFFERENT user logs in.
+  };
+
   useEffect(() => {
     const checkSession = async () => {
       const email = localStorage.getItem('tgp_user_email');
@@ -46,6 +69,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             }
           }
         } catch (e) {
+          console.error('Session verification failed:', e);
           logout();
         }
       }
@@ -78,27 +102,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('tgp_user_email', email);
     localStorage.setItem('tgp_user_name', name);
     localStorage.setItem('tgp_session_token', token);
-  };
-
-  const logout = () => {
-    const email = localStorage.getItem('tgp_user_email');
-    const token = localStorage.getItem('tgp_session_token');
-    if (email && token) {
-      logoutShikhar(email, token).catch(() => {});
-    }
-    
-    setIsAuthenticated(false);
-    setIsShikharUnlocked(false);
-    setUserEmail(null);
-    setUserName(null);
-    setServerShikharState(null);
-    setServerUnlockedSessions(null);
-    localStorage.removeItem('tgp_auth');
-    localStorage.removeItem('tgp_user_email');
-    localStorage.removeItem('tgp_user_name');
-    localStorage.removeItem('tgp_session_token');
-    // We NO LONGER clear shikhar-program-data here, so a user logging back in doesn't lose their un-synced progress.
-    // useShikharStore automatically clears it if a DIFFERENT user logs in.
   };
 
   return (
