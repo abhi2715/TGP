@@ -428,7 +428,12 @@ export default function Session6() {
         </ExerciseCard>
       )}
 
-      <CompletionCelebration show={showCelebration} sessionNumber={6} onContinue={() => navigate('/shikhar')} />
+      <CompletionCelebration 
+        show={showCelebration} 
+        sessionNumber={6} 
+        onContinue={() => navigate('/shikhar')} 
+        onClose={() => setShowCelebration(false)}
+      />
     </SessionLayout>
   );
 }

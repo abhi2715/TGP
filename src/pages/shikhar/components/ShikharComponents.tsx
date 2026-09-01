@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Lock, Download, FileText } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Lock, Download, FileText, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { generateSessionTranscript } from '../../../utils/generateTranscript';
 import './ShikharComponents.css';
@@ -227,9 +227,10 @@ interface CompletionCelebrationProps {
   show: boolean;
   sessionNumber: number;
   onContinue: () => void;
+  onClose?: () => void;
 }
 
-export function CompletionCelebration({ show, sessionNumber, onContinue }: CompletionCelebrationProps) {
+export function CompletionCelebration({ show, sessionNumber, onContinue, onClose }: CompletionCelebrationProps) {
   if (!show) return null;
 
   return (
@@ -244,7 +245,16 @@ export function CompletionCelebration({ show, sessionNumber, onContinue }: Compl
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', damping: 15, stiffness: 200 }}
+        style={{ position: 'relative' }}
       >
+        {onClose && (
+          <button 
+            onClick={onClose}
+            style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', cursor: 'pointer', color: '#999' }}
+          >
+            <X size={24} />
+          </button>
+        )}
         <div className="celebration-icon">🏔️</div>
         <h2>Session {sessionNumber} Complete!</h2>
         <p>You've taken another step on your Shikhar journey. Your insights have been saved.</p>
