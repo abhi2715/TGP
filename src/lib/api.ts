@@ -253,6 +253,7 @@ export async function approveShikharUser(id: string) {
   const res = await fetch(`${API_BASE}/shikhar-users/${id}/approve`, {
     method: 'PUT',
     headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({})
   });
   if (!res.ok) throw new Error('Failed to approve user');
   return res.json();
@@ -262,6 +263,7 @@ export async function denyShikharUser(id: string) {
   const res = await fetch(`${API_BASE}/shikhar-users/${id}/deny`, {
     method: 'PUT',
     headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({})
   });
   if (!res.ok) throw new Error('Failed to deny user');
   return res.json();
@@ -281,6 +283,7 @@ export async function deleteShikharUser(id: string) {
   const res = await fetch(`${API_BASE}/shikhar-users/${id}`, {
     method: 'DELETE',
     headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({})
   });
   if (!res.ok) throw new Error('Failed to delete user');
   return res.json();
