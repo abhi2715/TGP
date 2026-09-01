@@ -8,6 +8,8 @@ const blogSchema = new mongoose.Schema({
   content: { type: String, required: true },
   author: { type: String, default: 'Dr. Pooja Sharma' },
   coverImage: { type: String, default: '' },
+  imageData: { type: Buffer },
+  imageContentType: { type: String },
   readTime: { type: String, default: '5 min read' },
   published: { type: Boolean, default: true },
 }, { timestamps: true });

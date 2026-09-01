@@ -7,14 +7,8 @@ const adminAuth = require('../middleware/auth');
 
 const router = express.Router();
 
-// Configure multer for testimonial images
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, '../uploads')),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `testimonial-${uuidv4()}${ext}`);
-  }
-});
+// Configure multer for memory storage (Vercel read-only filesystem fix)
+const storage = multer.memoryStorage();
 const upload = multer({ 
   storage,
   limits: { fileSize: 10 * 1024 * 1024 },
@@ -29,7 +23,7 @@ const upload = multer({
 router.get('/', async (req, res) => {
   try {
     const filter = req.query.all === 'true' ? {} : { published: true };
-    const testimonials = await Testimonial.find(filter).sort({ createdAt: -1 });
+    const testimonials = await Testimonial.find(filter).select('-imageData').sort({ createdAt: -1 });
     // Cache on Vercel CDN for 60 seconds, serve stale while revalidating for 24h
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=86400');
     res.json(testimonials);
@@ -41,7 +35,7 @@ router.get('/', async (req, res) => {
 // GET /api/testimonials/:id — public
 router.get('/:id', async (req, res) => {
   try {
-    const testimonial = await Testimonial.findById(req.params.id);
+    const testimonial = await Testimonial.findById(req.params.id).select('-imageData');
     if (!testimonial) return res.status(404).json({ error: 'Testimonial not found' });
     res.json(testimonial);
   } catch (err) {
@@ -49,19 +43,41 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// GET /api/testimonials/:id/image — public (Serves the actual image)
+router.get('/:id/image', async (req, res) => {
+  try {
+    const testimonial = await Testimonial.findById(req.params.id);
+    if (!testimonial || !testimonial.imageData) return res.status(404).send('Image not found');
+    
+    res.set('Content-Type', testimonial.imageContentType || 'image/jpeg');
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    res.send(testimonial.imageData);
+  } catch (err) {
+    res.status(500).send('Error downloading image');
+  }
+});
+
 // POST /api/testimonials — admin only
 router.post('/', adminAuth, upload.single('image'), async (req, res) => {
   try {
     const data = { ...req.body };
-    if (req.file) {
-      data.image = `/uploads/${req.file.filename}`;
-    }
     if (data.published === 'true') data.published = true;
     if (data.published === 'false') data.published = false;
     
     const testimonial = new Testimonial(data);
+    
+    if (req.file) {
+      testimonial.imageData = req.file.buffer;
+      testimonial.imageContentType = req.file.mimetype;
+      testimonial.image = `/api/testimonials/${testimonial._id}/image`;
+    }
+    
     await testimonial.save();
-    res.status(201).json(testimonial);
+    
+    const testimonialObj = testimonial.toObject();
+    delete testimonialObj.imageData;
+    
+    res.status(201).json(testimonialObj);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -71,13 +87,16 @@ router.post('/', adminAuth, upload.single('image'), async (req, res) => {
 router.put('/:id', adminAuth, upload.single('image'), async (req, res) => {
   try {
     const data = { ...req.body };
-    if (req.file) {
-      data.image = `/uploads/${req.file.filename}`;
-    }
     if (data.published === 'true') data.published = true;
     if (data.published === 'false') data.published = false;
     
-    const testimonial = await Testimonial.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true });
+    if (req.file) {
+      data.imageData = req.file.buffer;
+      data.imageContentType = req.file.mimetype;
+      data.image = `/api/testimonials/${req.params.id}/image`;
+    }
+    
+    const testimonial = await Testimonial.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true }).select('-imageData');
     if (!testimonial) return res.status(404).json({ error: 'Testimonial not found' });
     res.json(testimonial);
   } catch (err) {

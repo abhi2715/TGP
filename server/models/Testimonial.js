@@ -7,6 +7,8 @@ const testimonialSchema = new mongoose.Schema({
   quote: { type: String, required: true },
   metric: { type: String, default: '' },
   image: { type: String, default: '' },
+  imageData: { type: Buffer },
+  imageContentType: { type: String },
   videoUrl: { type: String, default: '' },
   published: { type: Boolean, default: true },
 }, { timestamps: true });

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
@@ -96,6 +97,15 @@ app.use('/api/shikhar-users', shikharUserRoutes);
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Global Error Handler for Vercel (prevents returning HTML stack traces)
+app.use((err, req, res, next) => {
+  console.error('Unhandled Error:', err);
+  if (err instanceof multer.MulterError) {
+    return res.status(400).json({ error: `Upload error: ${err.message}` });
+  }
+  res.status(500).json({ error: err.message || 'Internal Server Error' });
 });
 
 // If not running in Vercel, start the listener

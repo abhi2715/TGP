@@ -7,14 +7,8 @@ const adminAuth = require('../middleware/auth');
 
 const router = express.Router();
 
-// Configure multer for blog cover images
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, '../uploads')),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `blog-${uuidv4()}${ext}`);
-  }
-});
+// Configure multer for memory storage (Vercel read-only filesystem fix)
+const storage = multer.memoryStorage();
 const upload = multer({ 
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
@@ -29,7 +23,7 @@ const upload = multer({
 router.get('/', async (req, res) => {
   try {
     const filter = req.query.all === 'true' ? {} : { published: true };
-    const blogs = await Blog.find(filter).sort({ createdAt: -1 });
+    const blogs = await Blog.find(filter).select('-imageData').sort({ createdAt: -1 });
     // Cache on Vercel CDN for 60 seconds, serve stale while revalidating for 24h
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=86400');
     res.json(blogs);
@@ -41,7 +35,7 @@ router.get('/', async (req, res) => {
 // GET /api/blogs/:id — public, get single blog
 router.get('/:id', async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id);
+    const blog = await Blog.findById(req.params.id).select('-imageData');
     if (!blog) return res.status(404).json({ error: 'Blog not found' });
     res.json(blog);
   } catch (err) {
@@ -49,19 +43,41 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// GET /api/blogs/:id/image — public (Serves the actual image)
+router.get('/:id/image', async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog || !blog.imageData) return res.status(404).send('Image not found');
+    
+    res.set('Content-Type', blog.imageContentType || 'image/jpeg');
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    res.send(blog.imageData);
+  } catch (err) {
+    res.status(500).send('Error downloading image');
+  }
+});
+
 // POST /api/blogs — admin only, create blog
 router.post('/', adminAuth, upload.single('coverImage'), async (req, res) => {
   try {
     const blogData = { ...req.body };
-    if (req.file) {
-      blogData.coverImage = `/uploads/${req.file.filename}`;
-    }
     if (blogData.published === 'true') blogData.published = true;
     if (blogData.published === 'false') blogData.published = false;
     
     const blog = new Blog(blogData);
+    
+    if (req.file) {
+      blog.imageData = req.file.buffer;
+      blog.imageContentType = req.file.mimetype;
+      blog.coverImage = `/api/blogs/${blog._id}/image`;
+    }
+    
     await blog.save();
-    res.status(201).json(blog);
+    
+    const blogObj = blog.toObject();
+    delete blogObj.imageData;
+    
+    res.status(201).json(blogObj);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -71,13 +87,16 @@ router.post('/', adminAuth, upload.single('coverImage'), async (req, res) => {
 router.put('/:id', adminAuth, upload.single('coverImage'), async (req, res) => {
   try {
     const updateData = { ...req.body };
-    if (req.file) {
-      updateData.coverImage = `/uploads/${req.file.filename}`;
-    }
     if (updateData.published === 'true') updateData.published = true;
     if (updateData.published === 'false') updateData.published = false;
     
-    const blog = await Blog.findByIdAndUpdate(req.params.id, updateData, { new: true, runValidators: true });
+    if (req.file) {
+      updateData.imageData = req.file.buffer;
+      updateData.imageContentType = req.file.mimetype;
+      updateData.coverImage = `/api/blogs/${req.params.id}/image`;
+    }
+    
+    const blog = await Blog.findByIdAndUpdate(req.params.id, updateData, { new: true, runValidators: true }).select('-imageData');
     if (!blog) return res.status(404).json({ error: 'Blog not found' });
     res.json(blog);
   } catch (err) {
