@@ -1,7 +1,7 @@
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 export async function adminLogin(email: string, password: string) {
-  const res = await fetch(`/api/admin/login`, {
+  const res = await fetch(`${API_BASE}/admin/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
@@ -95,7 +95,7 @@ export async function fetchStudyMaterials(all = false) {
 }
 
 export async function createStudyMaterial(formData: FormData) {
-  const res = await fetch(`/api/study-materials`, {
+  const res = await fetch(`${API_BASE}/study-materials`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: formData,
@@ -117,7 +117,7 @@ export async function createStudyMaterial(formData: FormData) {
 }
 
 export async function updateStudyMaterial(id: string, formData: FormData) {
-  const res = await fetch(`/api/study-materials/${id}`, {
+  const res = await fetch(`${API_BASE}/study-materials/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: formData,
@@ -137,7 +137,7 @@ export async function updateStudyMaterial(id: string, formData: FormData) {
 }
 
 export async function deleteStudyMaterial(id: string) {
-  const res = await fetch(`/api/study-materials/${id}`, {
+  const res = await fetch(`${API_BASE}/study-materials/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   });
