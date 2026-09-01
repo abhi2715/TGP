@@ -86,7 +86,7 @@ export async function deleteBlog(id: string) {
 
 export async function fetchStudyMaterials(all = false) {
   try {
-    const res = await fetch(`${API_BASE}/study-materials${all ? '?all=true' : ''}`);
+    const res = await fetch(`/api/study-materials${all ? '?all=true' : ''}`);
     if (!res.ok) return [];
     return await res.json();
   } catch (e) {
@@ -95,7 +95,7 @@ export async function fetchStudyMaterials(all = false) {
 }
 
 export async function createStudyMaterial(formData: FormData) {
-  const res = await fetch(`${API_BASE}/study-materials`, {
+  const res = await fetch(`/api/study-materials`, {
     method: 'POST',
     headers: getAuthHeaders(),
     body: formData,
@@ -117,24 +117,34 @@ export async function createStudyMaterial(formData: FormData) {
 }
 
 export async function updateStudyMaterial(id: string, formData: FormData) {
-  const res = await fetch(`${API_BASE}/study-materials/${id}`, {
+  const res = await fetch(`/api/study-materials/${id}`, {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: formData,
   });
   if (!res.ok) {
-    const data = await res.json();
-    throw new Error(data.error || 'Failed to update study material');
+    const contentType = res.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
+      const data = await res.json();
+      throw new Error(data.error || 'Failed to update study material');
+    } else {
+      if (res.status === 413) throw new Error("File is too large for Vercel (4.5MB limit).");
+      if (res.status === 504) throw new Error("Upload timed out. Vercel allows max 10 seconds for uploads.");
+      throw new Error(`Server returned HTTP ${res.status}: ${res.statusText}`);
+    }
   }
   return res.json();
 }
 
 export async function deleteStudyMaterial(id: string) {
-  const res = await fetch(`${API_BASE}/study-materials/${id}`, {
+  const res = await fetch(`/api/study-materials/${id}`, {
     method: 'DELETE',
-    headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' },
+    headers: getAuthHeaders(),
   });
-  if (!res.ok) throw new Error('Failed to delete study material');
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.error || 'Failed to delete study material');
+  }
   return res.json();
 }
 
