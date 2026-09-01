@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -68,19 +68,31 @@ const SESSIONS = [
 ];
 
 export default function ShikharDashboard() {
-  const { userName, logout } = useAuth();
+  const { userName: authUserName, logout } = useAuth();
   const { state, isSessionUnlocked, getProgress, setUserName, resetAll } = useShikharStore();
   const [nameInput, setNameInput] = useState('');
   const progress = getProgress();
 
+  // Auto-start the program if user already has a name from login/registration
+  // This prevents the Welcome screen from showing up repeatedly
+  const hasKnownName = authUserName && authUserName.trim() && authUserName !== 'Leader';
+  
+  useEffect(() => {
+    if (!state.programStarted && hasKnownName) {
+      // User registered with a name — skip Welcome screen and auto-start
+      setUserName(authUserName!.trim());
+    }
+  }, [state.programStarted, hasKnownName, authUserName, setUserName]);
+
   const getDisplayName = () => {
     if (state.userName) return state.userName;
-    if (userName && userName !== 'Leader') return userName;
+    if (hasKnownName) return authUserName!;
     return 'Leader';
   };
   const displayName = getDisplayName();
 
-  if (!state.programStarted) {
+  // Only show Welcome screen if the program hasn't started AND we don't have a name from auth
+  if (!state.programStarted && !hasKnownName) {
     return (
       <div className="shikhar-welcome-page">
         <div className="welcome-bg" />
