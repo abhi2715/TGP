@@ -37,6 +37,7 @@ function loadState(): ShikharState {
     if (raw) {
       const parsed = JSON.parse(raw);
       // Remove the _userEmail tag from the returned state so it doesn't pollute ShikharState
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { _userEmail, ...stateData } = parsed;
       return { ...DEFAULT_STATE, ...stateData };
     }

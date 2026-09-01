@@ -65,6 +65,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const loginWithEmail = (email: string, token: string, name: string, state?: any, unlockedSessions?: number[]) => {
+    // CRITICAL: Clear any previous user's cached data BEFORE setting new credentials
+    localStorage.removeItem('shikhar-program-data');
+    
     setIsAuthenticated(true);
     setIsShikharUnlocked(true);
     setUserEmail(email);
