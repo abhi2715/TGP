@@ -65,8 +65,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const loginWithEmail = (email: string, token: string, name: string, state?: any, unlockedSessions?: number[]) => {
-    // CRITICAL: Clear any previous user's cached data BEFORE setting new credentials
-    localStorage.removeItem('shikhar-program-data');
+    // We NO LONGER clear shikhar-program-data here.
+    // useShikharStore automatically clears stale data if a DIFFERENT user logs in.
     
     setIsAuthenticated(true);
     setIsShikharUnlocked(true);
@@ -97,7 +97,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('tgp_user_email');
     localStorage.removeItem('tgp_user_name');
     localStorage.removeItem('tgp_session_token');
-    localStorage.removeItem('shikhar-program-data');
+    // We NO LONGER clear shikhar-program-data here, so a user logging back in doesn't lose their un-synced progress.
+    // useShikharStore automatically clears it if a DIFFERENT user logs in.
   };
 
   return (
