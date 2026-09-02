@@ -22,7 +22,7 @@ const AdminShikharUsers = () => {
 
   useEffect(() => { loadUsers(); }, []);
 
-  const loadUsers = async () => {
+  async function loadUsers() {
     try {
       const data = await fetchShikharUsers();
       setUsers(data);

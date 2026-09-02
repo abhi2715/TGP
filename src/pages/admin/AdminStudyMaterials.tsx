@@ -33,7 +33,7 @@ const AdminStudyMaterials = () => {
 
   useEffect(() => { loadMaterials(); }, []);
 
-  const loadMaterials = async () => {
+  async function loadMaterials() {
     try {
       const data = await fetchStudyMaterials(true);
       setMaterials(data);

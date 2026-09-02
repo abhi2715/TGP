@@ -36,7 +36,7 @@ const AdminBlogs = () => {
 
   useEffect(() => { loadBlogs(); }, []);
 
-  const loadBlogs = async () => {
+  async function loadBlogs() {
     try {
       const data = await fetchBlogs(true);
       setBlogs(data);

@@ -32,7 +32,7 @@ const AdminTestimonials = () => {
 
   useEffect(() => { loadTestimonials(); }, []);
 
-  const loadTestimonials = async () => {
+  async function loadTestimonials() {
     try {
       const data = await fetchTestimonials(true);
       setTestimonials(data);
