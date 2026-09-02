@@ -136,6 +136,7 @@ router.post('/sync-state', async (req, res) => {
     const user = await ShikharUser.findOne({ email: email.toLowerCase(), sessionToken });
     if (user && user.status === 'approved') {
       user.shikharState = state;
+      user.markModified('shikharState');
       await user.save();
       return res.json({ success: true });
     }

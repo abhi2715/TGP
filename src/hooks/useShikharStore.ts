@@ -82,10 +82,13 @@ export function useShikharStore() {
       if (local.sessions) {
         Object.keys(local.sessions).forEach(key => {
           const k = Number(key);
+          const serverCompleted = baseState.sessions[k]?.completed;
+          const localCompleted = local.sessions[k]?.completed;
           mergedSessions[k] = {
             ...mergedSessions[k],
             ...local.sessions[k],
-            exerciseData: local.sessions[k]?.exerciseData || mergedSessions[k]?.exerciseData || {}
+            completed: serverCompleted || localCompleted || false, // Never regress
+            exerciseData: { ...baseState.sessions[k]?.exerciseData, ...local.sessions[k]?.exerciseData }
           };
         });
       }
@@ -103,10 +106,13 @@ export function useShikharStore() {
         if (serverShikharState.sessions) {
           Object.keys(serverShikharState.sessions).forEach(key => {
             const k = Number(key);
+            const serverCompleted = serverShikharState.sessions[k]?.completed;
+            const localCompleted = mergedSessions[k]?.completed;
             mergedSessions[k] = {
               ...mergedSessions[k],
               ...serverShikharState.sessions[k],
-              exerciseData: serverShikharState.sessions[k]?.exerciseData || mergedSessions[k]?.exerciseData || {}
+              completed: serverCompleted || localCompleted || false, // Never regress
+              exerciseData: { ...mergedSessions[k]?.exerciseData, ...serverShikharState.sessions[k]?.exerciseData }
             };
           });
         }
