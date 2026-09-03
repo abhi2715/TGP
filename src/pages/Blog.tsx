@@ -27,10 +27,6 @@ const Blog = () => {
 
   const categories = ["All", "Leadership", "Career", "Growth", "Mindset", "Productivity", "Communication"];
 
-  useEffect(() => {
-    loadBlogs();
-  }, []);
-
   // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedBlogId) {
@@ -43,7 +39,7 @@ const Blog = () => {
     };
   }, [selectedBlogId]);
 
-  const loadBlogs = async () => {
+  async function loadBlogs() {
     try {
       const data = await fetchBlogs();
       setArticles(data);
@@ -53,6 +49,10 @@ const Blog = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadBlogs();
+  }, []);
 
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });

@@ -12,11 +12,7 @@ const AdminDashboard = () => {
   const [recentUsers, setRecentUsers] = useState<ShikharUserItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
+  async function loadData() {
     try {
       const [blogs, materials, testimonials, users] = await Promise.all([
         fetchBlogs(true),
@@ -38,6 +34,10 @@ const AdminDashboard = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });

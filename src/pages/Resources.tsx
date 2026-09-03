@@ -45,11 +45,7 @@ const Resources = () => {
     setPdfModalOpen(true);
   };
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
+  async function loadData() {
     try {
       const [blogsData, materialsData] = await Promise.all([
         fetchBlogs(),
@@ -66,6 +62,10 @@ const Resources = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const typeIcons: Record<string, string> = {
     Worksheet: '📋', Toolkit: '🧰', Template: '📄', Assessment: '📊', Guide: '📖', eBook: '📚',

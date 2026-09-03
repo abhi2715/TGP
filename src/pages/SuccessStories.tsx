@@ -22,11 +22,7 @@ const SuccessStories = () => {
   const [loading, setLoading] = useState(true);
   const [videoModal, setVideoModal] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadTestimonials();
-  }, []);
-
-  const loadTestimonials = async () => {
+  async function loadTestimonials() {
     try {
       const data = await fetchTestimonials();
       setStories(data);
@@ -36,6 +32,10 @@ const SuccessStories = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadTestimonials();
+  }, []);
 
   const getEmbedUrl = (url: string) => {
     // Convert YouTube watch URLs to embed URLs

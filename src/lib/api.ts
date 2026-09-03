@@ -42,7 +42,7 @@ export async function fetchBlogs(all = false) {
     const res = await fetch(`${API_BASE}/blogs${all ? '?all=true' : ''}`);
     if (!res.ok) return [];
     return await res.json();
-  } catch (e) {
+  } catch {
     return [];
   }
 }
@@ -95,7 +95,7 @@ export async function fetchStudyMaterials(all = false) {
     const res = await fetch(`${API_BASE}/study-materials${all ? '?all=true' : ''}`);
     if (!res.ok) return [];
     return await res.json();
-  } catch (e) {
+  } catch {
     return [];
   }
 }
@@ -166,7 +166,7 @@ export async function fetchTestimonials(all = false) {
     const res = await fetch(`${API_BASE}/testimonials${all ? '?all=true' : ''}`);
     if (!res.ok) return [];
     return await res.json();
-  } catch (e) {
+  } catch {
     return [];
   }
 }
@@ -260,7 +260,7 @@ export async function verifyShikharSession(email: string, sessionToken: string) 
   return res.json();
 }
 
-export async function syncShikharState(email: string, sessionToken: string, state: any) {
+export async function syncShikharState(email: string, sessionToken: string, state: unknown) {
   const res = await fetch(`${API_BASE}/shikhar-users/sync-state`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

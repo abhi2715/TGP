@@ -29,7 +29,10 @@ export function getLenis(): Lenis | null {
 
 export function useLenis(callback?: (lenis: Lenis) => void) {
   const callbackRef = useRef(callback);
-  callbackRef.current = callback;
+  
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
 
   useEffect(() => {
     const lenis = initLenis();

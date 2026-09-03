@@ -36,7 +36,6 @@ function loadState(currentUserEmail: string | null): ShikharState | null {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { _userEmail, ...stateData } = parsed;
       // If cached data belongs to another user, discard it
       if (_userEmail && currentUserEmail && _userEmail !== currentUserEmail) {
@@ -100,6 +99,7 @@ export function useShikharStore() {
 
   useEffect(() => {
     if (serverShikharState && Object.keys(serverShikharState).length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState(prev => {
         // Deep merge sessions so we don't lose exerciseData if the server payload is incomplete
         const mergedSessions = { ...prev.sessions };
