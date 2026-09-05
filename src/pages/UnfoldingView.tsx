@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Leaf, ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,15 +6,29 @@ import { Link } from 'react-router-dom';
 export default function UnfoldingView() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  useEffect(() => {
+    // Lock body scroll when mounting Unfolding app view
+    // This prevents the page from scrolling, keeping the fixed UnfoldingView perfectly aligned below the navbar
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
   return (
     <div className="unfolding-view-page" style={{ 
-      height: '100vh', 
       background: 'var(--color-surface)',
-      padding: isFullscreen ? '0' : '11rem 0 0',
       display: 'flex',
       flexDirection: 'column',
-      transition: 'padding 0.3s ease',
-      boxSizing: 'border-box'
+      transition: 'top 0.3s ease, padding 0.3s ease',
+      boxSizing: 'border-box',
+      position: 'fixed',
+      top: isFullscreen ? 0 : '11rem',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: isFullscreen ? 99999 : 10
     }}>
       {/* Top Bar - Hidden when fullscreen */}
       {!isFullscreen && (
