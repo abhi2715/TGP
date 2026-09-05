@@ -7,6 +7,9 @@ export default function UnfoldingView() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
+    // Force scroll to top before locking to prevent being locked in a scrolled down state
+    window.scrollTo(0, 0);
+    
     // Lock body scroll when mounting Unfolding app view
     // This prevents the page from scrolling, keeping the fixed UnfoldingView perfectly aligned below the navbar
     const originalStyle = window.getComputedStyle(document.body).overflow;
@@ -24,8 +27,8 @@ export default function UnfoldingView() {
       transition: 'padding 0.3s ease',
       boxSizing: 'border-box',
       position: isFullscreen ? 'fixed' : 'relative',
-      marginTop: isFullscreen ? 0 : '11rem',
-      height: isFullscreen ? '100vh' : 'calc(100vh - 11rem)',
+      paddingTop: isFullscreen ? 0 : '11rem',
+      minHeight: '100vh',
       top: isFullscreen ? 0 : 'auto',
       left: isFullscreen ? 0 : 'auto',
       right: isFullscreen ? 0 : 'auto',
