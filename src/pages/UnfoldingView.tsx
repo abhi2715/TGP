@@ -21,13 +21,15 @@ export default function UnfoldingView() {
       background: 'var(--color-surface)',
       display: 'flex',
       flexDirection: 'column',
-      transition: 'top 0.3s ease, padding 0.3s ease',
+      transition: 'padding 0.3s ease',
       boxSizing: 'border-box',
-      position: 'fixed',
-      top: isFullscreen ? 0 : '11rem',
-      left: 0,
-      right: 0,
-      bottom: 0,
+      position: isFullscreen ? 'fixed' : 'relative',
+      marginTop: isFullscreen ? 0 : '11rem',
+      height: isFullscreen ? '100vh' : 'calc(100vh - 11rem)',
+      top: isFullscreen ? 0 : 'auto',
+      left: isFullscreen ? 0 : 'auto',
+      right: isFullscreen ? 0 : 'auto',
+      bottom: isFullscreen ? 0 : 'auto',
       zIndex: isFullscreen ? 99999 : 10
     }}>
       {/* Top Bar - Hidden when fullscreen */}
