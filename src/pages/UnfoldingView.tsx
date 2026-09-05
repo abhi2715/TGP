@@ -28,7 +28,7 @@ export default function UnfoldingView() {
       boxSizing: 'border-box',
       position: isFullscreen ? 'fixed' : 'relative',
       paddingTop: isFullscreen ? 0 : '11rem',
-      minHeight: '100vh',
+      height: '100vh',
       top: isFullscreen ? 0 : 'auto',
       left: isFullscreen ? 0 : 'auto',
       right: isFullscreen ? 0 : 'auto',
