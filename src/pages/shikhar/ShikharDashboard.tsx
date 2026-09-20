@@ -407,6 +407,15 @@ export default function ShikharDashboard() {
           </div>
         </motion.div>
       </div>
+
+      {/* Floating Unfolding App Icon */}
+      <Link 
+        to="/unfolding-app"
+        className="unfolding-floating-btn"
+        title="Launch Unfolding App"
+      >
+        <Leaf size={24} />
+      </Link>
     </div>
   );
 }

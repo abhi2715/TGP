@@ -666,3 +666,37 @@
     padding: 1rem;
   }
 }
+
+/* ── Unfolding App Floating Button ── */
+.unfolding-floating-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: var(--shikhar-olive);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 100;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.unfolding-floating-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  color: white;
+}
+
+.unfolding-floating-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.unfolding-floating-btn:hover svg {
+  transform: scale(1.1);
+}
+
